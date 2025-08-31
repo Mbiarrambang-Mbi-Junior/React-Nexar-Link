@@ -1,0 +1,51 @@
+:root {
+  font-family: Poppins, Helvetica, sans-serif;
+  --bg-color: #416aac;
+  --box-bg-color: #ffffff;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #242424;
+  --text-accent-color: #008c69;
+  --text-highlight-color: #d17a00;
+  --skill-title-color: #d17a00;
+  --btn-text-color: #ffffff;
+  --btn-bg-color: #008c69;
+}
+
+.stats-section {
+  background-color: var(--bg-color);
+  color: var(--text-primary-color);
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stats-item {
+  text-align: center;
+}
+
+.stats-item .icon-wrapper svg {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: var(--text-primary-color);
+}
+
+.stats-item .stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.stats-item .stat-text {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}

@@ -1,0 +1,37 @@
+:root {
+    font-family: Poppins, Helvetica, sans-serif;
+    --bg-color: #416aac;
+    --box-bg-color: #ffffff;
+    --text-primary-color: #ffffff;
+    --text-secondary-color: #242424;
+    --text-accent-color: #008c69;
+    --text-highlight-color: #d17a00;
+    --skill-title-color: #d17a00;
+    --btn-text-color: #ffffff;
+    --btn-bg-color: #008c69;
+}
+
+.hero-section-container {
+  background-image: url('../assets/hero.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Pseudo-element for the solid color overlay */
+.hero-section-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(164, 193, 252, 0.7); /* Use your --body-bg-color with transparency */
+  z-index: 1;
+}

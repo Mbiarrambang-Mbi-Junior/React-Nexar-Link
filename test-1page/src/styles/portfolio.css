@@ -1,0 +1,64 @@
+:root {
+  font-family: Poppins, Helvetica, sans-serif;
+  --bg-color: #416aac;
+  --box-bg-color: #ffffff;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #242424;
+  --text-accent-color: #008c69;
+  --text-highlight-color: #d17a00;
+  --skill-title-color: #d17a00;
+  --btn-text-color: #ffffff;
+  --btn-bg-color: #008c69;
+}
+
+.portfolio-section {
+  background-color: var(--box-bg-color);
+  text-align: center;
+}
+
+.portfolio-section h2 {
+  color: cornflowerblue;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.portfolio-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 3px;
+  background-color: cornflowerblue;
+}
+
+.portfolio-link {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 20px;
+  color: cornflowerblue;
+}
+
+.portfolio-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0;
+}
+
+.portfolio-grid img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.categories {
+  padding: 10px 50px 50px 50px;
+}

@@ -1,0 +1,124 @@
+:root {
+  font-family: Poppins, Helvetica, sans-serif;
+  --bg-color: #416aac;
+  --box-bg-color: #ffffff;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #242424;
+  --text-accent-color: #008c69;
+  --text-highlight-color: #d17a00;
+  --skill-title-color: #d17a00;
+  --btn-text-color: #ffffff;
+  --btn-bg-color: #008c69;
+}
+
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-image 0.5s ease-in-out;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(65, 106, 172, 0.7);
+  z-index: 1;
+}
+
+.hero-section .icon {
+  z-index: 3;
+  color: var(--text-primary-color);
+  font-size: 2.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero-section .hero-arrow-btn-left {
+  left: 0px;
+  width: 200px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: var(--bg-color);
+}
+
+.hero-section .hero-arrow-btn-right {
+  right: 0px;
+    width: 200px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  background-color: var(--bg-color);
+}
+
+.hero-text {
+  text-align: center;
+  color: var(--text-primary-color);
+  z-index: 3;
+}
+
+.hero-text h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  background-color: var(--box-bg-color);
+  color: var(--bg-color);
+  font-weight: 600;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--bg-color);
+  color: var(--box-bg-color);
+}
+.hero-arrow-btn {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+              0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.dot-navigation {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+  background-color: white;
+  transform: scale(1.2);
+}

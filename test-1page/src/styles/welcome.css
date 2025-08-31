@@ -1,0 +1,61 @@
+:root {
+  font-family: Poppins, Helvetica, sans-serif;
+  --bg-color: #416aac;
+  --box-bg-color: #ffffff;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #646464;
+  --text-accent-color: #008c69;
+  --text-highlight-color: #d17a00;
+  --skill-title-color: #d17a00;
+  --btn-text-color: #ffffff;
+  --btn-bg-color: #008c69;
+}
+.welcome-section {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: white;
+}
+
+.welcome-section .text-content {
+  max-width: 800px;
+  margin: 0 auto;
+    color: var(--text-secondary-color);
+}
+
+.welcome-section h2 {
+  color: var(--bg-color);
+  position: relative;
+  display: inline-block;
+}
+
+.welcome-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 3px;
+  background-color: var(--bg-color);
+}
+
+.welcome-section p {
+  margin: 20px 0;
+}
+
+.welcome-section .read-more-button {
+  background-color: transparent;
+  color: var(--bg-color);
+  border: 2px solid var(--bg-color);
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.welcome-section .read-more-button:hover {
+  background-color: var(--bg-color);
+  color: var(--text-primary-color);
+}

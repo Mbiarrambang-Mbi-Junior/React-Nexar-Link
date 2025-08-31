@@ -1,0 +1,48 @@
+/* ----- FONT IMPORTS ----- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://unicons.iconscout.com/release/v4.0.8/css/line.css');
+
+body {
+    font-family: Poppins, Helvetica, sans-serif;
+    background-color: var(--body-bg-color);
+    --body-bg-color: #f0f2f5;
+    --box-bg-color: #ffffff;
+    --text-primary-color: #000000;
+    --text-secondary-color: #e0e0e0;
+    /* The variable is not used in your provided code, so it's a small redundancy. */
+    --text-accent-color: #008c69;
+    --text-highlight-color: #d17a00;
+    --skill-title-color: #d17a00;
+    /* Button variables for light mode */
+    --btn-text-color: #ffffff;
+    --btn-bg-color: #008c69;
+}
+
+/* Screen reader only class for accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* ----- VARIABLES (DEFAULT: DARK MODE) ----- */
+/* Light mode variables (applied when body has this class) */
+body.dark-mode {
+    --body-bg-color: #191854;
+    --box-bg-color: #181872;
+    --text-primary-color: #ffffff;
+    --text-secondary-color: #e0e0e0;
+    --text-accent-color: #00c896;
+    --text-highlight-color: #f39c12;
+    --skill-title-color: #f39c12;
+    /* Button variables for dark mode */
+    --btn-text-color: #ffffff;
+    --btn-bg-color: #00c896;
+}

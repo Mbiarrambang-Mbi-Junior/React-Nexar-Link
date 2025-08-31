@@ -1,0 +1,33 @@
+/* ----- FONT IMPORTS ----- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://unicons.iconscout.com/release/v4.0.8/css/line.css');
+
+:root {
+  font-family: Poppins, Helvetica, sans-serif;
+  text-transform: capitalize;
+  --bg-color: #416aac;
+  --box-bg-color: #ffffff;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #242424;
+  /* The variable is not used in your provided code, so it's a small redundancy. */
+  --text-accent-color: #008c69;
+  --text-highlight-color: #d17a00;
+  --skill-title-color: #d17a00;
+  /* Button variables for light mode */
+  --btn-text-color: #ffffff;
+  --btn-bg-color: #008c69;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+}

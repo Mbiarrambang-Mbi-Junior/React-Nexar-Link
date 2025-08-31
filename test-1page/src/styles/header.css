@@ -1,0 +1,83 @@
+:root {
+  font-family: Poppins, Helvetica, sans-serif;
+  background-color: var(--body-bg-color);
+  --body-bg-color: #416aac;
+  --box-bg-color: #ffffff;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #242424;
+  --text-accent-color: #008c69;
+  --text-highlight-color: #d17a00;
+  --skill-title-color: #d17a00;
+  --btn-text-color: #ffffff;
+  --btn-bg-color: #008c69;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  position: absolute;
+  font-weight: 500;
+  font-size: 17px;
+  max-width: 1200px;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 1rem auto; /* Centers the navbar and adds margin */
+  padding: 1rem;
+  z-index: 99;
+}
+
+/* Style for the logo */
+.navbar .logo {
+  font-size: 50px;
+  font-weight: 800;
+  color: var(--text-primary-color);
+}
+.navbar .logo span {
+  font-weight: 100;
+}
+
+/* Style for the navigation links */
+.nav-list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-list li {
+  text-decoration: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  color: var(--text-primary-color);
+  font-weight: 600;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+/* This is the line-on-hover effect you requested previously */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background-color: var(--text-primary-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-primary-color);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}

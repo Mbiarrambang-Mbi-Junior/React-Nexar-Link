@@ -1,0 +1,70 @@
+:root {
+  font-family: Poppins, Helvetica, sans-serif;
+  --bg-color: #416aac;
+  --box-bg-color: #ffffff;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #242424;
+  --text-accent-color: #008c69;
+  --text-highlight-color: #d17a00;
+}
+
+.testimonial-section {
+  background-color: var(--bg-color);
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonial-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  background-color: var(--box-bg-color);
+  max-width: 900px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.quote {
+  text-align: left;
+  color: var(--text-secondary-color);
+}
+
+.quote .name {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.quote .title {
+  margin: 5px 0 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #777;
+}
+
+.quote .quote-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
+}

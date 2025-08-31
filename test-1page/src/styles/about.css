@@ -1,0 +1,49 @@
+:root {
+  font-family: Poppins, Helvetica, sans-serif;
+  --bg-color: #416aac;
+  --box-bg-color: #ffffff;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #242424;
+  --text-accent-color: #008c69;
+  --text-highlight-color: #d17a00;
+  --skill-title-color: #d17a00;
+  --btn-text-color: #ffffff;
+  --btn-bg-color: #008c69;
+  --about-color-1: #416aac;
+  --about-color-2: #242424;
+}
+
+.about-section {
+  display: flex;
+  padding: 80px 100px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.about-section .about-item {
+  flex: 1;
+  min-width: 280px;
+  background-color: var(--about-color-1);
+  color: var(--text-primary-color);
+  padding: 50px 20px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-item:nth-child(2) {
+  background-color: var(--about-color-2);
+}
+
+.about-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.about-item .icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--text-primary-color);
+}
