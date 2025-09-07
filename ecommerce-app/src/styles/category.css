@@ -1,0 +1,32 @@
+.category-content {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    width: 250px;
+    height: 350px;
+    text-align: center;
+
+    
+}
+
+.product-card .card {
+    margin-top: 30px;
+    background-color: aqua;
+    border-radius: 20px;
+    height: 350px;
+}
+.product-card .card img {
+    width: 200px;
+    border-radius: 20px;
+    height: 200px;
+}
+
+
+

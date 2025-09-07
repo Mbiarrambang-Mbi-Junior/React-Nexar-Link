@@ -1,0 +1,11 @@
+.header {
+    display: flex;
+    line-height: 1rem;
+}
+.navbar ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+}
