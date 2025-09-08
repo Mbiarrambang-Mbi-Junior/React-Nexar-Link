@@ -1,0 +1,125 @@
+/* contacts.css */
+
+.contact-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 100px auto 0;
+  color: var(--text-primary);
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  background-color: var(--Background-color);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .contact-container {
+    flex-direction: row;
+    gap: 4rem;
+  }
+}
+
+/* Left Contact Info Section */
+.contact-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-heading, .form-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.contact-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  color: var(--Primary-Accent-But-lin);
+}
+
+.contact-text h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.contact-text p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Right Contact Form Section */
+.contact-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--Primary-Accent-But-lin);
+  box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.2);
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.submit-button {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--Primary-Accent-But-lin);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #00e600;
+}

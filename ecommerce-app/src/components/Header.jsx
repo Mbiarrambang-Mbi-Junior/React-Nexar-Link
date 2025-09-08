@@ -53,6 +53,10 @@ function Header() {
           </li>
           <li>
             <Link to="/contacts" className={location.pathname === '/contacts' ? 'active' : ''}>Contacts</Link>
+
+          </li>
+          <li>
+            <Link to="/login" className={location.pathname === '/login' ? 'active' : ''}>Login</Link>
           </li>
         </ul>
       </nav>
@@ -67,12 +71,16 @@ function Header() {
           {/* The onClick handler is on the icon */}
           <BsSearch size={24} className='topnav-icon' onClick={handleSearchToggle}/>
         </div>
+        <Link to="/favourit" className="favourite-link">
         <div className="cart-num">
           <BsHeartFill size={24} className='topnav-icon' />
         </div>
+        </Link>
+        <Link to="/cart" className="cart-link">
         <div className="cart-num">
-          <BsCart4 size={24} className='topnav-icon' /><p>0</p>
+          <BsCart4 size={24} className='topnav-icon'/><p>0</p>
         </div>
+        </Link>
         <div className="cart-num" onClick={handleThemeToggle}>
           {theme === 'dark' ? <BsMoonFill size={24} className='topnav-icon'/> : <BsSunFill size={24} className='topnav-icon'/>}
         </div>

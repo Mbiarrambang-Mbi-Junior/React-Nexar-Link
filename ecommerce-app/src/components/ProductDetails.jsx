@@ -1,6 +1,7 @@
 // ProductDetails.jsx
 
 import React, { useState } from 'react';
+import { useCart } from './CartContext'; // Use the hook here
 import { useParams } from 'react-router-dom';
 import { BsPlus } from 'react-icons/bs';
 import '../styles/productdetails.css';
@@ -8,8 +9,10 @@ import '../styles/productdetails.css';
 // Import the products data from ProductList
 import { products } from './ProductList';
 
+
 const ProductDetails = () => {
   const { id } = useParams();
+  const { addToCart } = useCart();
   const [color, setColor] = useState('');
   const product = products.find((p) => p.id === parseInt(id));
 
@@ -52,7 +55,7 @@ const ProductDetails = () => {
         </div>
         <div className="price-add-cart">
           <span className="product-price">{product.price}</span>
-          <BsPlus className="add-to-cart-icon" />
+          <BsPlus className="add-to-cart-icon" onClick={() => addToCart(products)}/>
         </div>
       </div>
     </section>

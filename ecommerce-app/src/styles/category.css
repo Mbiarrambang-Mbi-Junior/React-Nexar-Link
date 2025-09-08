@@ -1,1 +1,22 @@
 
+.category-content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.category-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 200px;
+  text-align: center;
+}
+.category-card img {
+  width: 100%;
+  height: auto;
+}
