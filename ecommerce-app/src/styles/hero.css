@@ -20,6 +20,12 @@ body.dark {
   background-color: var(--Background-color);
   color: var(--text-primary);
 }
+/* Hero.css */
+
+/*
+  * This is the main hero container that controls the overall height.
+  * We will keep the height fixed to prevent layout shifts.
+  */
 .hero-content {
   display: flex;
   justify-content: center;
@@ -28,14 +34,18 @@ body.dark {
   align-items: center;
   max-width: 1280px;
   margin: auto;
-  height: 500px;
+  height: 500px; /* This fixed height is crucial for stability */
   padding: 2rem;
-  margin-top: 100px; /* This overrides the top padding from the line above */
+  margin-top: 100px;
   gap: 1rem;
 }
 
+/*
+  * The text section can remain flexible.
+  */
 .hero-text {
   flex: 1;
+  max-width: 600px;
   text-align: left;
 }
 
@@ -63,25 +73,42 @@ body.dark {
 
 .shop-now-button:hover {
   background-color: #4fa3d1;
-   border: 2px solid transparent;
+  border: 2px solid transparent;
 }
 
+/*
+  * Product Image Container
+  * This container now has a fixed size relative to the hero section.
+  * Adding `overflow: hidden` prevents the rotated image from extending beyond the container's bounds.
+  */
 .hero-image-container {
   flex: 1;
+  height: 100%; /* Take up the full height of the parent flex container */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden; /* Key to prevent the rotated image from "poking out" */
 }
 
+/*
+  * Product Image
+  * The `object-fit: contain` property is the most important change.
+  * It ensures the image scales to fit within its container without being cropped or stretched,
+  * preserving its aspect ratio and preventing distortion.
+  */
 .hero-image {
   max-width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-height: 100%;
+  object-fit: contain; /* Scales the image to fit while maintaining aspect ratio */
   object-position: center;
-}
-.hero-image-container img {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: rotate(-35deg); /* The image rotation */
+  transition: transform 0.5s ease-in-out;
 }
 
+/*
+  * The rest of your styles for dots and other elements
+  */
 .dot-container {
   display: flex;
   justify-content: center;

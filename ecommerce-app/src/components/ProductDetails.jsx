@@ -1,21 +1,18 @@
-import React from 'react';
+// ProductDetails.jsx
+
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { BsPlus } from 'react-icons/bs';
 import '../styles/productdetails.css';
-import { BsPlus, BsStarFill } from 'react-icons/bs';
 
-// Import the product data from the ProductList component
-import products from './ProductList.jsx';
-
+// Import the products data from ProductList
+import { products } from './ProductList';
 
 const ProductDetails = () => {
-  // Use useParams hook to get the 'id' from the URL
   const { id } = useParams();
+  const [color, setColor] = useState('');
+  const product = products.find((p) => p.id === parseInt(id));
 
-  // Find the product that matches the URL ID
-  // Use parseInt(id) because URL params are strings
-  const product = products.find(p => p.id === parseInt(id));
-
-  // If no product is found, display a not-found message
   if (!product) {
     return (
       <div className="product-details-container">
@@ -24,46 +21,38 @@ const ProductDetails = () => {
     );
   }
 
-  // Use the found product's data to render the details
   return (
     <section className="product-details-container">
-      {/* Product Image Section */}
-      <div className="product-images-section">
-        <div className="main-image-wrapper">
-          <img src={product.image} alt={product.name} className="main-image" />
-        </div>
-        <div className="thumbnails">
-          {/* You can create an array of images for each product and map through them */}
-          <img src={product.image} alt="Thumbnail 1" className="thumbnail active" />
+      <div className="product-img">
+        <img src={product.image} alt={product.name} className="main-image" />
+        <div className="small-images">
+          {/* ... small images code */}
         </div>
       </div>
-
-      {/* Product Info Section */}
-      <div className="product-info-section">
-        <span className="product-category">Gaming</span>
+      <div className="text-description">
         <h1 className="product-name">{product.name}</h1>
-        <div className="product-rating">
-          <div className="stars">
-            {/* You can make this dynamic based on the product's rating */}
-            <BsStarFill />
-            <BsStarFill />
-            <BsStarFill />
-            <BsStarFill />
-            <BsStarFill className="half-star" />
-          </div>
-          <span className="reviews-count">(100 reviews)</span>
+        <div className="product-description">
+          <p>{product.description}</p>
         </div>
-        
-        <p className="product-price">{product.price}</p>
-        
-        <p className="product-description">{product.description}</p>
-        
-        <div className="cta-buttons">
-          <button className="add-to-cart-button">
-            Add to Cart
-            <BsPlus className="plus-icon" />
-          </button>
-          <button className="buy-now-button">Buy Now</button>
+        <div className="select-color">
+          <p className="text">Color:</p>
+          <select
+            id="color-select"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+          >
+            <option value="">-- Select a Color --</option>
+            {/* Dynamically generate options from the product's colors array */}
+            {product.colors.map((colorOption) => (
+              <option key={colorOption} value={colorOption}>
+                {colorOption}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="price-add-cart">
+          <span className="product-price">{product.price}</span>
+          <BsPlus className="add-to-cart-icon" />
         </div>
       </div>
     </section>

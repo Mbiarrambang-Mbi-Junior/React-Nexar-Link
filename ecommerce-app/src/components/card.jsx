@@ -1,70 +1,48 @@
 import React from 'react';
 import Tilt from 'react-parallax-tilt';
-import '../styles/category.css';
+import '../styles/card.css';
 import { BsPlus } from 'react-icons/bs';
 
-// It's a good practice to import images directly in React
-// and reference them with variables.
-import nikeBlue from '../images/Leo_Men_s_Athletic_Sneakers_Green-8_5___43-removebg-preview.png';
-import nikePurple from '../images/Leo_Men_s_Athletic_Sneakers_Green-8_5___43-removebg-preview.png';
+// Note: You can remove the individual image imports like `nikeBlue`
+// as the image path will now be passed through props.
 
-function Category() {
+function Card({ product }) {
+    // Destructure the product prop to easily access its properties
+    const { image, price, catigory, name, description } = product;
+
+    // The state and increment function can remain the same
+    const [count, setCount] = React.useState(0);
+    const increment = () => {
+        setCount(count + 1);
+    };
+
     return (
-        <>
-            <h2>Category Component</h2>
-            <div className="category-content">
-                <Tilt
-                    className="card blue"
-                    tiltMaxAngleX={25}
-                    tiltMaxAngleY={25}
-                    perspective={1000}
-                    transitionSpeed={5000}
-                    glareEnable={true}
-                    glareMaxOpacity={0.5}
-                ></Tilt>
-                    <div className="product card">
-                        <h3>Electronics</h3>
-                        <span className="sneakers">SNEAKERS</span>
-                        <span className="price">$39.9</span>
-                        <img src={nikeBlue} alt="Nike Blue sneakers" />
-                        <div className="title">
-                            <h2>Nike Blue</h2>
-                            <BsPlus className='add-icon' />
-                        </div>
+        <div className="card-content">
+            <Tilt
+                className="card blue"
+                tiltMaxAngleX={25}
+                tiltMaxAngleY={25}
+                perspective={1000}
+                transitionSpeed={5000}
+                glareEnable={true}
+                glareMaxOpacity={0.5}
+            >
+                <span className="sneakers">{catigory}</span>
+                <span className="price">{price}</span>
+                {/* Use the 'image' prop here */}
+                <img src={image} alt={name} />
+                <div className="title">
+                    <h2>{name}</h2>
+                    <div className="product-description">
+                        <p className="description">
+                            {description}
+                        </p>
                     </div>
-                    <div className="product card">
-                        <h3>Men</h3>
-                        <span className="sneakers">SNEAKERS</span>
-                        <span className="price">$39.9</span>
-                        <img src={nikeBlue} alt="Nike Blue sneakers" />
-                        <div className="title">
-                            <h2>Nike Blue</h2>
-                            <BsPlus className='add-icon' />
-                        </div>
-                    </div>
-                    <div className="product card">
-                        <h3>Female</h3>
-                        <span className="sneakers">SNEAKERS</span>
-                        <span className="price">$39.9</span>
-                        <img src={nikeBlue} alt="Nike Blue sneakers" />
-                        <div className="title">
-                            <h2>Nike Blue</h2>
-                            <BsPlus className='add-icon' />
-                        </div>
-                    </div>
-                    <div className="product ">
-                        <h3>Furniture</h3>
-                        <span className="sneakers">SNEAKERS</span>
-                        <span className="price">$39.9</span>
-                        <img src={nikeBlue} alt="Nike Blue sneakers" />
-                        <div className="title">
-                            <h2>Nike Blue</h2>
-                            <BsPlus className='add-icon' />
-                        </div>
-                    </div>               
-            </div>
-        </>
+                    <BsPlus className='add-icon' onClick={increment} />
+                </div>
+            </Tilt>
+        </div>
     );
 }
 
-export default Category;
+export default Card;

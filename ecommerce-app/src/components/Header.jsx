@@ -8,7 +8,8 @@ function Header() {
   const location = useLocation();
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [theme, setTheme] = useState('light');
-    useEffect(() => {
+
+  useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       setTheme(savedTheme);
@@ -20,18 +21,21 @@ function Header() {
     document.body.classList.toggle('dark-mode', theme === 'dark');
     localStorage.setItem('theme', theme);
   }, [theme]);
+
   const handleSearchToggle = () => {
     setIsSearchActive(!isSearchActive);
   };
-    const handleThemeToggle = () => {
-    // Toggle the theme state
+    
+  const handleThemeToggle = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   return (
     <header className="header">
       <div className="logo">
+        <Link to={'/'}className='.Link'>
         <h1>E-<span>Shop</span></h1>
+        </Link>
       </div>
       <nav className='navbar'>
         <ul className='nav-links'>
@@ -53,22 +57,26 @@ function Header() {
         </ul>
       </nav>
       <div className="topnav-icons">
-        <input type="text" className="search-bar" placeholder="Search..." />
-        <div className={`cart-num search ${isSearchActive ? 'active' : ''}`} >
-         <BsSearch size={24} className='topnav-icon' onClick={handleSearchToggle}/>
+        {/* The dynamic class is now on the input itself */}
+        <input 
+          type="text" 
+          className={`search-bar ${isSearchActive ? 'active' : ''}`} 
+          placeholder="Search..." 
+        />
+        <div className="cart-num search">
+          {/* The onClick handler is on the icon */}
+          <BsSearch size={24} className='topnav-icon' onClick={handleSearchToggle}/>
         </div>
         <div className="cart-num">
-         <BsHeartFill size={24} className='topnav-icon' />
+          <BsHeartFill size={24} className='topnav-icon' />
         </div>
         <div className="cart-num">
-         <BsCart4 size={24} className='topnav-icon' /><p>0</p>
+          <BsCart4 size={24} className='topnav-icon' /><p>0</p>
         </div>
         <div className="cart-num" onClick={handleThemeToggle}>
           {theme === 'dark' ? <BsMoonFill size={24} className='topnav-icon'/> : <BsSunFill size={24} className='topnav-icon'/>}
         </div>
-        
       </div>
-      
     </header>
   );
 }

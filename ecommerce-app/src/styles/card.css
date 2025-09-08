@@ -1,0 +1,95 @@
+#root {
+  padding: 2rem;
+  background-color: #282c34;
+  --Primary-Accent-But-lin:	#00FF00;
+  --Background-color:	#F5F5F5;
+  --text-primary:	#333333;
+  --text-secondary:	#666666;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-content {
+    display: flex;
+    width: 1200px;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.sneakers {
+    background-color: var(--Primary-Accent-But-lin);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.card{
+    padding-top: 30px;
+    width: 350px;
+    height: 450px;
+        text-align: center;
+    background-color: black;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.card img {
+    width: 200px;
+    height: 200px;
+    margin-right: 40px;
+    transition: transform 0.3s ease;
+    transform: rotate(0deg) ;
+}
+.card img:hover {
+    transform: rotate(-35deg) scale(1.05);
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 20px;
+  color: var(--Primary-Accent-But-lin);
+  position: relative;
+}
+h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: var(--Primary-Accent-But-lin);
+  margin: 8px auto;
+  border-radius: 2px;
+}
+h2:hover {
+    cursor: pointer;
+}
+h2:hover::after {
+  transition: ease-in-out .5s;
+  
+  width: 80px;
+}
+.product-description {
+    padding-left: 20px;
+    text-align: left;
+}
+.add-icon {
+    background-color: var(--Primary-Accent-But-lin);
+    color: white;
+    border-radius: 50%;
+    position: relative;
+    top: 55px;
+    padding: 4opx;
+    font-size: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.add-icon:hover {
+    background-color: #2ecc71;
+}
