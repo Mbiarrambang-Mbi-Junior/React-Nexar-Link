@@ -1,0 +1,20 @@
+ [
+  {
+    "id": 1,
+    "icon": "BsTruck",
+    "title": "Free Shipping",
+    "description": "Enjoy free shipping on all orders over $100. We deliver to your doorstep at no extra cost."
+  },
+  {
+    "id": 2,
+    "icon": "BsShieldCheck",
+    "title": "Secure Payments",
+    "description": "Shop with confid ence knowing all your payments are 100% secure through our encrypted gateway."
+  },
+  {
+    "id": 3,
+    "icon": "BsHeadset",
+    "title": "24/7 Support",
+    "description": "Our customer support team is available around the clock to assist you with any questions or issues."
+  }
+]

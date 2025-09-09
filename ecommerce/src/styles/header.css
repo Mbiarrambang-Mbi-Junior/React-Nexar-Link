@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+.hero-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    top: 0;
+    font-weight: 800;
+    background-color: teal;
+    color: white;
+    text-transform: capitalize;
+}
+.hero-section a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.hero-section .logo-container .logo {font-family: Dancing Script, cursive;}
+.hero-section .logo-container .logo span {
+    color: orange;
+}
+
+.hero-section .topnav-bar ul {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 18px;
+    list-style: none;
+}
+
+
+.hero-section .topnav-bar .active{color: orange;}
+.hero-section .topnav-bar .active::after {
+  content: "";
+  display: block;
+  color: orange;
+  width: 100%;
+  height: 2px;
+  background: orange;
+  transition: width 0.3s ease-in-out;
+  position: relative;
+  bottom: 0;
+  left: 0;
+
+}
+.hero-section .topnav-bar .topnav-link::after {
+  content: "";
+  display: block;
+  color: orange;
+  width: 0;
+  height: 2px;
+  background: orange;
+  transition: width 0.3s ease-in-out;
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+.hero-section .topnav-bar .topnav-link:hover,
+.hero-section .topnav-bar .topnav-link:hover::after {width: 100%;color: orange;}
+
+.hero-section .topnav-icon {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    align-items: center;
+}
+.hero-section .topnav-icon:hover{
+    color: orange;
+
+}

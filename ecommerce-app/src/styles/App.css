@@ -1,12 +1,8 @@
-#root {
-  --body-color: #f8f5f1;
-  --navy-dominant: rgb(1,37,125);
-  --grey-secondary: rgb(128, 128, 128);
-  --orange-accent: rgb(255, 165, 0);
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 .App {
   max-width: 1280px;
+  font-family: Poppins, sans-serif;
+  color: white;
   margin: auto;
   padding: 2rem;
   text-align: center;

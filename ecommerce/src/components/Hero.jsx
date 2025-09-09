@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 import '../styles/hero.css';
-import Header from './Header';
-import { BsSearch } from 'react-icons/bs';
-import  herocontent  from '../utils/herocontent.json';
-
+import hero from '../utils/hero.json';
+import Heroimg from '../assets/product_design-removebg-preview.png';
 
 function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [transitionClass, setTransitionClass] = useState('fade-in');
 
   useEffect(() => {
-    // Set up a timer to change the content every 5 seconds
-    const intervalId = setInterval(() => {
-      // Calculate the next index, looping back to 0 at the end
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % herocontent.length);
-    }, 5000);
+    const interval = setInterval(() => {
+      setTransitionClass('fade-out');
+      const transitionTimeout = setTimeout(() => {
+        setCurrentIndex((prevIndex) =>
+          prevIndex === hero.length - 1 ? 0 : prevIndex + 1
+        );
+        setTransitionClass('fade-in');
+      }, 700); 
+      return () => clearTimeout(transitionTimeout);
 
-    // Clean up the timer when the component unmounts
-    return () => clearInterval(intervalId);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
-  const currentContent = herocontent[currentIndex];
+  const currentContent = hero[currentIndex];
 
   return (
     <section className="hero-section">
-      <Header />
-      <div className="hero-content">
+      <div className={`hero-content ${transitionClass}`}>
         <div className="hero-text">
           <h1 className="hero-heading">{currentContent.heading}</h1>
           <p className="hero-tagline">{currentContent.tagline}</p>
@@ -39,7 +42,7 @@ function Hero() {
         </div>
       </div>
       <div className="dot-container">
-        {herocontent.map((_, index) => (
+        {hero.map((_, index) => (
           <div
             key={index}
             className={`dot ${index === currentIndex ? 'active' : ''}`}
