@@ -7,9 +7,10 @@
     align-items: center;
     position: relative;
     top: 0;
+    margin-bottom: 30px;
     font-weight: 800;
     background-color: teal;
-    color: white;
+    color: teal;
     text-transform: capitalize;
 }
 .hero-section a{
@@ -60,6 +61,10 @@
 .hero-section .topnav-bar .topnav-link:hover,
 .hero-section .topnav-bar .topnav-link:hover::after {width: 100%;color: orange;}
 
+
+.hero-section .search{
+    color: white;
+}
 .hero-section .topnav-icon {
     display: flex;
     justify-content: space-around;
@@ -68,5 +73,4 @@
 }
 .hero-section .topnav-icon:hover{
     color: orange;
-
 }

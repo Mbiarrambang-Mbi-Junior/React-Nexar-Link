@@ -1,12 +1,19 @@
 import React from 'react'
 import { BsSearch, BsHeartFill, BsCartFill, BsCart4, BsMoonFill, BsSunFill } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../styles/header.css'
 
 
 
 
-function Header({cartCount}) {
+
+function Header({ cartCount }) {
+    const navigate = useNavigate();
+
+    const handleSeeCart = () => {
+        navigate('/addtocart');
+    };
+
     return (
         <>
             <section className="hero-section">
@@ -35,7 +42,7 @@ function Header({cartCount}) {
                     </Link>
                     <Link to="/cart" className="cart-link">
                         <div className="cart-num">
-                            <BsCart4 size={24} className='topnav-icon' textAnchor={<p className='cart-count'>0</p>} />
+                            <BsCart4 size={24} className='topnav-icon' textAnchor={<p className='cart-count'>0</p>} onClick={handleSeeCart} />
                             {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
                         </div>
                     </Link>

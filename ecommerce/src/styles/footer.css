@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+.footer-section {
+    background-color: teal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.footer-section a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}.footer-section ul {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 18px;
+    list-style: none;
+}
+.footer-logo {
+    font-family: Dancing Script;
+    color: orange;
+}

@@ -1,27 +1,10 @@
-
-.card-content {
-    display: flex;
-    width: 1200px;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-.sneakers {
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
 .card{
     padding-top: 30px;
-    width: 350px;
-    height: 450px;
+    width: 300px;
+    height: 400px;
     text-align: center;
     border-radius: 20px;
+    background-color: teal;
     margin-top: 20px;
 }
 
@@ -34,15 +17,16 @@
 }
 .card img:hover {
     transform: rotate(-35deg) scale(1.05);
+    cursor: pointer;
 }
 
-h2 {
+.card h2 {
   text-align: center;
   font-size: 2.5rem;
   margin-top: 20px;
   position: relative;
 }
-h2::after {
+.card h2::after {
   content: "";
   display: block;
   width: 50px;
@@ -50,14 +34,15 @@ h2::after {
   margin: 8px auto;
   border-radius: 2px;
 }
-h2:hover {
+.card h2:hover {
     cursor: pointer;
 }
-h2:hover::after {
+.card h2:hover::after {
   transition: ease-in-out .5s;
   
   width: 80px;
 }
+
 .product-description {
     padding-left: 20px;
     text-align: left;
@@ -65,9 +50,10 @@ h2:hover::after {
 .add-icon {
     border-radius: 50%;
     position: relative;
-    top: 55px;
     padding: 4opx;
     font-size: 50px;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: orange;
+    transition:  0.3s ease;
 }

@@ -9,6 +9,8 @@ import Shop from './components/Shop'
 import Services from './components/Services'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import CartDetails from './components/CartDetails'
+import AddtoCart from './components/AddtoCart'
 
 
 
@@ -21,7 +23,7 @@ import Footer from './components/Footer'
 
 const HomePage = () => (
   <>
-  <Header />
+
   <Hero />
   <About />
   <Services />
@@ -34,9 +36,12 @@ function App() {
 
   return (
     <Router>
+        <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/cartdetails" element={<CartDetails />} />
+        <Route path="/addtocart" element={<AddtoCart />} />
       </Routes>
       <Footer />
     </Router>
