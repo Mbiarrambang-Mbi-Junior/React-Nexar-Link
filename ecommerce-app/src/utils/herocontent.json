@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "image": "/src/images/R_A.T.M_Wireless_Mouse_by_Mad_Catz-removebg-preview.png",
+    "alt": "Wireless gaming mouse",
+    "heading": "Unleash Your Gaming Potential",
+    "tagline": "Experience lightning-fast response times and precision."
+  },
+  {
+    "id": 2,
+    "image": "/src/images/2f6d824c-17fa-481c-9b9d-dc8101f16b5c-removebg-preview.png",
+    "alt": "sneakers",
+    "heading": "Step Up Your Style",
+    "tagline": "Find the perfect pair of sneakers for any adventure."
+  },
+  {
+    "id": 3,
+    "image": "/src/images/Zapatillas_deportivas_hombre_malla_transpirable_-_Oliver_-_Beige___39-removebg-preview.png",
+    "alt": "Wireless gaming mouse",
+    "heading": "The Future of Ergonomics",
+    "tagline": "Designed for comfort, built for performance."
+  }
+]

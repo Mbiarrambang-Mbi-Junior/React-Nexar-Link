@@ -12,14 +12,6 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.card.blue {
-  background: linear-gradient(135deg, #09afff, #125575);
-}
-
-.card.purple {
-  background: linear-gradient(135deg, #5911f2, #290987);
-}
-
 .product {
   height: 85%;
   padding: 20px;

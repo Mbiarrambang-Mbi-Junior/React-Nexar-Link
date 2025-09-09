@@ -1,48 +1,17 @@
-#root {
-  padding: 2rem;
-  background-color: #282c34;
-  --Primary-Accent-But-lin:	#00FF00;
-  --Background-color:	#F5F5F5;
-  --text-primary:	#333333;
-  --text-secondary:	#666666;
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-body.dark {
-  --Primary-Accent-But-lin:	#00FF00;
-  --Background-color:	#1E1E1E;
-  --text-primary:	#FFFFFF;
-  --text-secondary:	#CCCCCC;
-  background-color: var(--Background-color);
-  color: var(--text-primary);
-}
-/* Hero.css */
-
-/*
-  * This is the main hero container that controls the overall height.
-  * We will keep the height fixed to prevent layout shifts.
-  */
 .hero-content {
   display: flex;
   justify-content: center;
-  background-color: var(--Primary-Accent-But-lin);
   border-radius: 20px;
   align-items: center;
   max-width: 1280px;
   margin: auto;
-  height: 500px; /* This fixed height is crucial for stability */
+  height: 500px;
   padding: 2rem;
   margin-top: 100px;
   gap: 1rem;
 }
 
-/*
-  * The text section can remain flexible.
-  */
 .hero-text {
   flex: 1;
   max-width: 600px;
@@ -62,9 +31,6 @@ body.dark {
 .shop-now-button {
   padding: 0.75rem 1.5rem;
   border: none;
-  background-color: #61dafb;
-  border: 2px solid white;
-  color: white;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
@@ -72,43 +38,29 @@ body.dark {
 }
 
 .shop-now-button:hover {
-  background-color: #4fa3d1;
+  background-color: var();
   border: 2px solid transparent;
 }
 
-/*
-  * Product Image Container
-  * This container now has a fixed size relative to the hero section.
-  * Adding `overflow: hidden` prevents the rotated image from extending beyond the container's bounds.
-  */
 .hero-image-container {
   flex: 1;
-  height: 100%; /* Take up the full height of the parent flex container */
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden; /* Key to prevent the rotated image from "poking out" */
+  overflow: hidden;
 }
 
-/*
-  * Product Image
-  * The `object-fit: contain` property is the most important change.
-  * It ensures the image scales to fit within its container without being cropped or stretched,
-  * preserving its aspect ratio and preventing distortion.
-  */
 .hero-image {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* Scales the image to fit while maintaining aspect ratio */
+  object-fit: contain;
   object-position: center;
-  transform: rotate(-35deg); /* The image rotation */
+  transform: rotate(-35deg);
   transition: transform 0.5s ease-in-out;
 }
 
-/*
-  * The rest of your styles for dots and other elements
-  */
 .dot-container {
   display: flex;
   justify-content: center;
@@ -125,5 +77,5 @@ body.dark {
 }
 
 .dot.active {
-  background-color: #333; /* Color for the active dot */
+  background-color: #333;
 }

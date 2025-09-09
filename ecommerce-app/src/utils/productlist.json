@@ -1,0 +1,51 @@
+[
+      { 
+    "id": 1, 
+    "name": "Electric Scooter", 
+    "price": "$899", 
+    "image": "../images/Leo_Men_s_Athletic_Sneakers_Green-8_5___43-removebg-preview.png",
+    "description": "'A sleek and powerful electric scooter for urban commuting.'",
+    "colors": ["red", "blue", "black"]
+  },
+  { 
+    "id": 2, 
+    "name": "'Wireless Mouse'", 
+    "price": "'$79'", 
+    "image": "../images/fac41e38-8f5a-4327-b7ec-4c1c82b3e081-removebg-preview.png",
+    "colors": ["red", "blue", "black"],
+    "description": "'An ergonomic wireless mouse designed for comfort and precision.'"
+  },
+  { 
+    "id": 3, 
+    "name": "'Gaming Headset'", 
+    "price": "'$199'", 
+    "image": "../images/0b7b4d59-7c95-470b-9a8c-f28a8f160f95-removebg-preview.png",
+    "colors": ["black", "white"],
+    "description": "'Immerse yourself in crystal-clear audio with this noise-canceling gaming headset.'"
+  },
+  { 
+    "id": 4, 
+    "name": "'Smartwatch'", 
+    "price": "'$299'", 
+    "image": "../images/Leo_Men_s_Athletic_Sneakers_Green-8_5___43-removebg-preview.png",
+    "colors": ["black", "silver", "gold"],
+    "description": "'Stay connected and track your fitness goals with this feature-rich smartwatch.'"
+  },
+  { 
+    "id": 5, 
+    "name": "4K Monitor", 
+    "price": "$499", 
+    "image": "../images/R_A.T.M_Wireless_Mouse_by_Mad_Catz-removebg-preview.png",
+    "colors": ["black", "white"],
+    "description": "Experience stunning visuals with a vibrant display and incredible detail."
+  },
+  { 
+    "id": 6, 
+    "name": "Mechanical Keyboard", 
+    "price": "$149", 
+    "image": "../images/Logitech_G502_LIGHTSPEED_Wireless_Gaming_Mouse-removebg-preview.png",
+    "colors": ["black", "white", "rgb"],
+    "description": "Enjoy a responsive and tactile typing experience with this durable mechanical keyboard."
+  }
+
+]

@@ -18,21 +18,17 @@
 .trending-title {
   font-size: 2.5rem;
   font-weight: 600;
-  color: #333;
   margin-bottom: 0.5rem;
 }
 
 .trending-subtitle {
   font-size: 1.2rem;
-  color: #666;
   margin-bottom: 1.5rem;
 }
 
 .see-all-button {
   padding: 0.75rem 2rem;
   border: none;
-  background-color: #61dafb; /* Pink color from the image */
-  color: white;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
@@ -57,20 +53,3 @@
   height: auto;
   object-fit: contain;
 }
-
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-  .trending-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .trending-content {
-    padding-right: 0;
-    margin-bottom: 1.5rem;
-  }
-}
-/*You can use a video about converting a static HTML and CSS site to a React application to help you with the conversion process..
-
-Find a great video about converting a website to React here: [Converting a Static HTML/CSS Site to React App](https://www.youtube.com/watch?v=XNeQ0tykqpY).
-http://googleusercontent.com/youtube_content/0

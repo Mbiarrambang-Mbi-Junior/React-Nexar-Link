@@ -6,38 +6,17 @@
     max-width: 1200px;
     margin-top: 80px;
 }
-/* ProductDetails.css */
 
-/*
-* General Layout and Container
-* Using a max-width and margin for a responsive, centered layout.
-*/
 .product-details-container {
   display: flex;
-  flex-direction: column; /* Default for mobile first */
+  flex-direction: column;
   align-items: center;
   gap: 2rem;
   padding: 1.5rem;
   max-width: 1200px;
-  margin: 100px auto 20px auto; /* Adds top margin to clear fixed header */
+  margin: 100px auto 20px auto;
 }
 
-/*
-* Media query for desktop layout
-* Switches to a side-by-side layout on larger screens.
-*/
-@media (min-width: 768px) {
-  .product-details-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-}
-
-/*
-* Product Image Section
-* Flex-basis ensures this section takes up half the space on desktop.
-*/
 .product-img {
   flex-basis: 50%;
   width: 100%;
@@ -45,14 +24,14 @@
 
 .main-image {
   width: 100%;
-  height: auto; /* Ensures image maintains aspect ratio */
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
 }
 
 .main-image:hover {
-  transform: scale(1.02); /* Slight zoom effect on hover */
+  transform: scale(1.02);
 }
 
 .small-images {
@@ -74,14 +53,10 @@
 
 .small-image:hover,
 .small-image.active {
-  border-color: #007bff; /* Highlight color for active/hovered thumbnail */
-  transform: translateY(-5px); /* Lift effect on hover */
+  border-color: var();
+  transform: translateY(-5px);
 }
 
-/*
-* Product Description Section
-* Flex-basis makes this section take up the other half of the space.
-*/
 .text-description {
   flex-basis: 45%;
   width: 100%;
@@ -93,12 +68,10 @@
 .product-name {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #333;
 }
 
 .product-description p {
   line-height: 1.6;
-  color: #666;
 }
 
 .select-color {
@@ -125,13 +98,11 @@
 .product-price {
   font-size: 2rem;
   font-weight: bold;
-  color: #007bff;
 }
 
 .add-to-cart-icon {
   font-size: 2rem;
   cursor: pointer;
-  color: #333;
   border: 1px solid #333;
   border-radius: 50%;
   padding: 5px;
@@ -139,8 +110,6 @@
 }
 
 .add-to-cart-icon:hover {
-  background-color: #007bff;
-  color: white;
   border-color: #007bff;
   transform: scale(1.1);
 }

@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "description": "'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem et commodi laboriosam saepe aut est mollitia, repellat, adipisci expedita nulla odio enim nesciunt qui. Obcaecati dolorum ratione quisquam possimus nobis.'",
+        "image": "/src/images/0b7b4d59-7c95-470b-9a8c-f28a8f160f95-removebg-preview.png"
+    },
+    {
+        "id": 2,
+        "description": "'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe exercitationem obcaecati corrupti quo neque? At non soluta perferendis animi quis sequi, nulla asperiores maiores, nisi debitis tenetur. Vitae, fugit at.'",
+        "image": "/src/images/2aba50e1-4134-497e-b37f-e3ff62d279e2-removebg-preview.png"
+    },
+    {
+        "id": 3,
+        "description": "'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos temporibus cumque perferendis magnam itaque minima repellendus atque debitis nostrum sequi quasi ea ratione enim quae, dolore labore accusamus. Autem, explicabo.'",
+        "image": "/src/images/10_Best_Women_s_Mountain_Bikes-removebg-preview.png"
+    }
+]

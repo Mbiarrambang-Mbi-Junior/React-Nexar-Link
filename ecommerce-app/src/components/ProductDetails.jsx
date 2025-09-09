@@ -7,7 +7,7 @@ import { BsPlus } from 'react-icons/bs';
 import '../styles/productdetails.css';
 
 // Import the products data from ProductList
-import { products } from './ProductList';
+import  products  from '../utils/productlist';
 
 
 const ProductDetails = () => {
