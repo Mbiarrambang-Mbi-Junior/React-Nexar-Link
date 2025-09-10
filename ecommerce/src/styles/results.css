@@ -1,6 +1,9 @@
 /* In your results.css file */
 .result-section {
     background-color: white;
+    border-radius: 20px;
+    max-width: 810px;
+    padding: 20px;
     width: 100%; /* Set width to 100% to fill the grid column */
 }
 
@@ -17,4 +20,33 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.result-header {
+  max-width: 500px;
+  text-align: left;
+  width: 100%;
+  border-bottom: 2px solid grey;
+  margin-bottom: 10px;
+}
+
+.result-head-tp {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 2rem
+;
+}
+
+.result-head-bt {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.result-sorte {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
 }

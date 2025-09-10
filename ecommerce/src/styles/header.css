@@ -1,35 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
-.hero-section {
+.header-section {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: sticky;
+    position: relative;
     top: 0;
+    max-width: 1200px;
+    width: 100%;
     margin-bottom: 30px;
     font-weight: 800;
     background-color: teal;
     color: teal;
-    z-index: 1000;
     text-transform: capitalize;
 }
-
-.hero-section a {
+.header-section a{
     text-decoration: none;
     color: white;
     cursor: pointer;
 }
 
-.hero-section .logo-container .logo {
-    font-family: 'Dancing Script', cursive;
-}
-
-.hero-section .logo-container .logo span {
+.header-section .logo-container .logo {font-family: Dancing Script, cursive;}
+.header-section .logo-container .logo span {
     color: orange;
 }
 
-.hero-section .topnav-bar ul {
+.header-section .topnav-bar ul {
     display: flex;
     gap: 1.5rem;
     font-size: 18px;
@@ -37,112 +34,86 @@
 }
 
 
-.hero-section .topnav-bar .topnav-link {
-    position: relative;
+.header-section .topnav-bar .active{color: orange;}
+.header-section .topnav-bar ul .active::after {
+  content: "";
+  display: block;
+  color: orange;
+  width: 100%;
+  height: 2px;
+  background: orange;
+  transition: width 0.3s ease-in-out;
+  position: relative;
+  bottom: 0;
+  left: 0;
+
+}
+.header-section .topnav-bar .topnav-link::after {
+  content: "";
+  display: block;
+  color: orange;
+  width: 0;
+  height: 2px;
+  background: orange;
+  transition: width 0.3s ease-in-out;
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+.header-section .topnav-bar .topnav-link:hover,
+.header-section .topnav-bar .topnav-link:hover::after {width: 100%;color: orange;}
+
+
+.header-section .search{
     color: white;
 }
 
-.hero-section .topnav-bar .topnav-link::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: orange;
+
+.search-input {
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid white;
+    color: white;
+    padding: 5px 0;
+    width: 0; /* Start with a width of 0 */
     transition: width 0.3s ease-in-out;
 }
 
-
-.hero-section .topnav-bar .topnav-link:hover::after,
-.hero-section .topnav-bar .topnav-link:focus::after {
-    width: 100%;
+/* When the search input is visible, expand its width */
+.topnav-icon .search-input {
+    width: 200px;
 }
 
-
-.hero-section .topnav-bar .topnav-link.active::after {
-    width: 100%;
-    background: orange;
-}
-
-.hero-section .topnav-bar .topnav-link.active {
-    color: orange;
-}
-
-.hero-section .search {
-    color: white;
-}
-
-.hero-section .topnav-icon {
+.header-section .topnav-icon {
     display: flex;
     justify-content: space-around;
     gap: 2rem;
     color: white;
     align-items: center;
 }
-
-.hero-section .topnav-icon:hover,
-.hero-section .topnav-link:hover {
+.header-section .topnav-icon:hover{
     color: orange;
     cursor: pointer;
 }
 
-/* header.css */
-
-/* General Desktop Styles */
-.topnav-bar {
+.cart-icon {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.menu-toggle {
-    display: none;
-    /* Hidden by default on large screens */
-    cursor: pointer;
-}
-
-/* ---------------------------------------------------- */
-/* Responsive Styles for Tablets and Mobile Devices */
-/* ---------------------------------------------------- */
-@media (max-width: 768px) {
-    .hero-section {
-        justify-content: space-between;
-        padding: 0 20px;
-    }
-
-    .topnav-bar {
-        position: fixed;
-        top: 60px;
-        /* Adjust based on your header's height */
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(209, 209, 255, 0.8);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        flex-direction: column;
-        align-items: center;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 999;
-    }
-
-    .topnav-bar.open {
-        transform: translateX(0);
-    }
-
-    .topnav-bar ul {
-        flex-direction: column;
-        gap: 2rem;
-        padding-top: 20px;
-    }
-
-    .menu-toggle {
-        display: block;
-        /* Show the hamburger menu icon */
-        color: white;
-    }
-
-    .topnav-icon {
-        gap: 1rem;
-    }
+.cart-icon span {
+    background-color: orange;
+    position: relative;
+    top: -5px;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    border-radius: 50%;
+    color: white;
 }

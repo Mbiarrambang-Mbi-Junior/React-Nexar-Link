@@ -6,7 +6,6 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/Aboutus'
 import Shop from './components/Shop'
-import Services from './components/Services'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import CartDetails from './components/CartDetails'
@@ -17,7 +16,6 @@ const HomePage = () => (
   <>
   <Hero />
   <About />
-  <Services />
   <Contact />
   </>
 );

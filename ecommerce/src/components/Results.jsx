@@ -16,8 +16,7 @@ function Results() {
                         result <span>{productsToDisplay.length}</span>
                     </p>
                     <p className="result-sorte">
-                        <span>sort by</span>
-                        <span className="text">Color:</span>
+                        <span className="text">sort by:</span>
                         <select id="color-select">
                             <option value="">-- Select a Color --</option>
                             <option> A-z</option>

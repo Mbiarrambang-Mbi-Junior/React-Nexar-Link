@@ -14,8 +14,8 @@ function ShoppingCart() {
 
   return (
     <div className="shopping-cart">
-      <span className="back-to-shop">
-        <BsArrowLeft onClick={handleBackToShop} />
+      <span className="back-to-shop" onClick={handleBackToShop} >
+        <BsArrowLeft />
         Back to Shop
       </span>
       <div className="your-cart">
@@ -43,15 +43,17 @@ function ShoppingCart() {
                 <div className="item-details">
                   <h3>{item.name}</h3>
                   <p>Price: ${item.price}</p>
+                  <p>Total Item Price: **${(item.price * item.quantity).toFixed(2)}**</p>
+                  <p>Color: {item.colors}</p>
                 </div>
               </div>
               <div className="item-actions">
                 <div className="quantity">
-                  <BsPlus onClick={() => increaseQuantity(item.id)} />
+                  <BsPlus onClick={() => increaseQuantity(item.id)} className='quantity-icon' />
                   <span>{item.quantity}</span>
-                  <BsDash onClick={() => decreaseQuantity(item.id)} />
+                  <BsDash onClick={() => decreaseQuantity(item.id)} className='quantity-icon' />
                 </div>
-                <div className="remove" onClick={() => removeFromCart(item.id)}>
+                <div className="remove-icon" onClick={() => removeFromCart(item.id)}>
                   <BsTrash />
                 </div>
               </div>

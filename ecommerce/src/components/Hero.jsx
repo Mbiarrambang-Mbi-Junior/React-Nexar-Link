@@ -39,7 +39,7 @@ function Hero() {
           <p className="hero-tagline">{currentContent.tagline}</p>
           {/* Add the onClick handler to the button */}
           <button className="shop-now-button" onClick={handleShopNow}>
-            Shop Now
+            Shop Now <BsArrowRight className='shop-now-icon'/>
           </button>
         </div>
         <div className="hero-image-container">

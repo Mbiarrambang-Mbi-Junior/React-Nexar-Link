@@ -30,6 +30,8 @@ const CardDetails = () => {
         <div className="small-images">
            {/* Replace with a loop for small images if you have them */}
            <img src={product.image} alt="" className="small-image" />
+           <img src={product.image} alt="" className="small-image" />
+           <img src={product.image} alt="" className="small-image" />
         </div>
       </div>
       <div className="text-description">
@@ -53,7 +55,7 @@ const CardDetails = () => {
           </select>
         </div>
         <div className="price-add-cart">
-          <span className="product-price">{product.price}</span>
+          <span className="product-price">Price:{product.price}</span>
           {/* Call addToCart with the correct product object */}
           <BsPlus className="add-to-cart-icon" onClick={() => addToCart(product)}/>
         </div>

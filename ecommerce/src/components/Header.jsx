@@ -6,6 +6,7 @@ import '../styles/header.css';
 function Header({ cartCount }) {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false); // New state for search bar
 
     const handleSeeCart = () => {
         navigate('/mycart');
@@ -15,9 +16,13 @@ function Header({ cartCount }) {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const toggleSearch = () => {
+        setIsSearchOpen(!isSearchOpen); // Toggle the search bar state
+    };
+
     return (
         <>
-            <section className="hero-section">
+            <section className="header-section">
                 <div className="logo-container">
                     <Link to="/">
                         <h1 className="logo">E<span>-shop</span></h1>
@@ -30,24 +35,32 @@ function Header({ cartCount }) {
 
                 <div className={`topnav-bar ${isMenuOpen ? 'open' : ''}`}>
                     <ul>
-                        <Link to="/" ><li className="topnav-link active">Home</li></Link>
+                        <Link to="/"><li className="topnav-link active">Home</li></Link>
                         <Link to="#aboutus-section" className='topnav-link'><li>About</li></Link>
-                        <Link to="#services-section" className='topnav-link'><li>Services</li></Link>
                         <Link to="#contact-section" className='topnav-link'><li>Contact</li></Link>
                         <Link to="/shop" className='topnav-link'><li>Shop</li></Link>
                     </ul>
                 </div>
                 
-                <div className="topnav-icon">
-                    <div className="cart-num search">
+                <div className="topnav-icon">        
+                    {/* Conditionally render the search input field */}
+                    {isSearchOpen && (
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="search-input"
+                        />
+                    )}
+                    {/* Add onClick handler to the search icon */}
+                    <div className="cart-num search" onClick={toggleSearch}>
                         <BsSearch size={24} className='topnav-icon' />
                     </div>
                     <Link to="/favourit" className="favourite-link">
-                        <div className="cart-num">
+                        <div className="cart-num favourite">
                             <BsHeartFill size={24} className='topnav-icon' />
                         </div>
                     </Link>
-                    <div className="cart-num" onClick={handleSeeCart}>
+                    <div className="cart-num cart-icon" onClick={handleSeeCart}>
                         <BsCart4 size={24} className='topnav-icon' />
                         {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
                     </div>

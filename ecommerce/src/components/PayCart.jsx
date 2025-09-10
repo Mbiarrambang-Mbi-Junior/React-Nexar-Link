@@ -1,16 +1,19 @@
-// PayCart.jsx
 import React from 'react';
+import { useCart } from './CartContext'; // Import the useCart hook
 import '../styles/paycart.css';
 import { FaCcMastercard, FaCcVisa, FaCcPaypal } from 'react-icons/fa';
 
 function PayCart() {
-  
+  const { getTotalPrice } = useCart(); // Get the getTotalPrice function
+
+  const subtotal = getTotalPrice();
+  const shipping = 10.00;
+  const total = subtotal + shipping;
 
   return (
     <div className="pay-card">
       <div className="input-feild">
         <form action="" method="get">
-      
           <div className="choose-card">
             <h3>Choose card</h3>
             <div className="cards-pay">
@@ -49,10 +52,11 @@ function PayCart() {
             </div>
           </div>
           <div className="subtotal-section">
-            <p>Subtotal: <span>${/*getTotalPrice().toFixed(2)*/}</span></p>
-            <p>Shipping: <span>$10.00</span></p>
+            {/* Display the calculated subtotal and total from the cart context */}
+            <p>Subtotal: <span>${subtotal.toFixed(2)}</span></p>
+            <p>Shipping: <span>${shipping.toFixed(2)}</span></p>
             <hr />
-            <h2>Total: <span>${/*(getTotalPrice() + 10).toFixed(2)*/}</span></h2>
+            <h2>Total: <span>${total.toFixed(2)}</span></h2>
           </div>
 
           <div className="pay-now">

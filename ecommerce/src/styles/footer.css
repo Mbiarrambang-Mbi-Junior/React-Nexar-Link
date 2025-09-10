@@ -3,7 +3,8 @@
 .footer-section {
     background-color: teal;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    text-transform: capitalize;
     align-items: center;
     margin-top: 30px;
     padding: 20px; /* Add some padding for spacing */

@@ -41,6 +41,7 @@ export const CartProvider = ({ children }) => {
       )
     );
   };
+  
 
   const decreaseQuantity = (productId) => {
     setCart((prevCart) => 

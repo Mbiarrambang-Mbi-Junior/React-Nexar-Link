@@ -1,96 +1,118 @@
+/* Update your paycart.css file with these changes */
+
 .pay-card {
-    max-width: 600px;
-    width: 500px;
-    margin: 20px 20px 20px 20px;
+    max-width: 1200px;
+    width: 100%;
+    height: 700px;
     padding: 20px;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     color: white;
-    border: 1px solid #ddd;
     background-color: teal;
     border-radius: 8px;
 }
-.pay-section h2 {
-    margin-bottom: 20px;
-}
-.profile {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-.profile img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-.profile h3 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
-}
-.pay-section form {
-    display: flex;
-    flex-direction: column;
-}
-.pay-section label {
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-.pay-section input[type="text"],
-.pay-section input[type="number"],
-.pay-section input[type="month"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.pay-section input[type="submit"] {
-    padding: 12px;
-    background-color: var();
-    color: var();
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-.pay-section input[type="submit"]:hover {
-    background-color: var();
-}
-.pay-section .total-amount {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 20px;
-    text-align: right;
-}
-.choose-card {
-    margin-bottom: 20px;
-}
-.cards-pay {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-}
-.card-pay {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: border-color 0.3s;
-}
 
+
+/* This is the container for the inputs; make it the white background section */
 .card-info {
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
     align-content: flex-start;
-    border-bottom: 1px solid #ccc;
-    padding: 2rem;
+    width: 100%;    
 }
-.card-date-cvv {
+
+.cards-pay {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.card-pay {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
     display: flex;
     align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.cart-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px; /* Add more space below inputs */
+    width: 95%;
+}
+
+.card-date-cvv {
+    display: flex;
     justify-content: space-between;
+    gap: 1rem;
+    width: 95%;
+}
+
+.card-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 150px;
+}
+
+/* Updated styles for all input fields */
+.pay-card input[type="text"],
+.pay-card input[type="number"],
+.pay-card input[type="month"] {
+    padding: 12px;
+    margin-bottom: 0;
+    border: 1px solid #e0e0e0; /* A light gray border */
+    border-radius: 8px; /* Slightly more rounded corners */
+    background-color: transparent; /* A very light gray background */
+    color: #333;
+    width: 100%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08); /* A subtle inner shadow */
+    transition: all 0.3s ease;
+}
+
+.pay-card input:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.2); /* Teal focus glow */
+}
+
+/* Styles for labels to match the image */
+.cart-input label, .card-date label {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+
+.subtotal-section p, .subtotal-section h2 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.subtotal-section h2 {
+    font-size: 1.5rem;
+    color: orange;
+}
+
+.pay-now button {
+    padding: 1.5rem;
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    background-color: orange;
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
 }
