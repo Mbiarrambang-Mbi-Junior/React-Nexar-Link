@@ -8,16 +8,20 @@
     flex-direction: column;
     gap: 2rem;
     justify-content: center;
-    width: 1000px;
+    align-content: flex-start;
+    width: 1200px;
 }
+
 .top-shop .shop-text {
     font-family: Dancing Script;
     font-size: 40px;
     color: orange;
     font-weight: 800;
 }
+
 .shop-content {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) 3fr; /* Creates two columns: one for the filter (1fr) and one for the results (3fr) */
+    gap: 3rem; /* Adds space between the filter and the results section */    
 }

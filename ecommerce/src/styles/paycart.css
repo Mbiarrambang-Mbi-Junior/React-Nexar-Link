@@ -1,0 +1,96 @@
+.pay-card {
+    max-width: 600px;
+    width: 500px;
+    margin: 20px 20px 20px 20px;
+    padding: 20px;
+    color: white;
+    border: 1px solid #ddd;
+    background-color: teal;
+    border-radius: 8px;
+}
+.pay-section h2 {
+    margin-bottom: 20px;
+}
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.profile h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+.pay-section form {
+    display: flex;
+    flex-direction: column;
+}
+.pay-section label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.pay-section input[type="text"],
+.pay-section input[type="number"],
+.pay-section input[type="month"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.pay-section input[type="submit"] {
+    padding: 12px;
+    background-color: var();
+    color: var();
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.pay-section input[type="submit"]:hover {
+    background-color: var();
+}
+.pay-section .total-amount {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: right;
+}
+.choose-card {
+    margin-bottom: 20px;
+}
+.cards-pay {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.card-pay {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    align-content: flex-start;
+    border-bottom: 1px solid #ccc;
+    padding: 2rem;
+}
+.card-date-cvv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

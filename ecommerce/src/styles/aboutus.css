@@ -1,22 +1,11 @@
 #aboutus-section {
     padding: 4rem 2rem;
-    max-width: 1000px;
     margin: 100px auto 0;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
+    background-color: rgb(248, 238, 238);
     gap: 3rem;
     padding: 2.5rem;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.aboutus-text-content {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
 }
 
 .aboutus-heading {
@@ -25,93 +14,43 @@
     color: orange;
     margin-bottom: 2rem;
     text-align: center;
+    position: relative;
+    /* Make the heading an inline-block to match its width to the content */
+    display: inline-block;
 }
-
 
 .aboutus-heading::after {
     content: "";
     display: block;
     height: 2px;
     background: orange;
-    transition: width 0.3s ease-in-out;
-    position: relative;
-    bottom: 0;
-    left: 45%;
-    right: 45%;
-    width: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: width 0.3s ease-in-out;
-}
-
-.aboutus-heading:hover {
-    cursor: pointer;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
 }
 
 .aboutus-heading:hover::after {
-    width: 10%;
-    cursor: pointer;
+    transform: scaleX(1);
 }
+
+.aboutus-text-content{
+    display: flex;
+    gap: 2rem;
+}
+
 
 .aboutus-section-block {
     margin-bottom: 2rem;
     transition: transform 0.3s ease;
     padding: 2rem;
     scroll-behavior: smooth;
-    width: 400px;
-    height: 300px;
+    width: 300px;
+    height: 200px;
     text-align: center;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.aboutus-section-title .title-icon:hover,
-.aboutus-section-block:hover {
-    background-color: orange;
-    transform: scale(1.05);
-    color: white;
-}
-
-
-.aboutus-section-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-}
-
-.aboutus-section-description {
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-.values-list {
-    list-style-type: none;
-    padding-left: 0;
-    font-size: 1rem;
-}
-
-.values-list li {
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.5rem;
-    line-height: 1.6;
-}
-
-.values-list li::before {
-    content: "✔";
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-}
-
-.about-image-container {
-    flex: 1;
-    text-align: center;
-}
-
-.about-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 import '../styles/hero.css';
 import hero from '../utils/hero.json';
 import Heroimg from '../assets/product_design-removebg-preview.png';
 
 function Hero() {
+  const navigate = useNavigate(); // Initialize the navigate hook
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitionClass, setTransitionClass] = useState('fade-in');
 
@@ -18,12 +20,16 @@ function Hero() {
         setTransitionClass('fade-in');
       }, 700); 
       return () => clearTimeout(transitionTimeout);
-
     }, 3000);
     return () => clearInterval(interval);
   }, []);
 
   const currentContent = hero[currentIndex];
+
+  const handleShopNow = () => {
+    // Navigate to the dynamic product details page using the product ID
+    navigate(`/cartdetails/${currentContent.productId}`);
+  };
 
   return (
     <section className="hero-section">
@@ -31,7 +37,10 @@ function Hero() {
         <div className="hero-text">
           <h1 className="hero-heading">{currentContent.heading}</h1>
           <p className="hero-tagline">{currentContent.tagline}</p>
-          <button className="shop-now-button">Shop Now</button>
+          {/* Add the onClick handler to the button */}
+          <button className="shop-now-button" onClick={handleShopNow}>
+            Shop Now
+          </button>
         </div>
         <div className="hero-image-container">
           <img

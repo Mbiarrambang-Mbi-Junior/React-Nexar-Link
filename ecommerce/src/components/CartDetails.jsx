@@ -1,42 +1,65 @@
-import React from 'react'
-import { BsPlus } from 'react-icons/bs'
-import '../styles/cartdetails.css'
-import image from '../assets/2aba50e1-4134-497e-b37f-e3ff62d279e2-removebg-preview.png'
+// CardDetails.jsx
 
-function CartDetails() {
+import React, { useState } from 'react';
+import { useCart } from './CartContext';
+import { useParams } from 'react-router-dom';
+import { BsPlus } from 'react-icons/bs';
+import '../styles/cartdetails.css';
+import products from '../utils/product';
+
+const CardDetails = () => {
+  const { productId } = useParams(); // Get the ID from the URL
+  const { addToCart } = useCart();
+  const [color, setColor] = useState('');
+  
+  // Find the product using the ID from the URL
+  const product = products.find((p) => p.productId === parseInt(productId));
+
+  if (!product) {
+    return (
+      <div className="product-details-container">
+        <h2>Product not found!</h2>
+      </div>
+    );
+  }
+
   return (
-    <section className="cart-details-container">
-          <div className="cart-img">
-            <img src={image} alt="{cart.name}" className="main-image" />
-            <div className="small-images">
-                <img src={image} alt="" className="small-image" /><img src={image} alt="" className="small-image" /><img src={image} alt="" className="small-image" />
-            </div>
-          </div>
-          <div className="text-description">
-            <h1 className="cart-name">cart.name</h1>
-            <div className="cart-description">
-              <p>cart.description</p>
-            </div>
-            <div className="select-color">
-              <p className="text">Color:</p>
+    <section className="product-details-container">
+      <div className="product-img">
+        <img src={product.image} alt={product.name} className="main-image" />
+        <div className="small-images">
+           {/* Replace with a loop for small images if you have them */}
+           <img src={product.image} alt="" className="small-image" />
+        </div>
+      </div>
+      <div className="text-description">
+        <h1 className="product-name">{product.name}</h1>
+        <div className="product-description">
+          <p>{product.description}</p>
+        </div>
+        <div className="select-color">
+          <p className="text">Color:</p>
+          <select
+            id="color-select"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+          >
+            <option value="">-- Select a Color --</option>
+            {product.colors && product.colors.map((colorOption) => (
+              <option key={colorOption} value={colorOption}>
+                {colorOption}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="price-add-cart">
+          <span className="product-price">{product.price}</span>
+          {/* Call addToCart with the correct product object */}
+          <BsPlus className="add-to-cart-icon" onClick={() => addToCart(product)}/>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-              <select id="color-select" >
-                <option value="">-- Select a Color --</option>
-                
-                {/*cart.colors.map((colorOption) => (
-                  <option key={colorOption} value={colorOption}>
-                    {colorOption}
-                  </option>
-                ))*/}
-              </select>
-            </div>
-            <div className="price-add-cart">
-              <span className="cart-price">cart.price</span>
-              <BsPlus className="add-to-cart-icon" />
-            </div>
-          </div>
-        </section>
-  )
-}
-
-export default CartDetails
+export default CardDetails;

@@ -1,59 +1,86 @@
-.card{
-    padding-top: 30px;
-    width: 300px;
-    height: 400px;
-    text-align: center;
-    border-radius: 20px;
-    background-color: teal;
-    margin-top: 20px;
+/* In your card.css file */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  position: relative;
+  cursor: pointer;
+  width: 60%;
+}
+
+.card:hover {
+  /* Slightly lifts the card on hover */
+  transform: translateY(-5px);
+  /* A more pronounced shadow on hover for a dynamic effect */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .card img {
-    width: 200px;
-    height: 200px;
-    margin-right: 40px;
-    transition: transform 0.3s ease;
-    transform: rotate(0deg) ;
-}
-.card img:hover {
-    transform: rotate(-35deg) scale(1.05);
-    cursor: pointer;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease-in-out;
 }
 
-.card h2 {
+.card:hover img {
+  /* A subtle zoom effect on hover */
+  transform: scale(1.05);
+}
+
+.price {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #007bff; /* Blue background */
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  z-index: 10;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  font-size: 2.5rem;
-  margin-top: 20px;
-  position: relative;
 }
-.card h2::after {
-  content: "";
-  display: block;
-  width: 50px;
-  height: 4px;
-  margin: 8px auto;
-  border-radius: 2px;
-}
-.card h2:hover {
-    cursor: pointer;
-}
-.card h2:hover::after {
-  transition: ease-in-out .5s;
-  
-  width: 80px;
+
+.title h2 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 0.5rem;
 }
 
 .product-description {
-    padding-left: 20px;
-    text-align: left;
+  margin-bottom: 1rem;
 }
+
+.description {
+  color: #666;
+  font-size: 0.9rem;
+}
+
 .add-icon {
-    border-radius: 50%;
-    position: relative;
-    padding: 4opx;
-    font-size: 50px;
-    color: white;
-    cursor: pointer;
-    background-color: orange;
-    transition:  0.3s ease;
+  font-size: 2.5rem;
+  color: white;
+  background-color: #28a745; /* Green for "add" */
+  border-radius: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-icon:hover {
+  background-color: #218838;
 }

@@ -6,18 +6,61 @@
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+    padding: 20px; /* Add some padding for spacing */
 }
-.footer-section a{
+
+.footer-section a {
     text-decoration: none;
     color: white;
     cursor: pointer;
-}.footer-section ul {
+}
+
+.footer-section ul {
     display: flex;
     gap: 1.5rem;
     font-size: 18px;
     list-style: none;
+    padding: 0; /* Remove default padding */
 }
+
 .footer-logo {
-    font-family: Dancing Script;
+    font-family: 'Dancing Script', cursive;
     color: orange;
+    font-size: 24px; /* Set a default font size */
+}
+
+/* ------------------------------------------- */
+/* Media Queries for Responsiveness */
+/* ------------------------------------------- */
+
+@media (max-width: 768px) {
+    .footer-section {
+        flex-direction: column; /* Stack elements vertically */
+        text-align: center;
+        gap: 1rem; /* Add some space between stacked items */
+    }
+
+    .footer-section ul {
+        flex-direction: column; /* Stack the list items vertically */
+        gap: 0.5rem;
+        margin-top: 10px; /* Add space below the logo/text */
+    }
+    
+    .footer-logo {
+      margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-section {
+        padding: 15px;
+    }
+
+    .footer-section ul {
+        font-size: 16px;
+    }
+
+    .footer-logo {
+        font-size: 20px;
+    }
 }

@@ -1,17 +1,18 @@
-import React from 'react'
-import { BsSearch, BsHeartFill, BsCartFill, BsCart4, BsMoonFill, BsSunFill } from 'react-icons/bs'
-import { Link, useNavigate } from 'react-router-dom'
-import '../styles/header.css'
-
-
-
-
+import React, { useState } from 'react';
+import { BsSearch, BsHeartFill, BsCart4, BsList, BsX } from 'react-icons/bs';
+import { Link, useNavigate } from 'react-router-dom';
+import '../styles/header.css';
 
 function Header({ cartCount }) {
     const navigate = useNavigate();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleSeeCart = () => {
-        navigate('/addtocart');
+        navigate('/mycart');
+    };
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
     };
 
     return (
@@ -22,7 +23,12 @@ function Header({ cartCount }) {
                         <h1 className="logo">E<span>-shop</span></h1>
                     </Link>
                 </div>
-                <div className="topnav-bar">
+                {/* Hamburger menu for small screens */}
+                <div className="menu-toggle" onClick={toggleMenu}>
+                    {isMenuOpen ? <BsX size={30} /> : <BsList size={30} />}
+                </div>
+
+                <div className={`topnav-bar ${isMenuOpen ? 'open' : ''}`}>
                     <ul>
                         <Link to="/" ><li className="topnav-link active">Home</li></Link>
                         <Link to="#aboutus-section" className='topnav-link'><li>About</li></Link>
@@ -31,6 +37,7 @@ function Header({ cartCount }) {
                         <Link to="/shop" className='topnav-link'><li>Shop</li></Link>
                     </ul>
                 </div>
+                
                 <div className="topnav-icon">
                     <div className="cart-num search">
                         <BsSearch size={24} className='topnav-icon' />
@@ -40,19 +47,14 @@ function Header({ cartCount }) {
                             <BsHeartFill size={24} className='topnav-icon' />
                         </div>
                     </Link>
-                    <Link to="/cart" className="cart-link">
-                        <div className="cart-num">
-                            <BsCart4 size={24} className='topnav-icon' textAnchor={<p className='cart-count'>0</p>} onClick={handleSeeCart} />
-                            {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
-                        </div>
-                    </Link>
-                    <div className="cart-num" >
-                        {/*theme === 'dark' ? <BsMoonFill size={24} className='topnav-icon' /> : <BsSunFill size={24} className='topnav-icon' />*/}
+                    <div className="cart-num" onClick={handleSeeCart}>
+                        <BsCart4 size={24} className='topnav-icon' />
+                        {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
                     </div>
                 </div>
             </section>
         </>
-    )
+    );
 }
 
-export default Header
+export default Header;

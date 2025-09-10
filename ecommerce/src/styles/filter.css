@@ -1,14 +1,100 @@
+/* In your filter.css file */
+
 .filter-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 250px;
     background-color: white;
     padding: 2rem;
     border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    gap: 1.5rem; 
+
+    /* Add these two lines to make the filter sticky */
+    position: sticky;
+    top: 20px; /* Adjust this value to set the distance from the top of the viewport */
 }
 
 .filter-options {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 1.5rem; /* Adds space between filter categories */
+    width: 100%; /* Ensures filter options fill the container */
+}
+
+.filter-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333; /* Darker text for better contrast */
+}
+
+.filter-category,
+.filter-price,
+.filter-stock {
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0; /* A light border to separate sections */
+    padding-bottom: 1rem;
+}
+
+.filter-stock {
+    border-bottom: none; /* Removes the border from the last section */
+    padding-bottom: 0;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.category label {
+    cursor: pointer;
+    color: #555;
+    font-size: 1rem;
+}
+
+.category input[type="checkbox"] {
+    /* Styles for the modern checkbox */
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+}
+
+.category input[type="checkbox"]:checked {
+    background-color: #007bff; /* Blue color when checked */
+    border-color: #007bff;
+}
+
+.category input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.price-input {
+    display: flex;
+    align-items: center;
+}
+
+.price-input input[type="text"] {
+    width: 100px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-left: 0.5rem;
+    font-size: 1rem;
 }

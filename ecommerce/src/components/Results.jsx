@@ -1,14 +1,19 @@
-import React from 'react'
-import '../styles/results.css'
-import Card from './Card'
+// In your Results.jsx file
+
+import React from 'react';
+import '../styles/results.css';
+import Card from './Card';
+import products from '../utils/product'; // Assuming this file exports your products array
 
 function Results() {
+    const productsToDisplay = products;
+
     return (
         <section className="result-section">
             <div className="result-header">
                 <div className="result-head-tp">
                     <p className="result">
-                        result <span>0</span>
+                        result <span>{productsToDisplay.length}</span>
                     </p>
                     <p className="result-sorte">
                         <span>sort by</span>
@@ -30,10 +35,12 @@ function Results() {
                 </div>
             </div>
             <div className="result-content">
-                <Card />
+                {productsToDisplay.map((product) => (
+                    <Card key={product.id} product={product} />
+                ))}
             </div>
         </section>
-    )
+    );
 }
 
-export default Results
+export default Results;

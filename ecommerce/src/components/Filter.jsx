@@ -4,7 +4,6 @@ import '../styles/filter.css'
 function Filter() {
     return (
         <section className="filter-container">
-
             <div className="shop-filter">
                 <h3 className="filter-text">
                     Filter options
@@ -15,19 +14,19 @@ function Filter() {
                             by category
                         </h4>
                         <div className="category">
-                            <input type="checkbox" /><label >electronics</label>
+                            <input type="checkbox" id="electronics" /><label htmlFor="electronics">electronics</label>
                         </div>
                         <div className="category">
-                            <input type="checkbox" /><label>male</label>
+                            <input type="checkbox" id="male" /><label htmlFor="male">male</label>
                         </div>
                         <div className="category">
-                            <input type="checkbox" /><label>female</label>
+                            <input type="checkbox" id="female" /><label htmlFor="female">female</label>
                         </div>
                         <div className="category">
-                            <input type="checkbox" /><label>kids</label>
+                            <input type="checkbox" id="kids" /><label htmlFor="kids">kids</label>
                         </div>
                         <div className="category">
-                            <input type="checkbox" /><label>furniture</label>
+                            <input type="checkbox" id="furniture" /><label htmlFor="furniture">furniture</label>
                         </div>
                     </div>
                     <div className="filter-price">
@@ -36,18 +35,18 @@ function Filter() {
                                 by price
                             </h4>
                         </div>
-
                         <div className="price-input">
-                            <label >price<input type="text" /></label>
+                            <label htmlFor="price-input">price</label>
+                            <input type="text" id="price-input" />
                         </div>
-
                     </div>
-
                     <div className="filter-stock">
                         <h4 className="stock-text">
-                            by  availability
+                            by availability
                         </h4>
-                        <label ><input type="checkbox" />instock</label>
+                        <div className="category">
+                            <input type="checkbox" id="instock" /><label htmlFor="instock">instock</label>
+                        </div>
                     </div>
                 </div>
             </div>

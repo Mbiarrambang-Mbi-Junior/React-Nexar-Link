@@ -2,7 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
     gap: 4rem;
-    margin-top: 80px;
+    margin: 0 auto;
     max-width: 1200px;
+    border-radius: 20px;
+    width: 1000px;
 }

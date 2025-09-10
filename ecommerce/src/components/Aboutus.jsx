@@ -37,7 +37,6 @@ function Aboutus() {
             <ul className="values-list">
               <li>Customer-Centric: Lorem ipsum dolor sit </li>
               <li>Integrity: Lorem ipsum dolor sit</li>
-              <li>Innovation: Lorem ipsum dolor sit</li>
             </ul>
           </div>
         </div>

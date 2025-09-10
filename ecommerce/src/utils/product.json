@@ -1,0 +1,58 @@
+[
+      { 
+    "id": 1, 
+    "productId": 100,
+    "name": "Electric Scooter", 
+    "price": "$899", 
+    "image": "/src/assets/product_design-removebg-preview.png",
+    "description": "'A sleek and powerful electric scooter for urban commuting.'",
+    "colors": ["red", "blue", "black"]
+    
+  },
+  { 
+    "id": 2, 
+    "productId": 101,
+    "name": "'Wireless Mouse'", 
+    "price": 79, 
+    "image": "/src/assets/0b7b4d59-7c95-470b-9a8c-f28a8f160f95-removebg-preview.png",
+    "colors": ["red", "blue", "black"],
+    "description": "'An ergonomic wireless mouse designed for comfort and precision.'"
+  },
+  { 
+    "id": 3, 
+    "productId": 102,
+    "name": "'Gaming Headset'", 
+    "price": 199, 
+    "image": "/src/assets/2aba50e1-4134-497e-b37f-e3ff62d279e2-removebg-preview.png",
+    "colors": ["black", "white"],
+    "description": "'Immerse yourself in crystal-clear audio with this noise-canceling gaming headset.'"
+  },
+  { 
+    "id": 4, 
+    "productId": 103,
+    "name": "'Smartwatch'", 
+    "price": 299, 
+    "image": "/src/assets/2f6d824c-17fa-481c-9b9d-dc8101f16b5c-removebg-preview.png",
+    "colors": ["black", "silver", "gold"],
+    "description": "'Stay connected and track your fitness goals with this feature-rich smartwatch.'"
+  },
+  { 
+    "id": 5, 
+    "productId": 104,
+    "name": "4K Monitor", 
+    "price": 499, 
+    "image": "/src/assets/istockphoto-1494550961-1024x1024.jpg",
+    "colors": ["black", "white"],
+    "description": "Experience stunning visuals with a vibrant display and incredible detail."
+  },
+  { 
+    "id": 6, 
+    "productId": 105,
+    "name": "Mechanical Keyboard", 
+    "price": 149, 
+    "image": "/src/assets/logo.png",
+    "colors": ["black", "white", "rgb"],
+    "description": "Enjoy a responsive and tactile typing experience with this durable mechanical keyboard."
+  }
+
+]
