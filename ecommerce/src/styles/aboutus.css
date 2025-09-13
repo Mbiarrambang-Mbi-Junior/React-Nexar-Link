@@ -1,77 +1,17 @@
-#aboutus-section {
-    padding: 4rem 2rem;
-    margin: 100px auto 0;
-    background-color: rgb(248, 238, 238);
-    gap: 3rem;
-    padding: 2.5rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
+@import "tailwindcss";
 
-.aboutus-heading {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: orange;
-    margin-bottom: 2rem;
-    text-align: center;
-    position: relative;
-    /* Make the heading an inline-block to match its width to the content */
-    display: inline-block;
-}
-
-.aboutus-heading::after {
-    content: "";
-    display: block;
-    height: 2px;
-    background: orange;
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.aboutus-heading:hover::after {
-    transform: scaleX(1);
-}
-
-.aboutus-text-content{
+.products-heading {
     display: flex;
-    gap: 2rem;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: orange;
+    align-content: center;
 }
 
 
-.aboutus-section-block {
-    margin-bottom: 2rem;
-    transition: transform 0.3s ease;
-    background-color: white;
-    padding: 2rem;
-    scroll-behavior: smooth;
-    width: 300px;
-    height: 200px;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.aboutus-section-block .title-icon:hover, 
-.aboutus-section-block:hover { 
-    transform: scale(1.05); 
-    background-color: orange; 
-    color: white; 
-} 
-.title-icon{ 
-    color: orange; 
-}
-
-
-
-@media (max-width: 768px) {
-    .aboutus-text-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.product-card > div {
+    margin: 0 10px;
 }

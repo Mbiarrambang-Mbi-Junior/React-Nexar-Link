@@ -18,7 +18,7 @@ function Hero() {
           prevIndex === hero.length - 1 ? 0 : prevIndex + 1
         );
         setTransitionClass('fade-in');
-      }, 700); 
+      }, 700);
       return () => clearTimeout(transitionTimeout);
     }, 3000);
     return () => clearInterval(interval);
@@ -33,16 +33,18 @@ function Hero() {
 
   return (
     <section className="hero-section">
-      <div className={`hero-content ${transitionClass}`}>
-        <div className="hero-text">
-          <h1 className="hero-heading">{currentContent.heading}</h1>
-          <p className="hero-tagline">{currentContent.tagline}</p>
+      <div className={"hero-content"}>
+        <div className={"hero-text"}>
+          <div className="text-content">
+            <h1 className={`hero-heading ${transitionClass}`}>{currentContent.heading}</h1>
+            <p className={`hero-tagline ${transitionClass}`}>{currentContent.tagline}</p>
+          </div>
           {/* Add the onClick handler to the button */}
           <button className="shop-now-button" onClick={handleShopNow}>
-            Shop Now <BsArrowRight className='shop-now-icon'/>
+            Shop Now <BsArrowRight className='shop-now-icon' />
           </button>
         </div>
-        <div className="hero-image-container">
+        <div className={`hero-image-container ${transitionClass}`}>
           <img
             src={currentContent.image}
             alt={currentContent.alt}

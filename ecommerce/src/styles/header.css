@@ -7,7 +7,6 @@
     align-items: center;
     position: relative;
     top: 0;
-    max-width: 1200px;
     width: 100%;
     margin-bottom: 30px;
     font-weight: 800;
@@ -24,6 +23,7 @@
 
 .header-section .logo-container .logo {
     font-family: Dancing Script, cursive;
+    font-size: 50px;
 }
 
 .header-section .logo-container .logo span {

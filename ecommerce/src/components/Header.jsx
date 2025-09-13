@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { BsSearch, BsHeartFill, BsCart4, BsList, BsX } from 'react-icons/bs';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation
+import { Link as RouterLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll'; // Import with an alias
 import '../styles/header.css';
 
 function Header({ cartCount }) {
     const navigate = useNavigate();
+    const location = useLocation(); // Get the current location
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isSearchOpen, setIsSearchOpen] = useState(false); // New state for search bar
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     const handleSeeCart = () => {
         navigate('/mycart');
@@ -17,31 +20,58 @@ function Header({ cartCount }) {
     };
 
     const toggleSearch = () => {
-        setIsSearchOpen(!isSearchOpen); // Toggle the search bar state
+        setIsSearchOpen(!isSearchOpen);
     };
-
-    
 
     return (
         <>
             <section className="header-section">
                 <div className="logo-container">
-                    <Link to="/">
+                    <RouterLink to="/">
                         <h1 className="logo">E<span>-shop</span></h1>
-                    </Link>
+                    </RouterLink>
                 </div>
 
                 <div className={`topnav-bar ${isMenuOpen ? 'open' : ''}`}>
                     <ul>
-                        <Link to="/"><li className="topnav-link active">Home</li></Link>
-                        <Link to="#aboutus-section" className='topnav-link'><li>About</li></Link>
-                        <Link to="#contact-section" className='topnav-link'><li>Contact</li></Link>
-                        <Link to="/shop" className='topnav-link'><li>Shop</li></Link>
+                        <RouterLink to="/">
+                            <li className={`topnav-link ${location.pathname === '/' ? 'active' : ''}`}>
+                                Home
+                            </li>
+                        </RouterLink>
+
+                        {/* Use ScrollLink for sections on the same page */}
+                        <ScrollLink
+                            to="products-section"
+                            smooth={true}
+                            duration={500}
+                            className='topnav-link'
+                        >
+
+                            <RouterLink to="/">
+                                <li>Products</li>
+                            </RouterLink>
+                        </ScrollLink>
+
+                        <ScrollLink
+                            to="contact-section"
+                            smooth={true}
+                            duration={500}
+                            className='topnav-link'
+                        >
+                            <li>Contact</li>
+                        </ScrollLink>
+
+                        {/* Use RouterLink for other pages */}
+                        <RouterLink to="/shop">
+                            <li className={`topnav-link ${location.pathname === '/shop' ? 'active' : ''}`}>
+                                Shop
+                            </li>
+                        </RouterLink>
                     </ul>
                 </div>
 
                 <div className="topnav-icon">
-                    {/* Conditionally render the search input field */}
                     {isSearchOpen && (
                         <input
                             type="text"
@@ -49,21 +79,19 @@ function Header({ cartCount }) {
                             className="search-input"
                         />
                     )}
-                    {/* Add onClick handler to the search icon */}
                     <div className="cart-num search" onClick={toggleSearch}>
                         <BsSearch size={24} className='topnav-icon' />
                     </div>
-                    <Link to="/favorites" className="favourite-link">
+                    <RouterLink to="/favorites" className="favourite-link">
                         <div className="cart-num favourite">
                             <BsHeartFill size={24} className='topnav-icon' />
                         </div>
-                    </Link>
+                    </RouterLink>
                     <div className="cart-num cart-icon" onClick={handleSeeCart}>
                         <BsCart4 size={24} className='topnav-icon' />
                         {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
                     </div>
 
-                    {/* Hamburger menu for small screens */}
                     <div className="menu-toggle" onClick={toggleMenu}>
                         {isMenuOpen ? <BsX size={30} /> : <BsList size={30} />}
                     </div>
