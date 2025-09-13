@@ -20,6 +20,8 @@ function Header({ cartCount }) {
         setIsSearchOpen(!isSearchOpen); // Toggle the search bar state
     };
 
+    
+
     return (
         <>
             <section className="header-section">
@@ -27,10 +29,6 @@ function Header({ cartCount }) {
                     <Link to="/">
                         <h1 className="logo">E<span>-shop</span></h1>
                     </Link>
-                </div>
-                {/* Hamburger menu for small screens */}
-                <div className="menu-toggle" onClick={toggleMenu}>
-                    {isMenuOpen ? <BsX size={30} /> : <BsList size={30} />}
                 </div>
 
                 <div className={`topnav-bar ${isMenuOpen ? 'open' : ''}`}>
@@ -41,8 +39,8 @@ function Header({ cartCount }) {
                         <Link to="/shop" className='topnav-link'><li>Shop</li></Link>
                     </ul>
                 </div>
-                
-                <div className="topnav-icon">        
+
+                <div className="topnav-icon">
                     {/* Conditionally render the search input field */}
                     {isSearchOpen && (
                         <input
@@ -55,7 +53,7 @@ function Header({ cartCount }) {
                     <div className="cart-num search" onClick={toggleSearch}>
                         <BsSearch size={24} className='topnav-icon' />
                     </div>
-                    <Link to="/favourit" className="favourite-link">
+                    <Link to="/favorites" className="favourite-link">
                         <div className="cart-num favourite">
                             <BsHeartFill size={24} className='topnav-icon' />
                         </div>
@@ -63,6 +61,11 @@ function Header({ cartCount }) {
                     <div className="cart-num cart-icon" onClick={handleSeeCart}>
                         <BsCart4 size={24} className='topnav-icon' />
                         {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
+                    </div>
+
+                    {/* Hamburger menu for small screens */}
+                    <div className="menu-toggle" onClick={toggleMenu}>
+                        {isMenuOpen ? <BsX size={30} /> : <BsList size={30} />}
                     </div>
                 </div>
             </section>

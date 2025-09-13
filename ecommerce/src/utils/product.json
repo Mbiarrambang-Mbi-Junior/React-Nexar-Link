@@ -3,7 +3,7 @@
     "id": 1, 
     "productId": 100,
     "name": "Electric Scooter", 
-    "price": "$899", 
+    "price": 899, 
     "image": "/src/assets/product_design-removebg-preview.png",
     "description": "'A sleek and powerful electric scooter for urban commuting.'",
     "colors": ["red", "blue", "black"]

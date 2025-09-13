@@ -2,13 +2,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Tilt from 'react-parallax-tilt';
-import { BsPlus } from 'react-icons/bs';
+import { BsPlus, BsHeartFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useCart } from './CartContext';
 import '../styles/card.css';
 
 function Card({ product }) {
-  const { addToCart } = useCart(); // Get the addToCart function from context
+  const { addToCart, addToFavorites } = useCart(); // Get the addToCart function from context
   const { image, price, name, description, productId } = product;
   const navigate = useNavigate();
 
@@ -16,6 +16,11 @@ function Card({ product }) {
     // Navigate to the dynamic URL with the product's ID
     navigate(`/cartdetails/${productId}`);
   };
+  const handleFavorite = (productId) => {
+    // Pass the entire product object to the addToFavourites function
+    addToFavorites(product);
+  }
+
 
   return (
     <Tilt
@@ -33,6 +38,8 @@ function Card({ product }) {
         <h2>{name}</h2>
         <span className="price">Price: ${price}</span>
         <div className="product-description">
+          {/* Call the handler without any arguments, which then uses the 'product' prop */}
+          <BsHeartFill size={24} color='red' onClick={handleFavorite} />
           <p className="description">{description}</p>
         </div>
         {/* Call addToCart when the icon is clicked */}

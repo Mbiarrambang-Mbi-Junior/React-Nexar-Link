@@ -8,6 +8,7 @@ import About from './components/Aboutus'
 import Shop from './components/Shop'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Favorites from './components/Favorites'
 import CartDetails from './components/CartDetails'
 import AddtoCart from './components/AddtoCart'
 
@@ -33,6 +34,7 @@ const AppContent = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/cartdetails/:productId" element={<CartDetails />} /> {/* Correct dynamic route */}
         <Route path="/myCart" element={<AddtoCart />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
       <Footer />
     </>

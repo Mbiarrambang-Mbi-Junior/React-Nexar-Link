@@ -37,23 +37,23 @@ function ShoppingCart() {
       <div className="cart-items">
         {cart.length > 0 ? (
           cart.map(item => (
-            <div className="cart-item" key={item.id}>
+            <div className="cart-item" key={`${item.id}-${item.selectedColor}`}> {/* Use the new unique key */}
               <div className="item-image">
                 <img src={item.image} alt={item.name} />
                 <div className="item-details">
                   <h3>{item.name}</h3>
                   <p>Price: ${item.price}</p>
                   <p>Total Item Price: **${(item.price * item.quantity).toFixed(2)}**</p>
-                  <p>Color: {item.colors}</p>
+                  <p>Color: {item.selectedColor}</p>
                 </div>
               </div>
               <div className="item-actions">
                 <div className="quantity">
-                  <BsPlus onClick={() => increaseQuantity(item.id)} className='quantity-icon' />
+                  <BsPlus onClick={() => increaseQuantity(item.id, item.selectedColor)} className='quantity-icon' />
                   <span>{item.quantity}</span>
-                  <BsDash onClick={() => decreaseQuantity(item.id)} className='quantity-icon' />
+                  <BsDash onClick={() => decreaseQuantity(item.id, item.selectedColor)} className='quantity-icon' /> <BsDash onClick={() => decreaseQuantity(item.id)} className='quantity-icon' />
                 </div>
-                <div className="remove-icon" onClick={() => removeFromCart(item.id)}>
+                <div className="remove-icon" onClick={() => removeFromCart(item.id, item.selectedColor)}>
                   <BsTrash />
                 </div>
               </div>

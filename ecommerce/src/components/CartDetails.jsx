@@ -10,8 +10,8 @@ import products from '../utils/product';
 const CardDetails = () => {
   const { productId } = useParams(); // Get the ID from the URL
   const { addToCart } = useCart();
-  const [color, setColor] = useState('');
-  
+
+
   // Find the product using the ID from the URL
   const product = products.find((p) => p.productId === parseInt(productId));
 
@@ -23,15 +23,22 @@ const CardDetails = () => {
     );
   }
 
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+
+
+
+
+
+
   return (
     <section className="product-details-container">
       <div className="product-img">
         <img src={product.image} alt={product.name} className="main-image" />
         <div className="small-images">
-           {/* Replace with a loop for small images if you have them */}
-           <img src={product.image} alt="" className="small-image" />
-           <img src={product.image} alt="" className="small-image" />
-           <img src={product.image} alt="" className="small-image" />
+          {/* Replace with a loop for small images if you have them */}
+          <img src={product.image} alt="" className="small-image" />
+          <img src={product.image} alt="" className="small-image" />
+          <img src={product.image} alt="" className="small-image" />
         </div>
       </div>
       <div className="text-description">
@@ -41,15 +48,10 @@ const CardDetails = () => {
         </div>
         <div className="select-color">
           <p className="text">Color:</p>
-          <select
-            id="color-select"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-          >
-            <option value="">-- Select a Color --</option>
-            {product.colors && product.colors.map((colorOption) => (
-              <option key={colorOption} value={colorOption}>
-                {colorOption}
+          <select id="color-select" value={selectedColor} onChange={(e) => setSelectedColor(e.target.value)}>
+            {product.colors.map(color => (
+              <option key={color} value={color}>
+                {color}
               </option>
             ))}
           </select>
@@ -57,7 +59,7 @@ const CardDetails = () => {
         <div className="price-add-cart">
           <span className="product-price">Price:{product.price}</span>
           {/* Call addToCart with the correct product object */}
-          <BsPlus className="add-to-cart-icon" onClick={() => addToCart(product)}/>
+          <BsPlus className="add-to-cart-icon" onClick={() => addToCart(product, selectedColor)} />
         </div>
       </div>
     </section>

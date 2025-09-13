@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "price": "$39.9",
+        "catigory": "electonics"
+    },
+    {
+        "id": 2,
+        "price": "$39.9",
+        "catigory": "funiture"
+    },
+    {
+        "id": 3,
+        "price": "$49.9",
+        "catigory": "men"
+    },
+    {
+        "id": 4,
+        "price": "$59.9",
+        "catigory": "female"
+    }
+]
