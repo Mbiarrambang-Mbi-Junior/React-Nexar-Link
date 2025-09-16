@@ -1,6 +1,7 @@
 .explore-section {
     text-align: center;
 }
+
 .explore-section .explore-heading {
     /* Make the heading's width match its content */
     display: inline-block;
@@ -15,12 +16,62 @@
     height: 2px;
     background: teal;
     transition: width 0.3s ease-in-out;
-    position: absolute; /* Changed to 'absolute' for precise positioning */
-    bottom: -5px; /* Adjust as needed for spacing */
+    position: absolute;
+    /* Changed to 'absolute' for precise positioning */
+    bottom: -5px;
+    /* Adjust as needed for spacing */
     left: 0;
 }
 
 /* On hover, the underline will expand to 100% of the heading's width */
 .explore-section .explore-heading:hover::after {
     width: 100%;
+}
+
+.arrow-action {
+    visibility: hidden;
+}
+
+
+
+@media (max-width: 768px) {
+    .explore-contianer {
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+
+    .explore-content {
+        display: grid;
+        /* Defines 3 columns */
+        grid-template-columns: 80px 1fr 1fr;
+        gap: 2rem;
+        /* Defines 2 rows */
+        grid-template-rows: 100px auto;
+
+    }
+
+    .expore-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+    }
+
+    .icon-text {
+        font-size: 10px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .arrow-action {
+        visibility: visible;
+        cursor: pointer;
+    }
+
+    .arrow-action:hover {
+        transform: scale(1.1);
+    }
 }

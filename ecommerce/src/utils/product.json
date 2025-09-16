@@ -2,7 +2,7 @@
   {
     "id": 1,
     "productId": 100,
-    "name": "Smartwatch",
+    "name": "smartwatch",
     "category": "Electronics",
     "price": 899,
     "image": "/src/assets/The new iwatch_ Actually the first iwatch. I LOVG.png",
@@ -16,7 +16,7 @@
   {
     "id": 2,
     "productId": 101,
-    "name": "Men's Casual Shirt",
+    "name": "men's casual shirt",
     "category": "Male",
     "price": 79,
     "image": "/src/assets/Unleash Your Style 17 Men's Casual Shirt Outfit Ideas for Every Season.jpeg",
@@ -30,7 +30,7 @@
   {
     "id": 3,
     "productId": 102,
-    "name": "Female drip coat",
+    "name": "female drip coat",
     "category": "Female",
     "price": 199,
     "image": "/src/assets/15 Trendy Casual Winter Outfits for Everyday Style.jpeg",
@@ -43,7 +43,7 @@
   {
     "id": 4,
     "productId": 103,
-    "name": "Kid's style",
+    "name": "kid's style",
     "category": "Kids",
     "price": 299,
     "image": "/src/assets/7ffdcb05-66ce-4261-b459-bd0165126bb6.jpeg",
@@ -57,7 +57,7 @@
   {
     "id": 5,
     "productId": 104,
-    "name": "Shelf",
+    "name": "shelf",
     "category": "Furniture",
     "price": 499,
     "image": "/src/assets/02e9f858-8ad8-49e6-835d-268811f02fcf.jpeg",
@@ -70,7 +70,7 @@
   {
     "id": 6,
     "productId": 105,
-    "name": "Kid's drip",
+    "name": "kid's drip",
     "price": 149,
     "category": "Kids",
     "image": "/src/assets/3e4466df-2f01-4644-a742-65c49304c948.jpeg",

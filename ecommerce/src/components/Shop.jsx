@@ -4,23 +4,18 @@ import Results from './Results';
 
 function Shop() {
   return (
-    <section className="shop-section w-full min-h-screen"> {/* Added min-h-screen and some padding */}
-    
-      <div className="shop-content grid grid-cols-[minmax(200px,280px)_1fr] gap-8 p-4 bg-white rounded-xl shadow-lg">
+    <section className="w-full bg-gray-100 py-8 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[280px_1fr] lg:grid-cols-[300px_1fr] gap-8">
         {/*
-          grid-cols-[minmax(200px,280px)_1fr]:
-          - Filter column: Will be at least 200px, max 280px wide.
-          - Results column: Takes up all remaining available space.
-          gap-8: Adds spacing between the two columns.
-          p-4: Inner padding for the white shop-content box.
-          bg-white rounded-xl shadow-lg: Styling for the main content area.
-          max-w-7xl mx-auto: Centers the shop content and limits its max width.
+          - grid-cols-1: Stacks content vertically on small screens.
+          - md:grid-cols-[280px_1fr]: On medium screens, a two-column grid with a fixed-width filter column.
+          - lg:grid-cols-[300px_1fr]: On large screens, the filter column is slightly wider.
+          - gap-8: Adds spacing between the two columns.
         */}
-        <div className="filter-wrapper  p-6 rounded-lg shadow-sm"> {/* Added styling for filter itself */}
+        <div className="filter-wrapper">
           <Filter />
         </div>
-        
-        <div className="results-wrapper"> {/* Potentially add padding here or within Results component */}
+        <div className="results-wrapper">
           <Results />
         </div>
       </div>

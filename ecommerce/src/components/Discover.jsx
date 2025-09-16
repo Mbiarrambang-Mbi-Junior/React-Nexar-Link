@@ -1,176 +1,205 @@
-// src/components/Discover.jsx
-import React from 'react';
-import Slider from 'react-slick';
-import products from '../utils/product.json';
-import Category from './Category';
+import React, { useState, useEffect } from 'react';
 import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 
 const Discover = () => {
+    const [trendingProducts, setTrendingProducts] = useState([]);
+    const [newArrivals, setNewArrivals] = useState([]);
+    const [topDeals, setTopDeals] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
 
-    var settings1 = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        arrows: true
+    // Fetch data from the Fake Store API
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Fetch trending and new arrivals
+                const productsResponse = await fetch('https://fakestoreapi.com/products?limit=10');
+                if (!productsResponse.ok) {
+                    throw new Error('Failed to fetch general products');
+                }
+                const productsData = await productsResponse.json();
+                setTrendingProducts(productsData.slice(0, 5)); // Use first 5 for trending slider
+                setNewArrivals(productsData.slice(5, 9)); // Use the next 4 for new arrivals
+
+                // Fetch specific top deals
+                const topDeal1Response = await fetch('https://fakestoreapi.com/products/1');
+                const topDeal2Response = await fetch('https://fakestoreapi.com/products/2');
+
+                const topDeal1 = await topDeal1Response.json();
+                const topDeal2 = await topDeal2Response.json();
+                setTopDeals([topDeal1, topDeal2]);
+
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    // Auto-slide effect for trending section
+    useEffect(() => {
+        if (trendingProducts.length > 0) {
+            const interval = setInterval(() => {
+                setCurrentIndex((prevIndex) =>
+                    (prevIndex + 1) % trendingProducts.length
+                );
+            }, 3000); // Change image every 3 seconds
+            return () => clearInterval(interval);
+        }
+    }, [trendingProducts]);
+
+    // Update thumbnail group when the main image changes
+    useEffect(() => {
+        setThumbnailStartIndex(Math.floor(currentIndex / 4) * 4);
+    }, [currentIndex]);
+
+    const handleNext = () => {
+        setCurrentIndex((prevIndex) =>
+            (prevIndex + 1) % trendingProducts.length
+        );
     };
 
-    var settings2 = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        arrows: true
+    const handlePrev = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? trendingProducts.length - 1 : prevIndex - 1
+        );
     };
 
+    const handleNextThumbnail = () => {
+        setThumbnailStartIndex((prevIndex) =>
+            (prevIndex + 4) % trendingProducts.length
+        );
+    };
+
+    const handlePrevThumbnail = () => {
+        setThumbnailStartIndex((prevIndex) => {
+            const newIndex = prevIndex - 4;
+            return newIndex < 0 ? Math.floor((trendingProducts.length - 1) / 4) * 4 : newIndex;
+        });
+    };
+
+    const visibleThumbnails = trendingProducts.slice(
+        thumbnailStartIndex,
+        thumbnailStartIndex + 4
+    );
+
+    if (loading) {
+        return <div className="text-center p-8 text-xl font-medium">Loading products...</div>;
+    }
 
     return (
-        <section className="discover-section mx-auto p-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+        <section className="discover-section mx-auto p-4 md:p-8">
+            <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
                 Discover your next business opportunity
             </h2>
 
-            {/* Main container for the three sections */}
-            <div className="discover-container flex justify-between items-center gap-4">
+            <div className="discover-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {/* Trending Section */}
-                <div className="flex-1 bg-gray-100 h-[550px] rounded-lg p-4">
+                <div className="bg-gray-100 rounded-lg p-4">
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="text-lg font-semibold">Trending</h3>
                         <a href="#" className="text-sm text-blue-500 hover:underline">View more</a>
                     </div>
-                    <div className="flex flex-col justify-center">
-                        {/* Main container for the large image and arrows */}
-                        <div className="main-img relative bg-red-100 h-[400px] flex justify-center items-center rounded-xl">
-                            {/* The main product image */}
+                    <div className="flex flex-col">
+                        <div className="relative h-[250px] md:h-[300px] flex justify-center items-center rounded-xl bg-gray-200 overflow-hidden">
                             <img
-                                src="/src/assets/product_design-removebg-preview.png"
-                                alt="product"
-                                className="w-[200px] rounded-md hover:scale-105 duration-300 hover:border-2 border-orange-500"
+                                src={trendingProducts[currentIndex]?.image}
+                                alt={trendingProducts[currentIndex]?.title}
+                                className="w-full h-full object-cover rounded-md transform hover:scale-105 transition-transform duration-300"
                             />
-
-                            {/* Left Arrow Button */}
-                            <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10">
-                                <BsArrowLeft className="text-gray-800 text-xl hover:cursor-pointer" />
+                            <button
+                                onClick={handlePrev}
+                                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10 hidden md:block"
+                            >
+                                <BsArrowLeft className="text-gray-800 text-xl" />
                             </button>
-
-                            {/* Right Arrow Button */}
-                            <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10">
-                                <BsArrowRight className="text-gray-800 text-xl hover:cursor-pointer hover:scale-105 duration-300" />
+                            <button
+                                onClick={handleNext}
+                                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg z-10 hidden md:block"
+                            >
+                                <BsArrowRight className="text-gray-800 text-xl" />
                             </button>
                         </div>
 
                         {/* Small images (thumbnails) */}
                         <div className="small-img flex justify-center items-center mt-4 gap-4">
-                            <img
-                                src="/src/assets/product_design-removebg-preview.png"
-                                alt="product"
-                                className="w-[50px] h-auto rounded-md hover:scale-105 duration-300 hover:border-2 border-orange-500"
-                            />
-                            <img
-                                src="/src/assets/product_design-removebg-preview.png"
-                                alt="product"
-                                className="w-[50px] h-auto rounded-md hover:scale-105 duration-300 hover:border-2 border-orange-500"
-                            />
-                            <img
-                                src="/src/assets/product_design-removebg-preview.png"
-                                alt="product"
-                                className="w-[50px] h-auto rounded-md hover:scale-105 duration-300 hover:border-2 border-orange-500"
-                            />
-                            <img
-                                src="/src/assets/product_design-removebg-preview.png"
-                                alt="product"
-                                className="w-[50px] h-auto rounded-md hover:scale-105 duration-300 hover:border-2 border-orange-500"
-                            />
+                            <button onClick={handlePrevThumbnail} className="p-1 rounded-full bg-gray-300 hover:bg-gray-400">
+                                <BsArrowLeft className="text-gray-800 text-lg" />
+                            </button>
+                            <div className="grid grid-cols-4 gap-4 overflow-hidden">
+                                {visibleThumbnails.map((product, index) => (
+                                    <img
+                                        key={product.id}
+                                        src={product.image}
+                                        alt={product.title}
+                                        className={`w-full h-auto object-cover rounded-md cursor-pointer transition-all duration-300 hover:scale-105 ${
+                                            (thumbnailStartIndex + index) === currentIndex ? 'border-2 border-orange-500' : 'border-2 border-transparent'
+                                        }`}
+                                        onClick={() => setCurrentIndex(thumbnailStartIndex + index)}
+                                    />
+                                ))}
+                            </div>
+                            <button onClick={handleNextThumbnail} className="p-1 rounded-full bg-gray-300 hover:bg-gray-400">
+                                <BsArrowRight className="text-gray-800 text-lg" />
+                            </button>
                         </div>
                     </div>
-
                 </div>
+
                 {/* New Arrivals Section */}
-                <div className="flex-1 bg-gray-100 rounded-lg h-[550px] p-4">
+                <div className="bg-gray-100 rounded-lg p-4">
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="text-lg font-semibold">New arrivals</h3>
                         <a href="#" className="text-sm text-blue-500 hover:underline">View more</a>
                     </div>
-                    <div className="">
-                        <div className="new-img grid grid-cols-2 grid-rows-2 gap-4 p-4">
-                            <div className="imge bg-red-100 rounded-xl  gap-4 mt-4 flex justify-center items-center">
-                                <img
-                                    src="/src/assets/product_design-removebg-preview.png"
-                                    alt="product"
-                                    className="w-[100px] h-auto rounded-md"
-                                />
+                    <div className="grid grid-cols-2 grid-rows-2 gap-4">
+                        {newArrivals.map((product) => (
+                            <div key={product.id} className="rounded-xl flex justify-center items-center bg-gray-200">
+                                <img src={product.image} alt={product.title} className="w-full h-full object-cover rounded-md" />
                             </div>
-
-                            <div className="imge bg-red-100 rounded-xl  gap-4 mt-4 flex justify-center items-center">
-                                <img
-                                    src="/src/assets/product_design-removebg-preview.png"
-                                    alt="product"
-                                    className="w-[100px] h-auto rounded-md"
-                                />
-                            </div>
-                            <div className="imge bg-red-100 rounded-xl  gap-4 mt-4 flex justify-center items-center">
-                                <img
-                                    src="/src/assets/product_design-removebg-preview.png"
-                                    alt="product"
-                                    className="w-[100px] h-auto rounded-md"
-                                />
-                            </div>
-                            <div className="imge bg-red-100 rounded-xl  gap-4 mt-4 flex justify-center items-center">
-                                <img
-                                    src="/src/assets/product_design-removebg-preview.png"
-                                    alt="product"
-                                    className="w-[100px] h-auto rounded-md"
-                                />
-                            </div>
+                        ))}
+                    </div>
+                    {/* Placeholder for the last item in the New Arrivals section */}
+                    <div className="flex bg-gray-200 rounded-xl mt-4 p-4 items-center">
+                        <img src={newArrivals[0]?.image} alt={newArrivals[0]?.title} className="w-1/4 h-auto rounded-md object-contain" />
+                        <div className="ml-4">
+                            <h4 className="font-semibold">{newArrivals[0]?.title}</h4>
+                            <p className="text-sm text-gray-500">{newArrivals[0]?.description.substring(0, 50)}...</p>
                         </div>
-
-                        <div className="bottom-img flex bg-red-100 rounded-xl  gap-4 mt-4">
-                            <div className="inner-img bg-blue-100 rounded-md p-4 m-4">
-                                <img src="/src/assets/product_design-removebg-preview.png" alt="" className="w-[100px] h-auto rounded-md" />
-                            </div>
-                            <div className="text-img">
-                                <h4>name</h4>
-                                <p>description</p>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
                 {/* Top Deals Section */}
-                <div className="flex-1 bg-gray-100 h-[550px] rounded-lg p-4">
+                <div className="bg-gray-100 rounded-lg p-4">
                     <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-lg font-semibold">Top deals</h3>
+                        <h3 className="text-lg font-semibold text-black">Top deals</h3>
                         <a href="#" className="text-sm text-blue-500 hover:underline">View more</a>
                     </div>
-                    {/* Add content for Top Deals here */}
-                    <div className="h-40 bg-gray-200 rounded-md flex items-center gap-4 h-[100px]">
-                        <div className="s-inner-img">
-                            <img src="/src/assets/product_design-removebg-preview.png" alt="" className="w-[100px] h-auto rounded-md" />
-                        </div>
-                        <div className="img-text">
-                            <p>name</p>
-                        </div>
-                    </div>
-                    <div className="h-40 mt-4 bg-gray-200 rounded-md h-[350px]">
-                        <div className="text-im">
-                            name
-                        </div>
-                        <div className="im">
-                            <img src="/src/assets/product_design-removebg-preview.png" alt="" />
-                        </div>
-                    </div>
+                    {topDeals.length > 0 && (
+                        <>
+                            <div className="flex bg-gray-200 rounded-md p-2 h-[100px] mb-4 items-center">
+                                <img src={topDeals[0]?.image} alt={topDeals[0]?.title} className="w-1/4 h-auto rounded-md object-contain" />
+                                <div className="ml-4">
+                                    <h4 className="font-semibold">{topDeals[0]?.title}</h4>
+                                    <p className="text-sm text-gray-500">{topDeals[0]?.description.substring(0, 50)}...</p>
+                                </div>
+                            </div>
+                            <div className="bg-gray-200 rounded-md p-4 flex flex-col items-center">
+                                <div className="text-center font-semibold mb-2">
+                                    {topDeals[1]?.title}
+                                </div>
+                                <div className="w-full h-64 rounded-md overflow-hidden">
+                                    <img src={topDeals[1]?.image} className='w-full h-full object-cover' alt={topDeals[1]?.title} />
+                                </div>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
-
-
-
         </section>
     );
 };

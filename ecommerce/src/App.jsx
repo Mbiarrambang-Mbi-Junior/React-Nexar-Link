@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import {BrowserRouter as Router, Routes, Route, useSearchParams} from "react-router-dom"
 import { useCart, CartProvider } from './components/CartContext' // Import CartProvider and useCart
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -12,16 +12,30 @@ import Footer from './components/Footer'
 import Favorites from './components/Favorites'
 import CartDetails from './components/CartDetails'
 import AddtoCart from './components/AddtoCart'
+import SearchResults from './components/SearchResults'
 
 
-const HomePage = () => (
-  <>
-  <Hero />
-  <Explore />
-  <Discover />
-  <Contact />
-  </>
-);
+function HomeWithSearch() {
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get('q');
+
+  // Check if a search query exists
+  if (searchQuery) {
+    return <SearchResults searchQuery={searchQuery} />;
+  }
+
+  // If no search query, render the default homepage components
+  return (
+    <>
+      <Hero />
+      <Explore />
+      <Discover />
+      <Contact />
+    </>
+  );
+}
+
+
 
 // New component to handle the Cart context and pass props
 const AppContent = () => {
@@ -32,9 +46,9 @@ const AppContent = () => {
     <>
       <Header cartCount={cartCount} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomeWithSearch />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/cartdetails/:productId" element={<CartDetails />} /> {/* Correct dynamic route */}
+        <Route path="/cartdetails/:productId" element={<CartDetails />} />
         <Route path="/myCart" element={<AddtoCart />} />
         <Route path="/favorites" element={<Favorites />} />
       </Routes>

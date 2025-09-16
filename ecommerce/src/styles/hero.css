@@ -1,45 +1,4 @@
-.hero-content {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    height: 70vh;
-    justify-content: space-around;
-    font-weight: 800;
-    background-color: teal;
-    color: white;
-    text-transform: capitalize;
-    object-fit: contain;
-    overflow: hidden;
-}
 
-.shop-now-button {
-    border: 2px solid transparent;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: orange;
-    color: white;
-    width: 200px;
-    position: relative;
-    font-size: 20px;
-    font-weight: 700;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-.shop-now-button:hover{
-    cursor: pointer;
-    background-color: transparent;
-    border: 2px solid orange;
-    color: orange;
-    transform: scale(1.1);
-    transition: all 0.3s ease-in-out;
-}
-
-.shop-now-button .shop-now-icon{
-    font-size: 25px;
-}
 
 .fade-in {
     opacity: 1;
@@ -51,77 +10,30 @@
     transition: opacity 0.7s ease-out;
 }
 
-.hero-text {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    max-height: 300px;
-    margin-right: 200px;
-}
-
-.hero-message .img-description {
-    width: 400px;
-}
-
-
-.hero-image {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    align-items: center;
-}
-
-
-.hero-image {
-    width: 100%;
-    height: 100%;
-}
-
-
-
-.dot-container{
-    display: flex;
-    width: 100px;
-    position: relative;
-    left: 45%;
-    margin-top: 40px;
-    justify-content: space-around;
-    align-content: center;
-}
-
-.dot-container .dot {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: grey;
-
-}
-
-.dot-container .active{
-    background-color: orange;
-}
-
 
 
 @media (max-width: 768px) {
-    .hero-content {
-        height: 75vh;
-    }
-    .hero-content {
-        display: block;
-    }
-    .hero-text {
-        display: flex;
-        flex-direction: column;
-    }
-    .hero-text .shop-now-button {
-        display: flex;
-        justify-content: center;
-        width: 160px;
-        position: relative;
-        left: 35%;
-    }
-    .hero-image {
-        width: 400px;
-    }
+  /* This ensures the image container itself takes up the available space */
+  .hero-image-container {
+    width: 100%;
+    /* You can adjust the height if needed, but 'auto' is generally best */
+    height: auto;
+    /* Use flexbox or grid to center the content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* The image should be told to fill its container, up to a certain size */
+  .hero-image {
+    /* Make the image take up 100% of the container's width */
+    width: 100%;
+    /* Keep the aspect ratio */
+    height: auto;
+    /* This ensures the image doesn't get distorted */
+    object-fit: contain;
+    /* Remove any positioning that breaks the flow */
+    position: static;
+    left: auto;
+  }
 }

@@ -17,13 +17,10 @@ function Footer() {
       <div className="footer-links">
         <ul>
           <li>
-            <ScrollLink
-              to="header-section"
-              smooth={true}
-              duration={500}
-            >
+            <Link
+              to="/">
               Home
-            </ScrollLink>
+            </Link>
           </li>
           <ScrollLink
             to="explore-section"
@@ -57,13 +54,13 @@ function Footer() {
       <div className="footer-social">
         <ul className="footer-nav">
           <li>
-            <Link><BsPinterest /></Link>
+            <Link to="https://www.pinterest.com/" target='_blank'><BsPinterest /></Link>
           </li>
           <li>
-            <Link><BsFacebook /></Link>
+            <Link to="https://www.facebook.com/" target='_blank'><BsFacebook /></Link>
           </li>
           <li>
-            <Link><BsInstagram /></Link>
+            <Link to="https://www.instagram.com/" target='_blank'><BsInstagram /></Link>
           </li>
         </ul>
       </div>
