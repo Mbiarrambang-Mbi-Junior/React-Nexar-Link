@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Pigment",
+    "description": "High-quality pigments for various uses.",
+    "rating": "4.2",
+    "images": [
+      { "src": "/src/assets/istockphoto-1494550961-1024x1024.jpg", "alt": "Main image of pigments" },
+      { "src": "/src/assets/product_design-removebg-preview.png", "alt": "Thumbnail 1" },
+      { "src": "/src/assets/istockphoto-1494550961-1024x1024.jpg", "alt": "Thumbnail 2" },
+      { "src": "/src/assets/product_design-removebg-preview.png", "alt": "Thumbnail 3" }
+    ]
+  }
+]

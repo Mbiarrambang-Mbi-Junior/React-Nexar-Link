@@ -1,20 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
-.header-section {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-    top: 0;
-    width: 100%;
-    margin-bottom: 30px;
-    font-weight: 800;
-    background-color: teal;
-    color: teal;
-    text-transform: capitalize;
-}
-
 .header-section a {
     text-decoration: none;
     color: white;
@@ -25,18 +11,6 @@
     font-family: Dancing Script, cursive;
     font-size: 50px;
 }
-
-.header-section .logo-container .logo span {
-    color: orange;
-}
-
-.header-section .topnav-bar ul {
-    display: flex;
-    gap: 1.5rem;
-    font-size: 18px;
-    list-style: none;
-}
-
 
 .header-section .topnav-bar .active {
     color: orange;
@@ -75,12 +49,6 @@
     color: orange;
 }
 
-
-.header-section .search {
-    color: white;
-}
-
-
 .search-input {
     border: none;
     background-color: transparent;
@@ -95,41 +63,6 @@
 /* When the search input is visible, expand its width */
 .topnav-icon .search-input {
     width: 200px;
-}
-
-.header-section .topnav-icon {
-    display: flex;
-    justify-content: space-around;
-    gap: 2rem;
-    color: white;
-    align-items: center;
-}
-
-.header-section .topnav-icon:hover {
-    color: orange;
-    cursor: pointer;
-}
-
-.cart-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.cart-icon span {
-    background-color: orange;
-    position: relative;
-    top: -5px;
-    right: 10px;
-    width: 10px;
-    height: 10px;
-    padding: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 10px;
-    border-radius: 50%;
-    color: white;
 }
 
 

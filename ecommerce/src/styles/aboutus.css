@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
-.products-heading {
+.product-heading {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-left: 42%;
     margin-top: 30px;
     margin-bottom: 20px;
     font-size: 30px;
@@ -11,7 +13,46 @@
     align-content: center;
 }
 
+.card-heading {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 20px;
+}
 
-.product-card > div {
-    margin: 0 10px;
+.product-card:hover{
+    background-color: orange;
+}
+.card-icon {
+    transform: scale(1.5);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    margin-bottom: 10px;
+}
+
+
+.product-heading {
+    /* Make the heading's width match its content */
+    display: inline-block;
+    /* Position the underline relative to this element */
+    position: relative;
+}
+
+.product-heading::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: orange;
+    transition: width 0.3s ease-in-out;
+    position: absolute; /* Changed to 'absolute' for precise positioning */
+    bottom: -5px; /* Adjust as needed for spacing */
+    left: 0;
+}
+
+/* On hover, the underline will expand to 100% of the heading's width */
+.product-heading:hover::after {
+    width: 100%;
 }

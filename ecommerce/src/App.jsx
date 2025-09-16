@@ -4,7 +4,8 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import { useCart, CartProvider } from './components/CartContext' // Import CartProvider and useCart
 import Header from './components/Header'
 import Hero from './components/Hero'
-import About from './components/Aboutus'
+import Explore from './components/Explore'
+import Discover from './components/Discover'
 import Shop from './components/Shop'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -16,7 +17,8 @@ import AddtoCart from './components/AddtoCart'
 const HomePage = () => (
   <>
   <Hero />
-  <About />
+  <Explore />
+  <Discover />
   <Contact />
   </>
 );

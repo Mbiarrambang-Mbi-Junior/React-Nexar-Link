@@ -1,0 +1,26 @@
+.explore-section {
+    text-align: center;
+}
+.explore-section .explore-heading {
+    /* Make the heading's width match its content */
+    display: inline-block;
+    /* Position the underline relative to this element */
+    position: relative;
+}
+
+.explore-section .explore-heading::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: teal;
+    transition: width 0.3s ease-in-out;
+    position: absolute; /* Changed to 'absolute' for precise positioning */
+    bottom: -5px; /* Adjust as needed for spacing */
+    left: 0;
+}
+
+/* On hover, the underline will expand to 100% of the heading's width */
+.explore-section .explore-heading:hover::after {
+    width: 100%;
+}

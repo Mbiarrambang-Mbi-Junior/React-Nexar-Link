@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 import '../styles/hero.css';
 import hero from '../utils/hero.json';
-import Heroimg from '../assets/product_design-removebg-preview.png';
+import Heroimg from '../assets/77bca0c4-90dc-4eca-8859-1326134ff668.jpeg';
 
 function Hero() {
   const navigate = useNavigate(); // Initialize the navigate hook

@@ -1,49 +1,63 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { BsBoxArrowRight, BsGrid, BsShieldCheck, BsLayers } from 'react-icons/bs'
 
 import '../styles/aboutus.css';
 import products from '../utils/product.json'; // Import the JSON Data
 
 function Aboutus() {
 
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: true,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    pauseOnHover: true,
-  };
 
   return (
-    <section className="w-3/4 m-auto products-section">
-      <h1 className="products-heading">Our products</h1>
-      <Slider {...settings}>
-
-        {products.map((product) => (
-          <div key={product.id} className="h-[450px] w-[300px] text-black rounded-xl shadow-xl transform hover:scale-105 duration-300 cursor-pointer  product-card">
-            <div className="bg-orange-500 flex justify-center items-center h-56 rounded-t-xl">
-              <img src={product.image} alt={product.alt} className="h-44 w-44 rounded-t-xl" />
-            </div>
-
-            <div className="flex flex-col justify-center items-center p-4">
-              <p className="text-center text-xl font-semibold">{product.name}</p>
-              <p>Price: ${product.price}</p>
-              <p>{product.description}</p>
-              <button className="text-white border-2 border-teal-500  bg-teal-500 hover:border-orange-500 hover:bg-orange-500 font-bold py-2 px-4 rounded-xl transition-colors duration-300">
-                Add to cart
-              </button>
-            </div>
+    <section className="w-full m-auto products-section bg-[#3a190b]">
+      <span className="product-heading"><h1>Our products</h1></span>
+      <div className="product-content text-white flex justify-center items-center">
+        <div className="product-card bg-[#402013] w-[450px] m-10 p-4 rounded-xl shadow-xl flex flex-col justify-center items-center hover:scale-105 duration-300 hover:bg-[#3a190b]">
+          <div className="card-icon">
+            <BsGrid size={24} />
           </div>
-        ))}
-      </Slider>
-
+          <div className="card-content">
+            <h2 className="card-heading text-center">Millions of business offering</h2>
+            <p className="card-text text-center">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident ipsam fuga quae libero maiores culpa eveniet, odit ullam facere sapiente laudantium, officiis debitis perspiciatis inventore, quas delectus ex voluptas dolore?
+            </p>
+          </div>
+        </div>
+        <div className="product-card bg-[#402013] w-[450px] m-10 p-4 rounded-xl shadow-xl flex flex-col justify-center items-center hover:scale-105 duration-300">
+          <div className="card-icon">
+            <BsShieldCheck size={24}/>
+          </div>
+          <div className="card-content">
+            <h2 className="card-heading text-center">Millions of business offering</h2>
+            <p className="card-text text-center">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident ipsam fuga quae libero maiores culpa eveniet, odit ullam facere sapiente laudantium, officiis debitis perspiciatis inventore, quas delectus ex voluptas dolore?
+            </p>
+          </div>
+        </div>
+        <div className="product-card bg-[#402013] w-[450px] m-10 p-4 rounded-xl shadow-xl flex flex-col justify-center items-center hover:scale-105 duration-300">
+          <div className="card-icon">
+            <BsBoxArrowRight size={24}/>
+          </div>
+          <div className="card-content text-center">
+            <h2 className="card-heading text-center">Millions of business offering</h2>
+            <p className="card-text">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident ipsam fuga quae libero maiores culpa eveniet, odit ullam facere sapiente laudantium, officiis debitis perspiciatis inventore, quas delectus ex voluptas dolore?
+            </p>
+          </div>
+        </div>
+        <div className="product-card bg-[#402013] w-[450px] m-10 p-4 rounded-xl shadow-xl flex flex-col justify-center items-center hover:scale-105 duration-300">
+          <div className="card-icon">
+            <BsLayers size={24}/>
+          </div>
+          <div className="card-content text-center">
+            <h2 className="card-heading text-center">Millions of business offering</h2>
+            <p className="card-text">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident ipsam fuga quae libero maiores culpa eveniet, odit ullam facere sapiente laudantium, officiis debitis perspiciatis inventore, quas delectus ex voluptas dolore?
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

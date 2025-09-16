@@ -11,16 +11,3 @@
     align-content: flex-start;
 }
 
-.top-shop .shop-text {
-    font-family: Dancing Script;
-    font-size: 40px;
-    color: orange;
-    font-weight: 800;
-}
-
-.shop-content {
-    margin-top: 50px;
-    display: grid;
-    grid-template-columns: minmax(200px, 1fr) 4fr; /* Creates two columns: one for the filter (1fr) and one for the results (3fr) */
-    gap: .5rem; /* Adds space between the filter and the results section */    
-}

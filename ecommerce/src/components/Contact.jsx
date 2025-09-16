@@ -4,7 +4,7 @@ import '../styles/contact.css';
 
 function Contact() {
   return (
-    <section id="contact-section">
+    <section className="contact-section bg-[#f3f4f6]">
             {/* Left column for contact information */}
             <div className="contact-info">
               <h2 className="contact-heading">Get in Touch</h2>

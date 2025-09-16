@@ -1,7 +1,8 @@
 import React from 'react'
 import '../styles/footer.css'
 import { Link } from 'react-router-dom'
-import {BsPinterest, BsFacebook, BsInstagram} from 'react-icons/bs'
+import { Link as ScrollLink } from 'react-scroll'
+import { BsPinterest, BsFacebook, BsInstagram } from 'react-icons/bs'
 
 
 function Footer() {
@@ -16,32 +17,55 @@ function Footer() {
       <div className="footer-links">
         <ul>
           <li>
-            <Link>home</Link>
+            <ScrollLink
+              to="header-section"
+              smooth={true}
+              duration={500}
+            >
+              Home
+            </ScrollLink>
+          </li>
+          <ScrollLink
+            to="explore-section"
+            smooth={true}
+            duration={500}
+          >
+            Explore
+          </ScrollLink>
+          <ScrollLink
+            to="discover-section"
+            smooth={true}
+            duration={500}
+          >
+            Discover
+          </ScrollLink>
+          <li>
+            <ScrollLink
+              to="contact-section"
+              smooth={true}
+              duration={500}
+            >
+              Contact
+            </ScrollLink>
           </li>
           <li>
-            <Link>about</Link>
-          </li>
-          <li>
-            <Link>services</Link>
-          </li>
-          <li>
-            <Link>contact</Link>
+            <Link to={"/shop"}>Shop</Link>
           </li>
         </ul>
       </div>
 
       <div className="footer-social">
-       <ul className="footer-nav">
-        <li>
-          <Link><BsPinterest /></Link>
-        </li>
-        <li>
-          <Link><BsFacebook /></Link>
-        </li>
-        <li>
-          <Link><BsInstagram /></Link>
-        </li>
-       </ul>
+        <ul className="footer-nav">
+          <li>
+            <Link><BsPinterest /></Link>
+          </li>
+          <li>
+            <Link><BsFacebook /></Link>
+          </li>
+          <li>
+            <Link><BsInstagram /></Link>
+          </li>
+        </ul>
       </div>
     </section>
   )
