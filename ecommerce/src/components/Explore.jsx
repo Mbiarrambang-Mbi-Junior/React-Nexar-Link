@@ -11,11 +11,6 @@ function Explore() {
         Explore Our Products
         <span className="block w-20 h-1 bg-teal-500 mx-auto mt-2"></span>
       </h2>
-      <div className="arrow-action flex justify-between items-center w-full md:hidden px-4">
-        <BsArrowLeftCircleFill size={40} className="text-gray-400" />
-        <BsArrowRightCircleFill size={40} className="text-gray-400" />
-      </div>
-
       <div className="explore-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 justify-items-center px-4">
         <div className="explore-icon flex flex-col items-center justify-center p-4 rounded-xl shadow-md border-2 border-transparent w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] hover:scale-105 transition-transform duration-300 hover:border-orange-500">
           <BsHeadset size={30} className="mb-2" />

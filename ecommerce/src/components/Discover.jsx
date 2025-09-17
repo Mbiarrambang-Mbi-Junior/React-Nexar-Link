@@ -182,7 +182,7 @@ const Discover = () => {
                     {topDeals.length > 0 && (
                         <>
                             <div className="flex bg-gray-200 rounded-md p-2 h-[100px] mb-4 items-center">
-                                <img src={topDeals[0]?.image} alt={topDeals[0]?.title} className="w-1/4 h-auto rounded-md object-contain" />
+                                <img src={topDeals[0]?.image} alt={topDeals[0]?.title} className="w-1/8 h-auto rounded-md object-contain" />
                                 <div className="ml-4">
                                     <h4 className="font-semibold">{topDeals[0]?.title}</h4>
                                     <p className="text-sm text-gray-500">{topDeals[0]?.description.substring(0, 50)}...</p>

@@ -21,7 +21,7 @@ const ReadMore = ({ children, limit = 50 }) => {
                 onClick={toggleIsExpanded}
                 className="text-teal-600 cursor-pointer hover:underline font-semibold"
             >
-                {isExpanded ? ' show less' : ' read more'}
+                {isExpanded ? ' show less' : ' Read more'}
             </span>
         </p>
     );

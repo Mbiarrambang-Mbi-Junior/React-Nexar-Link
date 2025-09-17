@@ -36,7 +36,7 @@ function Header({ cartCount }) {
 
     return (
         <>
-            <section className="bg-teal-600 text-white shadow-md w-full sticky top-0 z-50">
+            <section className="header-section bg-teal-600 text-white shadow-md w-full sticky top-0 z-50">
                 <div className="container mx-auto px-4 py-3 flex items-center justify-between">
                     {/* Logo */}
                     <RouterLink to="/" className="text-2xl font-bold logo">
@@ -102,7 +102,7 @@ function Header({ cartCount }) {
                     </div>
                 </div>
             </section>
-            
+
             {/* Search Overlay for Mobile */}
             {isSearchVisible && (
                 <div className="md:hidden w-full bg-teal-600 px-4 py-3 sticky top-[60px] z-40">
@@ -123,19 +123,19 @@ function Header({ cartCount }) {
 
             {/* Mobile Menu (collapsible) */}
             {isMenuOpen && (
-                <div className="md:hidden bg-teal-700 pb-4">
+                <div className="md:hidden bg-teal-700/80 pb-4 backdrop-blur-md">
                     <ul className="flex flex-col items-center space-y-4 text-lg">
                         <li className="w-full text-center">
-                            <RouterLink to="/" onClick={toggleMenu} className="block py-2 hover:text-orange-400 transition-colors">Home</RouterLink>
+                            <RouterLink to="/" onClick={toggleMenu} className="text-white block py-2 hover:text-orange-400 transition-colors">Home</RouterLink>
                         </li>
                         <li className="w-full text-center">
-                            <ScrollLink to="explore-section" smooth={true} duration={500} onClick={toggleMenu} className="block py-2 hover:text-orange-400 cursor-pointer transition-colors">Explore</ScrollLink>
+                            <ScrollLink to="explore-section" smooth={true} duration={500} onClick={toggleMenu} className="text-white block py-2 hover:text-orange-400 cursor-pointer transition-colors">Explore</ScrollLink>
                         </li>
                         <li className="w-full text-center">
-                            <ScrollLink to="discover-section" smooth={true} duration={500} onClick={toggleMenu} className="block py-2 hover:text-orange-400 cursor-pointer transition-colors">Discover</ScrollLink>
+                            <ScrollLink to="discover-section" smooth={true} duration={500} onClick={toggleMenu} className="text-white block py-2 hover:text-orange-400 cursor-pointer transition-colors">Discover</ScrollLink>
                         </li>
                         <li className="w-full text-center">
-                            <RouterLink to="/shop" onClick={toggleMenu} className="block py-2 hover:text-orange-400 transition-colors">Shop</RouterLink>
+                            <RouterLink to="/shop" onClick={toggleMenu} className="text-white block py-2 hover:text-orange-400 transition-colors">Shop</RouterLink>
                         </li>
                     </ul>
                 </div>

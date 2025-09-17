@@ -9,9 +9,15 @@ function Footer() {
   return (
     <section className="footer-section">
       <div className="footer-logo">
-        <h1 className="footer-text">
-          E-shop
-        </h1>
+        <ul>
+          <li><ScrollLink
+            to="header-section"
+            smooth={true}
+            duration={500}
+          >
+            E-shop
+          </ScrollLink></li>
+        </ul>
       </div>
 
       <div className="footer-links">

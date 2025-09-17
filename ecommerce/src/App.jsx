@@ -48,7 +48,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<HomeWithSearch />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/cartdetails/:productId" element={<CartDetails />} />
+        <Route path="/cartdetails/:Id" element={<CartDetails />} />
         <Route path="/myCart" element={<AddtoCart />} />
         <Route path="/favorites" element={<Favorites />} />
       </Routes>

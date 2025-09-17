@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Tilt from 'react-parallax-tilt';
 import { BsPlus, BsHeartFill } from 'react-icons/bs';
 import { useCart } from './CartContext';
 import ReadMore from './ReadMore'; // Import the new component
@@ -19,20 +18,13 @@ function Card({ product }) {
     };
 
     return (
-        <Tilt
-            className="card w-[330px] h-[600px] flex flex-col justify-between items-center p-8 
+        <div
+            className="card w-[300px] h-[350px] flex flex-col justify-between items-center p-8 
             bg-white/10 backdrop-blur-[2px] border-white/10 
             rounded-2xl shadow-xl mt-[10px] relative
             before:content-[''] 
             before:absolute before:inset-0
-            before:rounded-2xl before:border before:border-white/20"
-            tiltMaxAngleX={25}
-            tiltMaxAngleY={25}
-            perspective={1000}
-            transitionSpeed={5000}
-            glareEnable={true}
-            glareMaxOpacity={0.5}
-        >
+            before:rounded-2xl before:border before:border-white/20">
             <div className="image-plce w-full flex-grow flex items-center justify-center overflow-hidden">
                 <img
                     src={image}
@@ -51,19 +43,20 @@ function Card({ product }) {
                 </div>
                 <div className="addto-carticon flex justify-between items-center mt-4">
                     <BsPlus
-                        size={50}
-                        className="add-icon bg-teal-600 cursor-pointer p-2 rounded-full text-white"
+                        size={40}
+                        color='white'
+                        className="bg-teal-600 p-2 rounded-full"
                         onClick={() => addToCart(product)}
                     />
                     <BsHeartFill
-                        size={50}
+                        size={40}
                         color="red"
-                        className="cursor-pointer"
+                        className="hover:cursor-pointer hover:scale-110 transition-transform duration-300"
                         onClick={handleFavorite}
                     />
                 </div>
             </div>
-        </Tilt>
+        </div>
     );
 }
 

@@ -3,19 +3,19 @@ import React from 'react';
 function Filter() {
   return (
     // The main container for the filter panel
-    <section className="p-4 w-full h-fit sticky top-4 md:top-8">
-      
-      <div className="bg-white rounded-lg shadow-sm p-4">
-        <h3 className="text-xl md:text-2xl font-semibold mb-6">
+    <section className="flex gap-4 justify-center items-center w-full h-fit md:top-4 bg-white rounded-lg shadow-sm p-2">
+      <h3 className="text-xl md:text-2xl font-semibold mb-4">
           Filter Options
         </h3>
+      <div className="flex gap-4 flex-wrap">
+        
 
         {/* Filter by Category section */}
         <div className="mb-6">
           <h4 className="text-lg font-medium mb-2 uppercase">
             by category
           </h4>
-          <div className="flex flex-col gap-2">
+          <div className="flex  gap-2">
             <label htmlFor="electronics" className="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" id="electronics" className="accent-orange-500" />
               <span className="text-base text-gray-700">electronics</span>
@@ -44,7 +44,7 @@ function Filter() {
           <h4 className="text-lg font-medium mb-2 uppercase">
             by price
           </h4>
-          <div>
+          <div className='flex gap-2'>
             <label htmlFor="price-input" className="block text-sm text-gray-700 font-medium mb-1">
               price range
             </label>
