@@ -1,34 +1,40 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import './App.css'
+import Header from './components/Header'
+import DataAnalytics from './components/DataAnalytics'
+import UserManagement from './components/UserManagement'
+import Alerts from './components/Alerts'
+import Reports from './components/Reports'
+import Settings from './components/Settings'
+import Sidebar from './components/Sidebar'
+import Home from './components/Home'
+import Attendance from './components/Attendance'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle)
+  }
+
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Router>
+        <div className='grid-container grid-template-col-[260px 1fr 500px 1fr]'>
+            <Header OpenSidebar={OpenSidebar}/>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path="/data-analytics" element={<DataAnalytics />} />
+                <Route path="/user-management" element={<UserManagement />} />
+                <Route path="/alerts" element={<Alerts />} />
+                <Route path="/reports" element={<Reports />} />
+                <Route path="/attendance" element={<Attendance />} />
+                <Route path="/settings" element={<Settings />} />
+            </Routes>
+            <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
+        </div>
+    </Router>
   )
 }
 
