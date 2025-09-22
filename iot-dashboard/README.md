@@ -1,4 +1,19 @@
 # React + Vite
+# IOT Home Automation Dashboard
+
+## Features
+
+This is a screenshot of the dashboard with the feature.
+
+![Feature 1 Screenshot](/iot-dashboard/src/git.image/dashdoard.png)
+![Feature 2 Screenshot](/iot-dashboard/src/git.image/power.png)
+![Feature 3 Screenshot](/iot-dashboard/src/git.image/devicemanagement.png)
+![Feature 4 Screenshot](/iot-dashboard/src/git.image/dataanalytics.png)
+![Feature 5 Screenshot](/iot-dashboard/src/git.image/usermanagment.png)
+![Feature 6 Screenshot](/iot-dashboard/src/git.image/attendance.png)
+![Feature 7 Screenshot](/iot-dashboard/src/git.image/report.png)
+![Feature 8 Screenshot](/iot-dashboard/src/git.image/alert.png)
+![Feature 9 Screenshot](/iot-dashboard/src/git.image/setting.png)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
