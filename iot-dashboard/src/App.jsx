@@ -1,17 +1,16 @@
-
-import { useState } from 'react'
-import { BrowserRouter } from 'react-router-dom'
-import Header from './components/Header'
-import Container from './components/Container'
+import { BrowserRouter } from 'react-router-dom';
+import Container from './components/Container';
 
 function App() {
+
+
   return (
-    <>
+    <div className="min-h-screen">
       <BrowserRouter>
         <Container />
       </BrowserRouter>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

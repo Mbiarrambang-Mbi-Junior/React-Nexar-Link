@@ -57,13 +57,13 @@ const Attendance = () => {
   };
 
   return (
-    <div className="attendance-container min-h-screen w-[1100px] p-4">
+    <div className="attendance-container min-h-screen w-full p-4">
       <div className="bg-[#007BFF] shadow-md p-4 text-center">
         <h1 className="text-3xl font-bold text-white">SMART ATTENDANCE SYSTEM</h1>
       </div>
-      <div className="container mx-auto p-4 md:p-8">
+      <div className="container mx-auto p-4 md:p-8 flex flex-col lg:flex-row gap-4">
         {/* Attendance Summary Section */}
-        <div className="bg-white rounded-lg shadow-md mb-8">
+        <div className="flex-1 bg-white rounded-lg shadow-md mb-8">
           <div className="bg-gray-200 p-4 rounded-t-lg flex items-center text-gray-700">
             <FaTable className="mr-2" />
             <h2 className="text-lg font-semibold">Attendance Summary</h2>
@@ -113,7 +113,7 @@ const Attendance = () => {
         </div>
 
         {/* LIVE STATUS Section */}
-        <div className="bg-white rounded-lg shadow-md">
+        <div className="flex-1 bg-white rounded-lg shadow-md">
           <div className="bg-gray-200 p-4 rounded-t-lg flex items-center text-gray-700">
             <FaTable className="mr-2" />
             <h2 className="text-lg font-semibold">LIVE STATUS</h2>

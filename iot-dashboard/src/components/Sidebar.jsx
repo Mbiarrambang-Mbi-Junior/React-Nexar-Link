@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
 import {BsGrid1X2Fill, BsGraphUp, BsPerson, BsPeopleFill, 
-  BsBellFill, BsMenuButtonWideFill, BsFillGearFill} from 'react-icons/bs';
+  BsBellFill, BsMenuButtonWideFill, BsFillGearFill,BsDeviceSsdFill} from 'react-icons/bs';
 import { FaBolt } from 'react-icons/fa';
 
 function Sidebar({ open }) {
@@ -9,12 +9,12 @@ function Sidebar({ open }) {
 
   const getActiveClass = (path) => {
     return location.pathname === path 
-      ? 'bg-gray-100 text-blue-500' 
+      ? 'bg-gray-100 text-[#008c69]' 
       : 'text-gray-600';
   };
 
   return (
-    <aside className="h-full overflow-y-auto transition-all duration-500 p-4">
+    <aside className="h-full overflow-y-auto scrollbar-hide transition-all duration-500 p-4 pt-16">
       <ul className='p-0 list-none'>
         <li className={`sidebar-list-item p-5 text-lg hover:cursor-pointer hover:bg-gray-100 rounded-lg transition-colors ${getActiveClass('/')}`}>
           <RouterLink to="/" className='flex gap-2 items-center font-semibold'>
@@ -26,9 +26,14 @@ function Sidebar({ open }) {
             <FaBolt className='icon'/> {open && 'Power'}
           </RouterLink>
         </li>
+        <li className={`sidebar-list-item p-5 text-lg hover:cursor-pointer hover:bg-gray-100 rounded-lg transition-colors ${getActiveClass('/device-management')}`}>
+          <RouterLink to="/device-management" className='flex gap-2 items-center font-semibold'>
+            <BsDeviceSsdFill className='icon'/> {open && 'Device Management'}
+          </RouterLink>
+        </li>
         <li className={`sidebar-list-item p-5 text-lg hover:cursor-pointer hover:bg-gray-100 rounded-lg transition-colors ${getActiveClass('/data-analytics')}`}>
           <RouterLink to="/data-analytics" className='flex gap-2 items-center font-semibold'>
-            <BsGraphUp className='icon'/> {open && 'Data & Analytics'}
+            <BsGraphUp className='icon'/> {open && 'Data Analytics'}
           </RouterLink>
         </li>
         <li className={`sidebar-list-item p-5 text-lg hover:cursor-pointer hover:bg-gray-100 rounded-lg transition-colors ${getActiveClass('/user-management')}`}>
@@ -51,8 +56,8 @@ function Sidebar({ open }) {
             <BsBellFill className='icon'/> {open && 'Alerts'}
           </RouterLink>
         </li>
-        <li className={`sidebar-list-item relative bottom-0 p-5 text-lg hover:cursor-pointer hover:bg-gray-100 rounded-lg transition-colors ${getActiveClass('/setting')}`}>
-          <RouterLink to="/setting" className='flex gap-2 items-center font-semibold'>
+        <li className={`sidebar-list-item relative bottom-0 p-5 text-lg hover:cursor-pointer hover:bg-gray-100 rounded-lg transition-colors ${getActiveClass('/settings')}`}>
+          <RouterLink to="/settings" className='flex gap-2 items-center font-semibold'>
             <BsFillGearFill className='icon'/> {open && 'Settings'}
           </RouterLink>
         </li>
