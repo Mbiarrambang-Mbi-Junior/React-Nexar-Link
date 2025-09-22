@@ -7,7 +7,7 @@ This is a screenshot of the dashboard with the feature.
 
 ![Feature 1 Screenshot](/iot-dashboard/src/git.image/dashdoard.png)
 ![Feature 2 Screenshot](/iot-dashboard/src/git.image/power.png)
-![Feature 3 Screenshot](/iot-dashboard/src/git.image/devicemanagement.png)
+![Feature 3 Screenshot](/iot-dashboard/src/git.image/devicemagment.png)
 ![Feature 4 Screenshot](/iot-dashboard/src/git.image/dataanalytics.png)
 ![Feature 5 Screenshot](/iot-dashboard/src/git.image/usermanagment.png)
 ![Feature 6 Screenshot](/iot-dashboard/src/git.image/attendance.png)
