@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { FaTable, FaDownload, FaLaptop } from 'react-icons/fa';
 import { AiOutlineLaptop } from 'react-icons/ai';
-
+import checkin from '../assets/checkin.png'
+import cross from '../assets/cross.png'
 
 const Attendance = () => {
-  const [liveUsers, setLiveUsers] = useState([]);
+  // State to hold the data
+  const [liveUsers, setLiveUsers] = useState({});
   const [attendanceData, setAttendanceData] = useState([]);
 
   useEffect(() => {
-    // This is where you would typically fetch data from a backend
-    // Since Firebase and JQuery were removed, this is a placeholder
-    // for a data fetching function.
-    const fetchData = async () => {
-      // Mock data for demonstration
+    // This hook fetches data when the component first mounts.
+    // In a real application, this is where you'd connect to Firebase or your API.
+    const fetchData = () => {
+      // Mock data for demonstration purposes
       const mockLiveUsers = {
         'user123': 1,
         'user456': 0,
+        'user789': 1,
       };
 
       const mockAttendanceData = [
         { uid: 'user123', id: 'device01', time: new Date().toISOString(), status: true },
         { uid: 'user456', id: 'device02', time: new Date().toISOString(), status: false },
+        { uid: 'user789', id: 'device03', time: new Date().toISOString(), status: true },
       ];
 
       setLiveUsers(mockLiveUsers);
@@ -28,21 +31,38 @@ const Attendance = () => {
     };
 
     fetchData();
-  }, []);
+  }, []); // The empty dependency array ensures this runs only once
 
   const handleExport = () => {
-    // Logic for exporting data (e.g., to CSV) goes here
-    console.log('Exporting data...');
-    // In a real application, you'd use a library like 'papaparse'
-    // to convert the attendanceData array to a CSV string and trigger a download.
+    // This is a pure JavaScript function to export data to a CSV file.
+    const headers = ['User ID', 'Device ID', 'Time', 'Status'];
+    const rows = attendanceData.map(record => [
+      record.uid,
+      record.id,
+      new Date(record.time).toLocaleString(),
+      record.status ? 'Check In' : 'Check Out'
+    ]);
+
+    const csvContent = "data:text/csv;charset=utf-8," 
+      + headers.join(',') + "\n"
+      + rows.map(e => e.join(",")).join("\n");
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "attendance_data.csv");
+    document.body.appendChild(link); // Required for Firefox
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
-    <div className="max-h-screen w-[1200px] ml-[20px] mt-[20px]">
-      <div className="bg-[#007BFF] shadow-md p-4 text-center flex flex-wrap justify-center items-center">
-        <h1 className="text-3xl font-bold text-gray-800">SMART ATTENDANCE SYSTEM</h1>
+    <div className="attendance-container min-h-screen w-[1100px] p-4">
+      <div className="bg-[#007BFF] shadow-md p-4 text-center">
+        <h1 className="text-3xl font-bold text-white">SMART ATTENDANCE SYSTEM</h1>
       </div>
       <div className="container mx-auto p-4 md:p-8">
+        {/* Attendance Summary Section */}
         <div className="bg-white rounded-lg shadow-md mb-8">
           <div className="bg-gray-200 p-4 rounded-t-lg flex items-center text-gray-700">
             <FaTable className="mr-2" />
@@ -92,6 +112,7 @@ const Attendance = () => {
           </div>
         </div>
 
+        {/* LIVE STATUS Section */}
         <div className="bg-white rounded-lg shadow-md">
           <div className="bg-gray-200 p-4 rounded-t-lg flex items-center text-gray-700">
             <FaTable className="mr-2" />
@@ -104,22 +125,15 @@ const Attendance = () => {
               <div className="flex flex-wrap gap-4">
                 {Object.entries(liveUsers).map(([uid, status]) => (
                   <div key={uid} className="flex items-center gap-4 p-4 rounded-lg border border-gray-300 shadow-sm">
-                    {/* Placeholder for images. In a real app, you would import these or use a CDN. */}
-                    <img src="./img/checkin.png" alt="Check In" className="w-16 h-16" />
+                    {/* The image is conditionally rendered based on the user's status */}
+                    <img 
+                      src={status === 1 ? checkin : cross} 
+                      alt={status === 1 ? 'Checked In' : 'Checked Out'} 
+                      className="w-16 h-16"
+                    />
                     <div className="flex flex-col">
                       <h3 className="text-lg font-semibold">UID: {uid}</h3>
-                      <div className="flex gap-2 mt-2">
-                        <img
-                          src="./img/tick.png"
-                          alt="True"
-                          className={`w-8 h-8 ${status === 1 ? 'visible' : 'hidden'}`}
-                        />
-                        <img
-                          src="./img/cross.png"
-                          alt="False"
-                          className={`w-8 h-8 ${status === 0 ? 'visible' : 'hidden'}`}
-                        />
-                      </div>
+                      <p className="text-sm">Status: {status === 1 ? 'Online' : 'Offline'}</p>
                     </div>
                   </div>
                 ))}

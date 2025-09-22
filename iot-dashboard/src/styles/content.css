@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+.logo {
+    font-family: Dancing Script;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+
+.active {
+    background-color: #f3f4f6;
+}
+
+.open-class {
+    visibility: visible;
+}
+
+@media screen and (max-width: 992px) {
+  .main-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .charts{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .aside {
+    visibility: hidden;
+    height: 0;
+  }
+  main {
+    width: 100%;
+  }
+}
