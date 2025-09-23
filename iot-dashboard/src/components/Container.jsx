@@ -1,11 +1,10 @@
 // src/Container.jsx
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import '../styles/Content.css';
 import Sidebar from './Sidebar';
 import Home from './Home';
 import Power from './Power';
-import DeviceManagement from './DeviceManagement'; // Corrected the typo here
+import DeviceManagement from './DeviceManagement';
 import DeviceDetails from './DeviceDetails';
 import DataAnalytics from './DataAnalytics';
 import UserManagement from './UserManagement';
@@ -28,12 +27,12 @@ function Container() {
         <div className={`fixed inset-y-0 left-0 z-50 transform md:hidden ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out w-[280px] bg-white shadow-lg`}>
           <Sidebar open={isSidebarOpen} />
         </div>
-        <main className='flex-1 overflow-y-auto scrollbar-hide bg-gray-100 p-4 pt-5'>
+        <main className='flex-1 overflow-y-auto scrollbar-hide bg-[var(--body-bg-color)]  p-4 pt-5 transition-colors duration-300'>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/power" element={<Power />} />
             <Route path="/device-management" element={<DeviceManagement />} />
-            <Route path="/devices/:id" element={<DeviceDetails />} /> {/* Updated route path */}
+            <Route path="/devices/:id" element={<DeviceDetails />} />
             <Route path="/data-analytics" element={<DataAnalytics />} />
             <Route path="/user-management" element={<UserManagement />} />
             <Route path="/attendance" element={<Attendance />} />

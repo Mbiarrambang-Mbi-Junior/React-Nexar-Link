@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { BsFillBellFill, BsFillEnvelopeFill, BsSearch, BsCpuFill, BsList, BsMoonFill, BsSunFill, BsX } from 'react-icons/bs';
+import { BsFillBellFill, BsFillEnvelopeFill, BsSearch, BsCpuFill, BsList, BsMoon, BsSun, BsX } from 'react-icons/bs';
 
 function Header({ isSidebarOpen, setIsSidebarOpen }) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [theme, setTheme] = useState('light');
   const [notificationCount, setNotificationCount] = useState(0);
   
   const handleCount = () => {
@@ -14,9 +15,10 @@ function Header({ isSidebarOpen, setIsSidebarOpen }) {
     setIsSearchOpen(!isSearchOpen);
   };
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+   const handleThemeToggle = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
+
 
   return (
     <header className='sticky top-0 z-[999] h-[60px] flex items-center justify-between bg-white/75 backdrop-blur-[10px] px-[30px] shadow-[0_6px_7px_-3px_rgba(0,0,0,0.35)]'>
@@ -28,9 +30,9 @@ function Header({ isSidebarOpen, setIsSidebarOpen }) {
         }
 
         <div className='sidebar-title'>
-          <div className='logo text-[#008c69] flex gap-2'>
+          <div className='logo text-[#008c69] text-[20px] font-semibold flex gap-2'>
             <BsCpuFill className='align-middle leading-[1px] text-[26px] mr-[5px]' />
-            <span className='hidden sm:inline'>Nexar|Link</span>
+            <h1 className='hidden sm:inline'>Nexar|Link<span className='text-[#ffb650]'>.</span></h1>
           </div>
         </div>
       </div>
@@ -56,11 +58,9 @@ function Header({ isSidebarOpen, setIsSidebarOpen }) {
           <BsFillBellFill size={24} className='icon cursor-pointer' onClick={handleCount}/>
           <span className='flex items-center justify-center relative top-[1px] rounded-full p-1 right-[10px] bg-red-500 h-4 text-white font-semibold text-xs w-4'>{notificationCount}</span>
         </div>
-        {isDarkMode ? (
-          <BsMoonFill size={24} className='icon cursor-pointer text-[#4682B4]' onClick={toggleTheme} />
-        ) : (
-          <BsSunFill size={24} className='icon cursor-pointer text-yellow-500' onClick={toggleTheme} />
-        )}
+        <button id="theme-toggle" className="theme-toggle-btn" aria-label="Toggle dark/light mode" onClick={handleThemeToggle}>
+            {theme === 'dark' ? <BsSun /> : <BsMoon />}
+          </button>
       </div>
     </header>
   );

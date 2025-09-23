@@ -1,94 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import { RiSearchLine, RiMenuLine, RiSunLine, RiMoonLine } from 'react-icons/ri'; // Import icons here
-import '../models/header.css';
+import { BsFillBellFill, BsSearch, BsCpuFill, BsList, BsMoonFill, BsSunFill, BsX } from 'react-icons/bs';
 
+function Header({ isSidebarOpen, setIsSidebarOpen }) {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(0);
 
-
-function Header() {
-  const [isSearchActive, setIsSearchActive] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [theme, setTheme] = useState('light');
-
+  // This effect synchronizes the body class with the dark mode state
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
     }
-  }, []);
+  }, [isDarkMode]);
 
-  useEffect(() => {
-    document.body.classList.toggle('dark-mode', theme === 'dark');
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const handleSearchToggle = () => {
-    setIsSearchActive(!isSearchActive);
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
   };
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
-  const handleThemeToggle = () => {
-    // Toggle the theme state
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
+  const handleCount = () => {
+    setNotificationCount(notificationCount + 1);
   };
 
   return (
-    <header className="site-header">
-      <nav className="navbar">
-        <a href="index.html" className="logo">
-          Nexar|Link<span>.</span>
-        </a>
-        <div className={`nav-links ${isMenuOpen ? 'active' : ''}`} id="navMenu">
-          <ul className="nav-list">
-            <li>
-              <a href="#home" className="nav-link active-link" onClick={closeMenu}>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#about" className="nav-link" onClick={closeMenu}>
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#projects" className="nav-link" onClick={closeMenu}>
-                Projects
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="nav-link" onClick={closeMenu}>
-                Contact
-              </a>
-            </li>
-          </ul>
+    <header className='sticky top-0 z-[999] h-[60px] flex items-center justify-between bg-white/75 backdrop-blur-[10px] px-[30px] shadow-[0_6px_7px_-3px_rgba(0,0,0,0.35)] dark:bg-zinc-800/75'>
+      <div className='flex items-center gap-4'>
+        {/* Sidebar toggle button for mobile */}
+        {isSidebarOpen ? (
+          <BsX size={28} className='text-[#008c69] cursor-pointer md:hidden' onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+        ) : (
+          <BsList size={28} className='text-[#008c69] cursor-pointer md:hidden' onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+        )}
+        <div className='logo text-[#008c69] text-[20px] font-semibold flex gap-2'>
+          <BsCpuFill className='align-middle leading-[1px] text-[26px] mr-[5px]' />
+          <h1 className='hidden sm:inline'>Nexar|Link<span className='text-[#ffb650]'>.</span></h1>
         </div>
-        <div className="header-actions">
-          <div className="search-container">
-            <input
-              type="text"
-              className={`search-input ${isSearchActive ? 'active' : ''}`}
-              placeholder="Search..."
-              aria-label="Search site"
-            />
-            <button className="search-toggle" aria-label="Toggle search bar" onClick={handleSearchToggle}>
-                <RiSearchLine /> {/* Replaced <i> with the icon component */}
-            </button>
-          </div>
-          <button id="theme-toggle" className="theme-toggle-btn" aria-label="Toggle dark/light mode" onClick={handleThemeToggle}>
-            {theme === 'dark' ? <RiSunLine /> : <RiMoonLine />} {/* Replaced <i> with conditional icon components */}
-          </button>
-          <button className="menu-toggle" aria-label="Toggle navigation menu" onClick={handleMenuToggle}>
-            <RiMenuLine /> {/* Replaced <i> with the icon component */}
-          </button>
+      </div>
+
+      <div className='text-[#008c69] flex gap-4'>
+        <div className='relative flex items-center gap-2'>
+          <input
+            type='text'
+            placeholder='Search...'
+            className={`
+              transition-all duration-300 ease-in-out
+              border-2 rounded-md h-[40px] p-4 focus:outline-none focus:ring-2 focus:ring-green-500
+              ${isSearchOpen ? 'w-[250px] opacity-100 visible' : 'w-0 opacity-0 invisible'}
+            `}
+          />
+          <BsSearch size={24} className='icon cursor-pointer' onClick={toggleSearch} />
         </div>
-      </nav>
+        <div className="relative">
+          <BsFillBellFill size={24} className='icon cursor-pointer' onClick={handleCount}/>
+          {notificationCount > 0 && (
+            <span className='absolute top-[-5px] right-[-5px] flex items-center justify-center rounded-full bg-red-500 h-4 w-4 text-white font-semibold text-xs'>
+              {notificationCount}
+            </span>
+          )}
+        </div>
+        <button onClick={toggleTheme} className='theme-toggle-btn p-2 rounded-full hover:bg-gray-200 transition-colors dark:hover:bg-zinc-700'>
+          {isDarkMode ? (
+            <BsSunFill size={24} className='text-yellow-500' />
+          ) : (
+            <BsMoonFill size={24} className='text-gray-700' />
+          )}
+        </button>
+      </div>
     </header>
   );
 }

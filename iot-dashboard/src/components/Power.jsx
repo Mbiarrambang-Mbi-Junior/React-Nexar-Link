@@ -87,7 +87,7 @@ const Power = () => {
         <div className="container mx-auto p-4 sm:p-6">
             <div className="flex flex-col md:flex-row items-center justify-around p-6 bg-white rounded-lg shadow-xl mb-8">
                 {/* Chart Section */}
-                <div className="relative w-full md:w-1/2 flex items-center justify-center p-4">
+                <div className="relative w-full  md:w-1/2 flex items-center justify-center p-4">
                     <ResponsiveContainer width="100%" height={200}>
                         <RadialBarChart
                             innerRadius="60%"
@@ -152,7 +152,7 @@ const Power = () => {
             </div>
 
             {/* Power Rate Charts Section */}
-            <div className='power-rate-chart charts grid grid-cols-1 md:grid-cols-2 gap-5 mt-8 h-[300px]'>
+            <div className='power-rate-chart charts grid grid-cols-1 md:grid-cols-2 gap-5 mt-8'>
                 <div className="rounded-lg shadow-md p-4 bg-white">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={data}>

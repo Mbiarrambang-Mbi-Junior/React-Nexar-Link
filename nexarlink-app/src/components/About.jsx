@@ -1,4 +1,6 @@
 import React from 'react'
+import {FaCode,FaMicrochip,FaDatabase} from 'react-icons/fa'
+
 import '../models/about.css'
 
 export default function About() {
@@ -31,17 +33,22 @@ export default function About() {
 
                     <div className="skills-grid">
                         <div className="skill-category">
-                            <h4 className="skill-title">Frontend</h4>
+                            <h4 className="skill-title flex gap-4">
+                                <FaCode />
+                                <span>Frontend</span></h4>
                             <ul className="skill-list">
                                 <li><span>HTML</span></li>
                                 <li><span>CSS</span></li>
-                                <li><span>Bootstrap</span></li>
+                                <li><span>Tailwind</span></li>
                                 <li><span>JavaScript</span></li>
                                 <li><span>React</span></li>
                             </ul>
                         </div>
                         <div className="skill-category">
-                            <h4 className="skill-title">Embedded Systems</h4>
+                            <h4 className="skill-title flex gap-4">
+                                <FaMicrochip />
+                                <span>Embedded Systems</span>
+                            </h4>
                             <ul className="skill-list">
                                 <li><span>ARM</span></li>
                                 <li><span>C</span></li>
@@ -50,7 +57,10 @@ export default function About() {
                             </ul>
                         </div>
                         <div className="skill-category">
-                            <h4 className="skill-title">Database</h4>
+                            <h4 className="skill-title flex gap-4">
+                                <FaDatabase />
+                                <span>Database</span>
+                            </h4>
                             <ul className="skill-list">
                                 <li><span>MySQL</span></li>
                                 <li><span>Firebase</span></li>

@@ -1,13 +1,30 @@
 /* styles.css */
 @import 'tailwindcss';
 @import 'tailwind-scrollbar-hide/v4';
-/*@import 'tailwind-scrollbar-hide/v4';
-body {
-  margin: 0;
-  padding: 0;
-  /* background-color: #1d2634;*
-  background-color: white;
-  color: #9e9ea4;
-  font-family: 'Montserrat', sans-serif;
+/*@import 'tailwind-scrollbar-hide/v4'; */
+:root {
+  /* Light mode variables */
+  --body-bg-color: #f0f2f5;
+  --box-bg-color: #ffffff;
+  --text-primary-color: #000000;
+  --text-secondary-color: #e0e0e0;
+  --text-accent-color: #008c69;
+  --text-highlight-color: #d17a00;
 }
-*/
+
+/* Dark mode variables */
+body.dark-mode {
+  --body-bg-color: #191854;
+  --box-bg-color: #181872;
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #e0e0e0;
+  --text-accent-color: #00c896;
+  --text-highlight-color: #f39c12;
+}
+
+body {
+  font-family: Poppins, Helvetica, sans-serif;
+  background-color: var(--body-bg-color);
+  color: var(--text-primary-color);
+  transition: background-color 0.3s, color 0.3s;
+}

@@ -16,109 +16,85 @@ function DataAnalytics() {
     ];
 
     const radialData = [
-        { name: 'Active Devices', uv: 75, fill: '#8884d8' },
+        { name: 'Active Devices', uv: 75, fill: '#8884d8' }
     ];
 
     return (
-        <div className="p-4 sm:p-6 lg:p-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">Data Analytics Dashboard</h1>
+        <div className='p-4'>
+            <h1 className="flex items-center gap-2 text-2xl font-bold mb-6 text-[var(--text-primary-color)]">
+                <FaChartLine className="text-[var(--text-accent-color)]" /> Data Analytics
+            </h1>
 
-            {/* Data Summary Cards */}
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8'>
-                <div className='bg-white p-6 rounded-lg shadow-md flex items-center justify-between'>
-                    <div>
-                        <h4 className='text-gray-500 font-semibold'>Total Users</h4>
-                        <p className='text-3xl font-bold text-gray-900'>2400</p>
+            <div className='flex flex-col lg:flex-row gap-4'>
+                <div className='flex-1'>
+                    <div className='flex flex-col md:flex-row gap-4 mb-4'>
+                        <div className='stats-card p-4 rounded-lg shadow-lg flex-1'>
+                            <p className='text-sm text-[var(--text-primary-color)]'>Total Devices</p>
+                            <h2 className='text-3xl font-bold text-[var(--text-accent-color)]'>500</h2>
+                        </div>
+                        <div className='stats-card  p-4 rounded-lg shadow-lg flex-1'>
+                            <p className='text-sm text-[var(--text-primary-color)]'>Active Users</p>
+                            <h2 className='text-3xl font-bold text-[var(--text-accent-color)]'>150</h2>
+                        </div>
+                        <div className='stats-card  p-4 rounded-lg shadow-lg flex-1'>
+                            <p className='text-sm text-[var(--text-primary-color)]'>Revenue</p>
+                            <h2 className='text-3xl font-bold text-[var(--text-accent-color)]'>$25,000</h2>
+                        </div>
                     </div>
-                    <FaUsers size={36} className='text-blue-500' />
-                </div>
-                <div className='bg-white p-6 rounded-lg shadow-md flex items-center justify-between'>
-                    <div>
-                        <h4 className='text-gray-500 font-semibold'>Active Devices</h4>
-                        <p className='text-3xl font-bold text-gray-900'>150</p>
-                    </div>
-                    <FaLaptop size={36} className='text-green-500' />
-                </div>
-                <div className='bg-white p-6 rounded-lg shadow-md flex items-center justify-between'>
-                    <div>
-                        <h4 className='text-gray-500 font-semibold'>Data Ingestion Rate</h4>
-                        <p className='text-3xl font-bold text-gray-900'>98%</p>
-                    </div>
-                    <FaChartLine size={36} className='text-red-500' />
-                </div>
-            </div>
 
-            {/* Charts Section */}
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
-                {/* Bar Chart */}
-                <div className='bg-white p-6 rounded-lg shadow-md'>
-                    <h2 className='text-xl font-semibold mb-4'>Revenue Overview</h2>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={data}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="pv" fill="#8884d8" name="Revenue" />
-                            <Bar dataKey="uv" fill="#82ca9d" name="Cost" />
-                        </BarChart>
-                    </ResponsiveContainer>
-                </div>
-
-                {/* Line Chart */}
-                <div className='bg-white p-6 rounded-lg shadow-md'>
-                    <h2 className='text-xl font-semibold mb-4'>User Engagement</h2>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <LineChart data={data}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} name="Page Views" />
-                            <Line type="monotone" dataKey="uv" stroke="#82ca9d" name="Unique Visitors" />
-                        </LineChart>
-                    </ResponsiveContainer>
-                </div>
-
-                {/* Radial Chart */}
-                <div className='bg-white p-6 rounded-lg shadow-md col-span-1 lg:col-span-2'>
-                    <h2 className='text-xl font-semibold mb-4'>Device Active Rate</h2>
-                    <div className='flex justify-center items-center h-full'>
-                        <ResponsiveContainer width="30%" height={250}>
-                            <RadialBarChart
-                                innerRadius="60%"
-                                outerRadius="90%"
-                                data={radialData}
-                                startAngle={90}
-                                endAngle={450}
+                    <div className=' p-6 rounded-lg shadow-md'>
+                        <h3 className='text-lg font-semibold mb-4 text-[var(--text-primary-color)]'>Device Metrics</h3>
+                        <ResponsiveContainer width="100%" height={300}>
+                            <BarChart
+                                data={data}
+                                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                             >
-                                <RadialBar
-                                    minAngle={15}
-                                    background
-                                    clockWise
-                                    dataKey='uv'
-                                    cornerRadius={10}
-                                    fill="#ffc658"
-                                />
-                                <text
-                                    x="50%" y="45%"
-                                    textAnchor="middle" dominantBaseline="middle"
-                                    className="text-4xl font-bold text-gray-800"
-                                >
-                                    {`${radialData[0].uv}%`}
-                                </text>
-                                <text
-                                    x="50%" y="65%"
-                                    textAnchor="middle" dominantBaseline="middle"
-                                    className="text-lg text-gray-500"
-                                >
-                                    Active
-                                </text>
-                            </RadialBarChart>
+                                <CartesianGrid strokeDasharray="3 3" stroke='var(--text-secondary-color)' />
+                                <XAxis dataKey="name" stroke='var(--text-primary-color)' />
+                                <YAxis stroke='var(--text-primary-color)' />
+                                <Tooltip />
+                                <Legend />
+                                <Bar dataKey="pv" fill="#8884d8" />
+                                <Bar dataKey="uv" fill="#82ca9d" />
+                            </BarChart>
                         </ResponsiveContainer>
                     </div>
+                </div>
+
+                <div className='p-6 rounded-lg shadow-md flex-1 flex flex-col justify-center items-center'>
+                    <h3 className='text-lg font-semibold mb-4 text-[var(--text-primary-color)]'>Device Activity</h3>
+                    <ResponsiveContainer width="100%" height={250}>
+                        <RadialBarChart
+                            innerRadius="70%"
+                            outerRadius="90%"
+                            data={radialData}
+                            startAngle={90}
+                            endAngle={450}
+                        >
+                            <RadialBar
+                                minAngle={15}
+                                background
+                                clockWise
+                                dataKey='uv'
+                                cornerRadius={10}
+                                fill="var(--text-accent-color)"
+                            />
+                            <text
+                                x="50%" y="45%"
+                                textAnchor="middle" dominantBaseline="middle"
+                                className="text-4xl font-bold fill-[var(--text-primary-color)]"
+                            >
+                                {`${radialData[0].uv}%`}
+                            </text>
+                            <text
+                                x="50%" y="65%"
+                                textAnchor="middle" dominantBaseline="middle"
+                                className="text-lg fill-gray-500"
+                            >
+                                Active
+                            </text>
+                        </RadialBarChart>
+                    </ResponsiveContainer>
                 </div>
             </div>
         </div>

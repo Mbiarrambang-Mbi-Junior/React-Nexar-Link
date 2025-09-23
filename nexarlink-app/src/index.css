@@ -1,6 +1,8 @@
 /* ----- FONT IMPORTS ----- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import url('https://unicons.iconscout.com/release/v4.0.8/css/line.css');
+@import "tailwindcss";
+
 
 body {
     font-family: Poppins, Helvetica, sans-serif;
