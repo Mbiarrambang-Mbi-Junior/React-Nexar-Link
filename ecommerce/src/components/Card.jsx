@@ -51,7 +51,7 @@ function Card({ product }) {
                     <BsHeartFill
                         size={40}
                         color="red"
-                        className="hover:cursor-pointer hover:scale-110 transition-transform duration-300"
+                        className="hover:cursor-pointer hover:scale-103 transition-transform duration-300"
                         onClick={handleFavorite}
                     />
                 </div>

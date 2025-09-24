@@ -63,7 +63,7 @@ function Hero() {
     };
 
     return (
-        <section className="bg-teal-600 min-h-screen flex items-center justify-center">
+        <section className="pt-[100px] bg-teal-600 min-h-screen flex items-center justify-center">
             <div className="container mx-auto p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-8">
                 <div className="hero-text flex flex-col items-center md:items-start text-center md:text-left transition-opacity duration-700 ease-in-out">
                     <h1 className="text-4xl md:text-6xl text-white lg:text-7xl font-bold mb-4">

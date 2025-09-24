@@ -2,6 +2,8 @@
 
 .footer-section {
     background-color: teal;
+    position: sticky;
+    bottom: 0;
     display: flex;
     justify-content: space-around;
     text-transform: capitalize;

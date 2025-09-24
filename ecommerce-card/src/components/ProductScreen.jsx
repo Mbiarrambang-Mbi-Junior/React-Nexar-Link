@@ -9,9 +9,9 @@ const productData = {
   name: 'G502 HERO',
   price: '$69.99',
   images: [
-    'path/to/main-image.png',
-    'path/to/thumbnail1.png',
-    'path/to/thumbnail2.png'
+    '/src/assets/react.svg',
+    '/src/assets/react.svg',
+    '/src/assets/react.svg'
   ],
   features: [
     { name: 'HERO 16K', description: 'OUR MOST ACCURATE' },

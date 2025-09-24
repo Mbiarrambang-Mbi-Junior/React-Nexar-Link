@@ -4,7 +4,7 @@ import Results from './Results';
 
 function Shop() {
   return (
-    <section className="w-full bg-gray-100 py-2 px-4 md:px-8">
+    <section className="pt-[100px] w-full bg-gray-100 py-2 px-4 md:px-8">
       <div className="max-w-7xl mx-auto flex flex-col gap-4">
         {/*
           - grid-cols-1: Stacks content vertically on small screens.
@@ -12,7 +12,7 @@ function Shop() {
           - lg:grid-cols-[300px_1fr]: On large screens, the filter column is slightly wider.
           - gap-8: Adds spacing between the two columns.
         */}
-        <div className="filter-wrapper  sticky top-4 z-1 shadow-md">
+        <div className="filter-wrapper  sticky top-20 z-1 shadow-md">
           <Filter />
         </div>
         <div className="results-wrapper ">

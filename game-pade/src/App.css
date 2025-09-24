@@ -1,0 +1,91 @@
+/* Outer shell of the joystick controller */
+.joystick-controller-outer {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(145deg, #4b4b4b, #2a2a2a);
+  border-radius: 15%;
+  box-shadow: 
+    inset 5px 5px 10px #202020, 
+    inset -5px -5px 10px #505050,
+    0px 8px 15px rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Inner area where the joystick handle moves */
+.joystick-container {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #1a1a1a, #0d0d0d);
+  box-shadow: 
+    inset 0px 0px 10px rgba(0,0,0,0.8),
+    0px 2px 5px rgba(0,0,0,0.2);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  touch-action: none;
+}
+
+.joystick-handle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #0056b3, #003366);
+  box-shadow: 
+    inset 2px 2px 5px rgba(255,255,255,0.3),
+    inset -2px -2px 5px rgba(0,0,0,0.5),
+    0px 3px 6px rgba(0,0,0,0.3);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s ease-out;
+  cursor: grab;
+}
+
+/* Add a visual feedback when dragging */
+.joystick-handle:active {
+  cursor: grabbing;
+  box-shadow: 
+    inset 1px 1px 3px rgba(255,255,255,0.4), 
+    inset -1px -1px 3px rgba(0,0,0,0.6),
+    0px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Game.css */
+.game-area {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevents the ball from going outside the area */
+}
+
+.ball {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the ball initially */
+  transition: transform 0.1s ease-out; /* Smooth movement */
+}
+
+.joystick-container {
+  /* ... (your existing joystick CSS) ... */
+  position: absolute; /* Position the joystick over the game area */
+  bottom: 20px;
+  right: 20px;
+}

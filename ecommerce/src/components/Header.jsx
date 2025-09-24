@@ -36,7 +36,7 @@ function Header({ cartCount }) {
 
     return (
         <>
-            <section className="header-section bg-teal-600 text-white shadow-md w-full sticky top-0 z-50">
+            <section className="header-section mb-[100px] fixed top-0 left-0 w-full z-10 backdrop-blur-md border-b border-white border-opacity-30 px-8 flex justify-around items-center shadow-lg">
                 <div className="container mx-auto px-4 py-3 flex items-center justify-between">
                     {/* Logo */}
                     <RouterLink to="/" className="text-2xl font-bold logo">
