@@ -2,20 +2,20 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import '../models/project.css';
 
-export default function Project() {
+export default function Project({ isDarkMode }) {
     return (
         <>
-            <section className="section projects-section" id="projects">
+            <section className={`services-section ${isDarkMode ? 'bg-white' : 'bg-[#191854]'}`} id="services">
                 <div className="section-header">
-                    <h2 className="section-title">Projects</h2>
+                    <h2 className="section-title">services</h2>
                 </div>
-                <div className="projects-grid">
+                <div className="services-grid">
                     {/* This link remains a RouterLink for internal navigation */}
-                    <RouterLink to="https://github.com/Mbiarrambang-Mbi-Junior" target="_blank" rel="noopener noreferrer" className="project-card">
+                    <RouterLink to="/projectsList" target="_blank" rel="noopener noreferrer" className="project-card">
                         <div className="project-icon">
                             <i className="uil uil-briefcase-alt"></i>
                         </div>
-                        <h3 className="project-title">Projects</h3>
+                        <h3 className="project-title">projects</h3>
                         <span className="project-info">15+ Available</span>
                     </RouterLink>
                     {/* This link now uses an <a> tag to open a new tab */}

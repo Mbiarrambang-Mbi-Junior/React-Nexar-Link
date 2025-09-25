@@ -1,10 +1,10 @@
 import React from 'react';
 import '../models/contact.css';
 
-export default function Contact() {
+export default function Contact({ isDarkMode }) {
     return (
         <>
-            <section className="section contact-section" id="contact">
+            <section className={`contact-section ${isDarkMode ? 'bg-white' : 'bg-[#191854]'}`} id="contact">
                 <div className="section-header">
                     <h2 className="section-title">Get in touch</h2>
                     <p className="section-subtitle">Do you have a project in mind? Contact me here.</p>

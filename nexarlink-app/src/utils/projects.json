@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "title": "RTC Clock Arduino",
+    "tagline": "A standalone real-time clock using an Arduino and DS1307 module.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-1",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/RTC_clock/RTC_clock.ino",
+    "steps": [
+      "Step 1: Get an Arduino, a DS1307 RTC module, and a display.",
+      "Step 2: Wire the components on a breadboard.",
+      "Step 3: Upload the code and set the initial time."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_kmgmd6kmgmd6kmgm.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": ["SiArduino"],
+    "githubLink": "https://github.com/your-username/rtc-clock-repo",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/1"
+  },
+  {
+    "id": 2,
+    "title": "RFID Based Attendance System Firebase",
+    "tagline": "Track attendance with an RFID reader and store data securely on Firebase.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-2",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/automatic_attendanceRFID/Arduino/Smart_Attendance_System/Smart_Attendance_System.ino",
+    "steps": [
+      "Step 1: Configure your Firebase project for real-time database.",
+      "Step 2: Connect the MFRC522 RFID reader to an ESP board.",
+      "Step 3: Program the board to read tags and send data to Firebase."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_23eu4a23eu4a23eu.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": ["SiReact", "SiNodedotjs", "SiFirebase", "SiArduino"],
+    "githubLink": "https://github.com/your-username/rfid-system-repo",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/2"
+  },
+  {
+    "id": 3,
+    "title": "Radar System",
+    "tagline": "A radar system that visualizes object detection in real-time.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-3",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/Radar_system/Radar_system.ino",
+    "steps": [
+      "Step 1: Set up the processing foundation.",
+      "Step 2: Connect the radar module to your microcontroller.",
+      "Step 3: Program and test object detection."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_dum6fmdum6fmdum6.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": ["SiReact", "SiNodedotjs", "SiProcessingfoundation"],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/radar-code.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/3"
+  },
+  {
+    "id": 4,
+    "title": "Temperature and Humidity Sensor System",
+    "tagline": "Monitor and display temperature and humidity levels using a DHT11 sensor.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-4",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/TemperatureAndHumidity/TemperatureAndHumidity.ino",
+    "steps": [
+      "Step 1: Connect a DHT11 sensor to your ESP board.",
+      "Step 2: Program the ESP board to read sensor data.",
+      "Step 3: Display the data on a web interface or an LCD screen."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_58tff858tff858tf.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": ["SiReact", "SiNodedotjs", "SiFirebase"],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/temp-sensor.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/4"
+  },
+  {
+    "id": 5,
+    "title": "IOT Dashboard with React and Firebase",
+    "tagline": "A real-time dashboard built with React and Firebase for IOT data visualization.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-5",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/esp8266_firebase/esp8266_firebase.ino",
+    "steps": [
+      "Step 1: Configure Firebase for real-time data storage.",
+      "Step 2: Create React components to display IOT data.",
+      "Step 3: Implement data synchronization between the device and the dashboard."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_v0dmm1v0dmm1v0dm.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": ["SiReact", "SiArduino", "SiFirebase"],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/iot-dashboard.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/5"
+  },
+  {
+    "id": 6,
+    "title": "RFID Based Attendance System Firebase",
+    "tagline": "An automatic attendance system using RFID cards and Firebase for data storage.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-6",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/RFID_card/RFID_card.ino",
+    "steps": [
+      "Step 1: Set up a Firebase project for attendance data.",
+      "Step 2: Connect the RFID reader to a microcontroller.",
+      "Step 3: Program the device to log attendance on card scan."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_xyq3b9xyq3b9xyq3.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": ["SiReact", "SiNodedotjs", "SiFirebase"],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/rfid-firebase.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/6"
+  }
+]

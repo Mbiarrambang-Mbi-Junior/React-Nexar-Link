@@ -3,7 +3,7 @@ import Typed from 'typed.js'; // You need to install the Typed.js library
 import '../models/Hero.css';
 import heropic from '../assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png';
 
-export default function Hero() {
+export default function Hero({ isDarkMode }) {
   useEffect(() => {
     // This code will run after the component has mounted to the DOM
     const options = {
@@ -24,7 +24,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="hero-section" id="home">
+      <section className={`hero-section ${isDarkMode ? 'bg-white' : 'bg-[#191854]'}`} id="home">
         <div className="hero-content">
           <div className="intro-card">
             <span className="intro-text">

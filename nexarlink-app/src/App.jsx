@@ -1,43 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Project from "./components/Project";
+import ProjectList from "./components/ProjectList";
+import ProjectDisplay from "./components/ProjectDisplay";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-// This component will be rendered for the home page route
-const Homepage = () => {
+
+function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  const Homepage = () => {
   return (
     <>
-      <Hero />
-      <About />
-      <Project />
-      <Contact />
+      <Hero toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
+      <About toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
+      <Project toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
+      <Contact toggleTheme={toggleTheme} isDarkMode={isDarkMode}/>
     </>
   );
 };
 
-// Example of a new component for a separate page
-const ProjectsPage = () => {
-  return (
-    <div className="p-8">
-      <h1 className="text-4xl font-bold">All Projects</h1>
-      <p>This is a dedicated page for all your projects.</p>
-    </div>
-  );
-};
-
-function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-      </Routes>
-      <Footer />
+      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+      <main>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/projectsList" element={<ProjectList toggleTheme={toggleTheme} isDarkMode={isDarkMode} />} />
+          <Route path='/projectDisplay/:id' element={<ProjectDisplay toggleTheme={toggleTheme} isDarkMode={isDarkMode} />} />
+          <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+        </Routes>
+      </main>
+      <Footer toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
     </BrowserRouter>
   );
 }

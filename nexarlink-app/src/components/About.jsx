@@ -3,14 +3,14 @@ import {FaCode,FaMicrochip,FaDatabase} from 'react-icons/fa'
 
 import '../models/about.css'
 
-export default function About() {
+export default function About({ isDarkMode }) {
     return (
         <>
-            <section className="about-section" id="about">
-                <div className="section-header">
-                    <h2 className="section-title">About Me</h2>
+            <section className={`about-section ${isDarkMode ? 'bg-white' : 'bg-[#191854]'} p-[5rem_2rem] text-center m-[0_auto]`} id="about">
+                <div className="section-header mb-[3rem]">
+                    <h2 className="section-title text-[2rem] text-white">About Me</h2>
                 </div>
-                <div className="about-container">
+                <div class="grid gap-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-start">
                     <article className="about-content">
                         <h3 className="about-subtitle">My Introduction</h3>
                         <p>
