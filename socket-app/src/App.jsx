@@ -1,58 +1,41 @@
-import React from 'react';
-import './styles/App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Category from './components/Category';
-import New from './components/New';
-import About from './components/About';
-import Trending from './components/Trending';
-import Footer from './components/Footer';
-import Services from './components/Services';
-import Contacts from './components/Contacts';
-import ProductList from './components/ProductList';
-import ProductDetails from './components/ProductDetails';
-import AddCart from './components/AddCart';
-import Favourite from './components/Favourite';
-import { CartProvider } from './components/CartContext'; 
-import Login from './components/Login';
-import Signup from './components/Signup';
+import React, { useState, useEffect } from 'react';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import io from 'socket.io-client';
 
-
-
-// A new component to act as the home page
-const HomePage = () => (
-  <>
-    <Hero />
-    <Category />
-    <New />
-    <Trending />
-  </>
-);
+const socket = io('http://localhost:4000'); // Connect to the Node.js server
 
 function App() {
+  const [potentiometerValue, setPotentiometerValue] = useState(0);
+
+  useEffect(() => {
+    socket.on('potentiometerValue', (data) => {
+      setPotentiometerValue(data);
+    });
+
+    return () => {
+      socket.off('potentiometerValue');
+    };
+  }, []);
+
   return (
-    <Router>
-      <CartProvider>
-      <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/productsdetails/:id" element={<ProductDetails />} />
-          <Route path="/cart" element={<AddCart/>} />
-          <Route path="/about" element={<About />} />
-          <Route path="/favourit" element={<Favourite />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          {/* Add more routes as needed */}
-        </Routes>
-        <Footer />
-      </div>
-      </CartProvider>
-    </Router>
+    <div style={{ width: 200, height: 200, margin: '50px auto' }}>
+      <h2>Potentiometer Value</h2>
+      <CircularProgressbar
+        value={potentiometerValue}
+        text={`${potentiometerValue}°`}
+        minValue={0}
+        maxValue={180}
+        styles={buildStyles({
+          rotation: 0.5, // Start from the bottom
+          strokeLinecap: 'butt',
+          pathColor: `rgba(62, 152, 199, ${potentiometerValue / 180})`,
+          textColor: '#f88',
+          trailColor: '#d6d6d6',
+          backgroundColor: '#3e98c7',
+        })}
+      />
+    </div>
   );
 }
 
