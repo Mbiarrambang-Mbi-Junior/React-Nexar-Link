@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { BsFillBellFill, BsFillEnvelopeFill, BsSearch, BsCpuFill, BsList, BsMoon, BsSun, BsX } from 'react-icons/bs';
+import { BsFillBellFill, BsSearch, BsCpuFill, BsList, BsMoonFill, BsSunFill,  BsX } from 'react-icons/bs';
 
-function Header({ isSidebarOpen, setIsSidebarOpen }) {
+function Header({ isSidebarOpen, setIsSidebarOpen, toggleDarkMode, isDarkMode}) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const [theme, setTheme] = useState('light');
   const [notificationCount, setNotificationCount] = useState(0);
+
   
   const handleCount = () => {
     setNotificationCount(notificationCount + 1);
@@ -21,7 +21,7 @@ function Header({ isSidebarOpen, setIsSidebarOpen }) {
 
 
   return (
-    <header className='sticky top-0 z-[999] h-[60px] flex items-center justify-between bg-white/75 backdrop-blur-[10px] px-[30px] shadow-[0_6px_7px_-3px_rgba(0,0,0,0.35)]'>
+    <header className={`sticky top-0 z-[999] h-[60px] flex items-center justify-between  backdrop-blur-[10px] px-[30px] shadow-[0_6px_7px_-3px_rgba(0,0,0,0.35)] ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <div className='flex items-center gap-4'>
         {
           isSidebarOpen ?
@@ -59,7 +59,12 @@ function Header({ isSidebarOpen, setIsSidebarOpen }) {
           <span className='flex items-center justify-center relative top-[1px] rounded-full p-1 right-[10px] bg-red-500 h-4 text-white font-semibold text-xs w-4'>{notificationCount}</span>
         </div>
         <button id="theme-toggle" className="theme-toggle-btn" aria-label="Toggle dark/light mode" onClick={handleThemeToggle}>
-            {theme === 'dark' ? <BsSun /> : <BsMoon />}
+            {
+              isDarkMode ?
+              <BsSunFill size={24} className='icon cursor-pointer text-yellow-500' onClick={toggleDarkMode}/>
+              :
+              <BsMoonFill size={24} className='icon cursor-pointer text-gray-500' onClick={toggleDarkMode}/>
+            }
           </button>
       </div>
     </header>

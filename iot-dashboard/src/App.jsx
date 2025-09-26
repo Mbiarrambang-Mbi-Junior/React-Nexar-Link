@@ -1,13 +1,13 @@
 import { BrowserRouter } from 'react-router-dom';
 import Container from './components/Container';
 
-function App() {
-
+function App({ toggleDarkMode, isDarkMode }) {
+  
 
   return (
     <div className="min-h-screen">
       <BrowserRouter>
-        <Container />
+        <Container toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
       </BrowserRouter>
     </div>
   );

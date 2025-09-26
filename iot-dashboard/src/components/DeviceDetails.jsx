@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { BsArrowLeftCircleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-function DeviceDetails() {
+function DeviceDetails({isDarkMode}) {
   const { id } = useParams();
 
   return (
-    <div className="p-4 bg-[var(--body-bg-color)] dark:bg-[var(--box-bg-color)] rounded-lg shadow-md min-h-screen">
+    <div className={`p-4 rounded-lg shadow-md min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <Link to="/device-management" className="flex items-center text-[var(--text-accent-color)] hover:text-[var(--text-highlight-color)] mb-6">
         <BsArrowLeftCircleFill className="mr-2" size={24} />
         Back to Device Management
