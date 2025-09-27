@@ -1,8 +1,8 @@
 // src/Container.jsx
 import React, { useState } from 'react';
 // IMPORT FIX: Added Navigate for redirection logic
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom'; 
-import Header from './Header'; 
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import Header from './Header';
 import Sidebar from './Sidebar';
 import Home from './Home';
 import SignUp from './SignUp';
@@ -13,6 +13,7 @@ import ForgotPassword from './ForgotPassword'; // Ensure this import is correct
 import DeviceManagement from './DeviceManagement';
 import DeviceDetails from './DeviceDetails';
 import DataAnalytics from './DataAnalytics';
+import LandingPage from './Home/LandingPage';
 import UserManagement from './UserManagement';
 import Attendance from './Attendance';
 import Reports from './Reports';
@@ -23,116 +24,100 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 function Container() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [isAuth, setIsAuth] = useState(cookies.get("auth-token")); 
-    const [isDarkMode, setIsDarkMode] = useState(false);
-    // FIX 1: Corrected typo from 'serData' to 'userData'
-    const [userData, setUserData] = useState(null); 
-    
-    // Get current path to determine if we are already on a public page
-    const location = useLocation();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    // FIX 1: Corrected typo from 'serData' to 'userData'
+    const [userData, setUserData] = useState(null);
 
-    const toggleDarkMode = () => {
-        setIsDarkMode(prevMode => {
-            const newMode = !prevMode;
-            document.documentElement.classList.toggle('dark', newMode);
-            return newMode;
-        });
-    };
-    
-    const signUserOut = () => {
-        cookies.remove("auth-token", { path: '/' });
-        setIsAuth(false);
-    };
+    // Get current path to determine if we are already on a public page
+    const location = useLocation();
 
-    // Define public paths that shouldn't redirect an unauthenticated user
-    // FIX: Added /forgot-password to the list of public paths
-    const publicPaths = ['/signin', '/login', '/forgot-password'];
+    const toggleDarkMode = () => {
+        setIsDarkMode(prevMode => {
+            const newMode = !prevMode;
+            document.documentElement.classList.toggle('dark', newMode);
+            return newMode;
+        });
+    };
 
-    // --- Core Routing Logic ---
-    // If the user is authenticated (isAuth is true)
-    if (isAuth) {
-        // If the user is on a public path (like /signin or /login), navigate them to the dashboard (/).
-        if (publicPaths.includes(location.pathname)) {
-            return <Navigate to="/" replace />;
-        }
+    const signUserOut = () => {
+        cookies.remove("auth-token", { path: '/dashboard' });
+        setIsAuth(false);
+    };
 
-        // --- AUTHENTICATED VIEW ---
-        return (
-            <div className='flex flex-col h-screen'>
-                <Header 
-                    isSidebarOpen={isSidebarOpen} 
-                    setIsSidebarOpen={setIsSidebarOpen} 
-                    toggleDarkMode={toggleDarkMode} 
-                    isDarkMode={isDarkMode} 
-                    signUserOut={signUserOut}
-                    // FIX 2: Passed the userData state (not the setter) to Header
-                    userData={userData} 
-                />
-                
-                <div className='flex flex-1 overflow-hidden'>
-                    {/* Desktop Sidebar */}
-                    <div className={`transition-all duration-300 ${isSidebarOpen ? 'w-[280px]' : 'w-[64px]'} ${isDarkMode ? 'bg-gray-800' : 'bg-white'} hidden md:block`}>
-                        <Sidebar open={isSidebarOpen} isDarkMode={isDarkMode} />
-                    </div>
-                    
-                    {/* Mobile Sidebar */}
-                    <div 
-                        className={`fixed inset-y-0 left-0 z-50 md:hidden transition-transform duration-300 ease-in-out w-[280px] shadow-lg ${
-                            isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-                        } ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
-                        onClick={() => isSidebarOpen && setIsSidebarOpen(false)} 
-                    >
-                        <Sidebar open={isSidebarOpen} isDarkMode={isDarkMode} />
-                    </div>
-                    
-                    {/* Main Content Area */}
-                    <main className={`flex-1 overflow-y-auto scrollbar-hide p-4 pt-5 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
-                        <Routes>
-                            {/* Authenticated Routes - / is the Dashboard */}
-                            <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
-                            <Route path="/power" element={<Power isDarkMode={isDarkMode} />} />
-                            <Route path="/devices/:id" element={<DeviceDetails isDarkMode={isDarkMode} />} />
+
+    // --- Core Routing Logic ---
+    // If the user is authenticated (isAuth is true)
+    if (isAuth) {
+
+        // --- AUTHENTICATED VIEW ---
+        return (
+            <div className='flex flex-col h-screen'>
+                <Header
+                    isSidebarOpen={isSidebarOpen}
+                    setIsSidebarOpen={setIsSidebarOpen}
+                    toggleDarkMode={toggleDarkMode}
+                    isDarkMode={isDarkMode}
+                    signUserOut={signUserOut}
+                    // FIX 2: Passed the userData state (not the setter) to Header
+                    userData={userData}
+                />
+
+                <div className='flex flex-1 overflow-hidden'>
+                    {/* Desktop Sidebar */}
+                    <div className={`transition-all duration-300 ${isSidebarOpen ? 'w-[280px]' : 'w-[64px]'} ${isDarkMode ? 'bg-gray-800' : 'bg-white'} hidden md:block`}>
+                        <Sidebar open={isSidebarOpen} isDarkMode={isDarkMode} />
+                    </div>
+
+                    {/* Mobile Sidebar */}
+                    <div
+                        className={`fixed inset-y-0 left-0 z-50 md:hidden transition-transform duration-300 ease-in-out w-[280px] shadow-lg ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+                            } ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+                        onClick={() => isSidebarOpen && setIsSidebarOpen(false)}
+                    >
+                        <Sidebar open={isSidebarOpen} isDarkMode={isDarkMode} />
+                    </div>
+
+                    {/* Main Content Area */}
+                    <main className={`flex-1 overflow-y-auto scrollbar-hide p-4 pt-5 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+                        <Routes>
+                            {/* Authenticated Routes - / is the Dashboard */}
+                            <Route path="/" element={<LandingPage />} />
+                            <Route path="/dashboard" element={<Home isDarkMode={isDarkMode} />} />
+                            <Route path="/power" element={<Power isDarkMode={isDarkMode} />} />
+                            <Route path="/devices/:id" element={<DeviceDetails isDarkMode={isDarkMode} />} />
                             <Route path="/dashboard-name" element={<DashboardName isDarkMode={isDarkMode} setIsAuth={setIsAuth} />} />
-                            <Route path="/data-analytics" element={<DataAnalytics isDarkMode={isDarkMode} />} />
-                            <Route path="/user-management" element={<UserManagement isDarkMode={isDarkMode} />} />
-                            <Route path="/attendance" element={<Attendance isDarkMode={isDarkMode} />} />
-                            <Route path="/reports" element={<Reports isDarkMode={isDarkMode} />} />
-                            <Route path="/alerts" element={<Alerts isDarkMode={isDarkMode} />} />
-                            <Route path="/settings" element={<Settings isDarkMode={isDarkMode} />} />
-                            
-                            {/* Catch any other URL and redirect to dashboard */}
-                            <Route path="*" element={<Navigate to="/" replace />} />
-                        </Routes>
-                    </main>
-                </div>
-            </div>
-        );
-    }
-    
-    // If the user is NOT authenticated (isAuth is false)
-    // If the user attempts to access a protected route, navigate them to /signin.
-    // The base path "/" is explicitly handled below.
-    if (!publicPaths.includes(location.pathname) && location.pathname !== '/') {
-        return <Navigate to="/signin" replace />;
-    }
+                            <Route path="/data-analytics" element={<DataAnalytics isDarkMode={isDarkMode} />} />
+                            <Route path="/user-management" element={<UserManagement isDarkMode={isDarkMode} />} />
+                            <Route path="/attendance" element={<Attendance isDarkMode={isDarkMode} />} />
+                            <Route path="/reports" element={<Reports isDarkMode={isDarkMode} />} />
+                            <Route path="/alerts" element={<Alerts isDarkMode={isDarkMode} />} />
+                            <Route path="/settings" element={<Settings isDarkMode={isDarkMode} />} />
 
-    // --- UNAUTHENTICATED VIEW ---
-    return (
-        <div className='flex flex-col h-screen'>
-            <main className={`flex-1 overflow-y-auto scrollbar-hide transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
-                <Routes>
-                    {/* Public Routes */}
-                    <Route path='/signin' element={<SignUp isDarkMode={isDarkMode} setIsAuth={setIsAuth} setUserData={setUserData}/>} /> 
-                    <Route path='/login' element={<LogIn isDarkMode={isDarkMode} setIsAuth={setIsAuth} setUserData={setUserData}/>} />
-                    <Route path='/forgot-password' element={<ForgotPassword isDarkMode={isDarkMode} />} />
-                    <Route path="/device-management" element={<DeviceManagement isDarkMode={isDarkMode} />} />
-                    <Route path="/" element={<Navigate to="/signin" replace />} />
-                    <Route path="*" element={<Navigate to="/signin" replace />} />
-                </Routes>
-            </main>
-        </div>
-    );
+                            {/* Catch any other URL and redirect to dashboard */}
+                            <Route path="*" element={<Navigate to="/" replace />} />
+                        </Routes>
+                    </main>
+                </div>
+            </div>
+        );
+    }
+
+
+    // --- UNAUTHENTICATED VIEW ---
+    return (
+        <div className='flex flex-col h-screen'>
+            <main className={`flex-1 overflow-y-auto scrollbar-hide transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+                <Routes>
+                    {/* Public Routes */}
+                    <Route path='/' element={<LandingPage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/signin" element={<LogIn />} />
+                </Routes>
+            </main>
+        </div>
+    );
 }
 
 export default Container;

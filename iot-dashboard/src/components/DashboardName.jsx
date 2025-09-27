@@ -13,7 +13,7 @@ function DashboardName({ isDarkMode }) {
         console.log('Dashboard Name Submitted:', dashboardName);
         alert(`Dashboard Name "${dashboardName}" submitted successfully!`);
         setDashboardName('');
-        navigate('/');
+        navigate('/dashboard');
         
     };
 
