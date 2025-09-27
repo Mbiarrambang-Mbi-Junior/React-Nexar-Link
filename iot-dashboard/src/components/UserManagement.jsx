@@ -1,22 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsPersonCircle } from 'react-icons/bs';
 import { BsPencilFill, BsTrash, BsPersonPlusFill } from 'react-icons/bs';
 
 // Mock data for demonstration
 const mockUsers = [
-    { id: 1, name: 'Alice Smith', role: 'Admin' },
-    { id: 2, name: 'Bob Johnson', role: 'Editor' },
-    { id: 3, name: 'Charlie Brown', role: 'Viewer' },
+    { id: 1, name: 'Alice Smith', role: 'Admin', email: 'alice@example.com' },
+    { id: 2, name: 'Bob Johnson', role: 'Editor', email: 'bob@example.com' },
+    { id: 3, name: 'Charlie Brown', role: 'Viewer', email: 'charlie@example.com' },
 ];
 
-function UserManagement({ isDarkMode }) {
+function UserManagement({ isDarkMode, userData }) {
     const [users, setUsers] = useState(mockUsers);
-    const [currentUser, setCurrentUser] = useState({ id: 1, name: 'Alice Smith', role: 'Admin' });
+    const [currentUser, setCurrentUser] = useState(null); 
     const [newUser, setNewUser] = useState({ name: '', role: 'Viewer' });
+
+    // Extract photo URL and name variables from userData, mirroring Header.jsx
+    const userPhotoUrl = userData?.photoURL;
+    const userName = userData?.name || userData?.email?.split('@')[0] || 'User';
+   /* useEffect(() => {
+        if (userData) {
+            const usernameFromEmail = userData.email ? userData.email.split('@')[0] : 'User';
+            
+            // NOTE: Assuming the logged-in user has an 'Admin' role for this management page.
+            const user_role = userData.role || 'Admin'; 
+            setCurrentUser({
+                id: userData.uid || 0,
+                name: userData.name,
+                photoURL: userData.photoURL,
+                email: userData.email,
+                role: user_role,
+            });
+        }
+    }, [userData]); */
+
+    // Render a loading state while user data is being processed 
+    if (!currentUser) {
+        return <div className="p-8 text-center text-gray-500 dark:text-gray-400">Loading user data...</div>;
+        console.log('Loading user data...');
+    }
 
     // Function to handle editing a user (placeholder)
     const handleEdit = (userId) => {
-        // In a real app, this would open a modal or navigate to an edit page
         console.log(`Editing user with ID: ${userId}`);
     };
 
@@ -32,7 +56,7 @@ function UserManagement({ isDarkMode }) {
         e.preventDefault();
         if (newUser.name) {
             const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
-            setUsers([...users, { id: newId, ...newUser }]);
+            setUsers([...users, { id: newId, ...newUser, email: `${newUser.name.toLowerCase().replace(/\s/g, '.')}@new.user` }]);
             setNewUser({ name: '', role: 'Viewer' });
         }
     };
@@ -40,14 +64,29 @@ function UserManagement({ isDarkMode }) {
     return (
         // Main container dark mode bg/text already set
         <div className={`p-4 sm:p-6 lg:p-8 ${isDarkMode ? 'dark:bg-gray-900 dark:text-gray-100' : ''}`}>
-            {/* Title text color */}
+            
+            {/* Title text color - FIX 3: Conditional Rendering for Image/Icon */}
             <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center gap-2">
-                <BsPersonCircle className="text-blue-600 dark:text-blue-400" /> User Management
+                {userPhotoUrl ? (
+                    <img
+                        src={userPhotoUrl}
+                        alt={userName}
+                        // Styling adjusted for page title prominence and theme color
+                        className="w-10 h-10 rounded-full object-cover border-2 border-blue-600 dark:border-blue-400"
+                    />
+                ) : (
+                    // Fallback icon
+                    <BsPersonCircle className="text-blue-600 dark:text-blue-400 text-[36px]" />
+                )}
+                User Management
             </h1>
 
-            {/* Current User Info Card */}
+            {/* Current User Info Card - NOW USES LOGGED-IN USER DATA */}
             <div className="bg-gray-200 dark:bg-gray-700 p-4 rounded-lg mb-6 shadow-sm">
-                <p className="font-semibold text-gray-700 dark:text-gray-300">Logged in as: <span className="text-blue-600 dark:text-blue-400">{currentUser.name}</span></p>
+                <p className="font-semibold text-gray-700 dark:text-gray-300">
+                    Logged in as: <span className="text-blue-600 dark:text-blue-400">{currentUser.name}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">({currentUser.email})</span>
+                </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Your role: <span className="font-medium">{currentUser.role}</span></p>
             </div>
 

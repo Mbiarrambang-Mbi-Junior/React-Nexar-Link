@@ -30,6 +30,12 @@ function LogIn({ isDarkMode, setIsAuth }) {
             // Update the parent authentication state and navigate to dashboard
             setIsAuth(true);
             navigate('/');
+            setUserData({
+                photoURL: user.photoURL, // Must use 'photoURL'
+                name: user.displayName,  // Using 'name' is safer if you don't update Firebase displayName
+                email: user.email,
+                uid: user.uid
+            });
         } catch (error) {
             console.error("Login Error:", error.message);
             alert("Login Failed: " + error.message);
@@ -65,8 +71,8 @@ function LogIn({ isDarkMode, setIsAuth }) {
                             onChange={(e) => setDashboardName(e.target.value)}
                             required
                             className={`w-full py-3 pl-12 pr-4 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${isDarkMode
-                                    ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-400'
-                                    : 'bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-500'}`}/>
+                                ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-400'
+                                : 'bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-500'}`} />
                     </div>
 
                     {/* Password Input */}
@@ -79,32 +85,32 @@ function LogIn({ isDarkMode, setIsAuth }) {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                             className={`w-full py-3 pl-12 pr-4 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${isDarkMode
-                                    ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-400'
-                                    : 'bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-500'}`}/>
+                                ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-400'
+                                : 'bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-500'}`} />
                     </div>
 
                     {/* Login Button */}
                     <button
                         type="submit"
                         className={`w-full py-3 rounded-lg font-bold text-lg shadow-md transition-colors duration-200 ${isDarkMode
-                                ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                                : 'bg-blue-600 hover:bg-blue-700 text-white'}`}>
+                            ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                            : 'bg-blue-600 hover:bg-blue-700 text-white'}`}>
                         Log In
                     </button>
                 </form>
 
-                 {/* Footer Links */}
+                {/* Footer Links */}
                 <div className="mt-6 text-center text-sm">
-                    <Link 
-                        to="/signin" 
+                    <Link
+                        to="/signin"
                         className={`font-medium hover:underline transition-colors ${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-600 hover:text-gray-700'}`}
                     >
                         Don't have an account? Sign Up
                     </Link>
                     <span className="mx-2 text-gray-400 dark:text-gray-500">|</span>
                     {/* FIX 5: Replaced 'a' tag with 'Link' component pointing to the new route */}
-                    <Link 
-                        to="/forgot-password" 
+                    <Link
+                        to="/forgot-password"
                         className={`font-medium hover:underline transition-colors ${isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'}`}
                     >
                         Forgot password?

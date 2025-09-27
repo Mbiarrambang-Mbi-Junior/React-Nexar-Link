@@ -8,7 +8,7 @@ import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-function SignUp({ isDarkMode, setIsAuth }) { 
+function SignUp({ isDarkMode, setIsAuth, setUserData }) { 
     // FIX 1: Added state for dashboardName
     const [dashboardName, setDashboardName] = useState('');
     const [email, setEmail] = useState('');
@@ -22,9 +22,17 @@ function SignUp({ isDarkMode, setIsAuth }) {
             // Store Auth Token
             cookies.set("auth-token", result.user.accessToken, { path: '/', maxAge: 3600 * 24 * 7 });
             console.log('Google Sign Up successful:', result.user.refreshToken);
+            console.log(result.user);
             
             // FIX 2: You would typically handle setting the dashboardName (e.g., to the user's name) after Google sign-in here.
-            
+             setUserData({
+                // Changed from 'img' to 'photoURL'
+                photoURL: result.user.photoURL, 
+                // Header uses 'name' as a fallback, so 'displayName' (or just 'name') is fine.
+                name: result.user.displayName || result.user.email?.split('@')[0], 
+                email: result.user.email,
+                uid: result.user.uid
+            })
             setIsAuth(true); 
             navigate('/'); 
         } catch (error) {
