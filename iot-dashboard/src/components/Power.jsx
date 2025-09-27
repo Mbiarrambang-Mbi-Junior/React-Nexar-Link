@@ -88,7 +88,7 @@ const Power = ({ isDarkMode }) => {
             {/* ✅ Applied dark mode background and shadow */}
             <div className={`flex flex-col md:flex-row items-center justify-around p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl dark:shadow-2xl mb-8`}>
                 {/* Chart Section */}
-                <div className="relative w-full md:w-1/2 flex items-center justify-center p-4">
+                <div className="relative w-full md:w-1/2 flex items-center justify-center p-4 bg-white">
                     <ResponsiveContainer width="100%" height={200}>
                         <RadialBarChart
                             innerRadius="60%"
@@ -117,7 +117,6 @@ const Power = ({ isDarkMode }) => {
                             <text
                                 x="50%" y="65%"
                                 textAnchor="middle" dominantBaseline="middle"
-                                // ✅ Applied dark mode text color
                                 className="text-lg text-gray-500 dark:fill-gray-400"
                             >
                                 Power Used
@@ -131,7 +130,7 @@ const Power = ({ isDarkMode }) => {
                     <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Meter Summary</h2>
                     <div className="space-y-4">
                         {/* ✅ Applied dark mode background and text color */}
-                        <div className="flex items-center p-4 bg-blue-50 dark:bg-gray-700 rounded-lg shadow-sm">
+                        <div className="flex items-center p-4 bg-blue-50 dark:bg-gray-700 rounded-lg shadow-sm bg-white">
                             <FaBolt className="text-3xl text-blue-500 mr-4" />
                             <div>
                                 <p className="text-gray-600 dark:text-gray-300 font-medium">Total Power Consumed</p>

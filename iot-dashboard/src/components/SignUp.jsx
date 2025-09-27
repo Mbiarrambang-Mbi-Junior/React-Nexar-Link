@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaGoogle } from 'react-icons/fa';
-import { BsFillPersonLinesFill, BsDisplay } from 'react-icons/bs'; // Import BsDisplay for the new field
+import { BsFillPersonLinesFill } from 'react-icons/bs'; // Removed BsDisplay
 import { auth, provider } from '../config/firebase';
 import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -9,8 +9,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 function SignUp({ isDarkMode, setIsAuth, setUserData }) { 
-    // FIX 1: Added state for dashboardName
-    const [dashboardName, setDashboardName] = useState('');
+    // Removed: const [dashboardName, setDashboardName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -22,19 +21,18 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
             // Store Auth Token
             cookies.set("auth-token", result.user.accessToken, { path: '/', maxAge: 3600 * 24 * 7 });
             console.log('Google Sign Up successful:', result.user.refreshToken);
-            console.log(result.user);
             
-            // FIX 2: You would typically handle setting the dashboardName (e.g., to the user's name) after Google sign-in here.
-             setUserData({
-                // Changed from 'img' to 'photoURL'
+            // Set User Data
+            setUserData({
                 photoURL: result.user.photoURL, 
-                // Header uses 'name' as a fallback, so 'displayName' (or just 'name') is fine.
                 name: result.user.displayName || result.user.email?.split('@')[0], 
                 email: result.user.email,
                 uid: result.user.uid
             })
             setIsAuth(true); 
-            navigate('/'); 
+            // FIX: Changed navigation to the default home ('/') or dashboard, 
+            // since the separate '/dashboard-name' step is no longer part of this flow.
+            navigate('/dashboard-name'); 
         } catch (error) {
             console.error("Google Sign Up Error:", error.message);
             alert("Google Sign Up Failed: " + error.message);
@@ -50,12 +48,8 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
             cookies.set("auth-token", result.user.accessToken, { path: '/', maxAge: 3600 * 24 * 7 });
             console.log('Email Sign Up successful:', result.user.refreshToken);
             
-            // NOTE: If you need to save the dashboardName to the user's profile in Firebase, 
-            // you would use updateProfile or a Firestore/Realtime Database call here, e.g.:
-            // await updateProfile(result.user, { displayName: dashboardName });
-            
             setIsAuth(true); 
-            navigate('/'); 
+            navigate('/dashboard-name'); 
         } catch (error) {
             console.error("Email/Password Sign Up Error:", error.message);
             alert("Sign Up Failed: " + error.message);
@@ -75,19 +69,7 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
                 {/* Sign Up Form */}
                 <form onSubmit={handleSignUp} className="space-y-6">
                     
-                    {/* FIX 3: Dashboard Name Input */}
-                    <div className="relative">
-                        <BsDisplay className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                        <input
-                            type="text" // Changed to type="text"
-                            placeholder="Dashboard Name"
-                            value={dashboardName}
-                            onChange={(e) => setDashboardName(e.target.value)}
-                            required
-                            className={`w-full py-3 pl-12 pr-4 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors ${isDarkMode
-                                ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-400'
-                                : 'bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-500'}`} />
-                    </div>
+                    {/* REMOVED: Dashboard Name Input (FIX 3) */}
                     
                     {/* Email Input */}
                     <div className="relative">

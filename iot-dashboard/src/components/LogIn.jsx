@@ -10,7 +10,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-function LogIn({ isDarkMode, setIsAuth }) {
+function LogIn({ isDarkMode, setIsAuth, setUserData }) {
     // FIX 1: Changed state variable from 'email' to 'dashboardName'
     const [dashboardName, setDashboardName] = useState('');
     const [password, setPassword] = useState('');
@@ -27,14 +27,17 @@ function LogIn({ isDarkMode, setIsAuth }) {
             cookies.set("auth-token", result.user.accessToken, { path: '/', maxAge: 3600 * 24 * 7 });
             console.log('Login successful:', result.user.uid);
 
-            // Update the parent authentication state and navigate to dashboard
+            // Update the parent authentication state and navigate to dashboardName route
             setIsAuth(true);
-            navigate('/');
+            // FIX: Navigate to the Dashboard Name setup route
+            navigate('/dashboard-name'); 
+            
+            // FIX: Ensure 'result.user' is used to get data
             setUserData({
-                photoURL: user.photoURL, // Must use 'photoURL'
-                name: user.displayName,  // Using 'name' is safer if you don't update Firebase displayName
-                email: user.email,
-                uid: user.uid
+                photoURL: result.user.photoURL, // Must use 'photoURL'
+                name: result.user.displayName,  // Using 'name' is safer if you don't update Firebase displayName
+                email: result.user.email,
+                uid: result.user.uid
             });
         } catch (error) {
             console.error("Login Error:", error.message);

@@ -6,6 +6,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import Home from './Home';
 import SignUp from './SignUp';
+import DashboardName from './DashboardName';
 import LogIn from './LogIn';
 import Power from './Power';
 import ForgotPassword from './ForgotPassword'; // Ensure this import is correct
@@ -91,8 +92,8 @@ function Container() {
                             {/* Authenticated Routes - / is the Dashboard */}
                             <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
                             <Route path="/power" element={<Power isDarkMode={isDarkMode} />} />
-                            <Route path="/device-management" element={<DeviceManagement isDarkMode={isDarkMode} />} />
                             <Route path="/devices/:id" element={<DeviceDetails isDarkMode={isDarkMode} />} />
+                            <Route path="/dashboard-name" element={<DashboardName isDarkMode={isDarkMode} setIsAuth={setIsAuth} />} />
                             <Route path="/data-analytics" element={<DataAnalytics isDarkMode={isDarkMode} />} />
                             <Route path="/user-management" element={<UserManagement isDarkMode={isDarkMode} />} />
                             <Route path="/attendance" element={<Attendance isDarkMode={isDarkMode} />} />
@@ -124,12 +125,9 @@ function Container() {
                     {/* Public Routes */}
                     <Route path='/signin' element={<SignUp isDarkMode={isDarkMode} setIsAuth={setIsAuth} setUserData={setUserData}/>} /> 
                     <Route path='/login' element={<LogIn isDarkMode={isDarkMode} setIsAuth={setIsAuth} setUserData={setUserData}/>} />
-                    {/* FIX 4: Added the ForgotPassword Route */}
                     <Route path='/forgot-password' element={<ForgotPassword isDarkMode={isDarkMode} />} />
-                    
-                    {/* Catch the base path "/" and redirect to /signin */}
+                    <Route path="/device-management" element={<DeviceManagement isDarkMode={isDarkMode} />} />
                     <Route path="/" element={<Navigate to="/signin" replace />} />
-                    {/* Catch any other URL and redirect to /signin */}
                     <Route path="*" element={<Navigate to="/signin" replace />} />
                 </Routes>
             </main>
