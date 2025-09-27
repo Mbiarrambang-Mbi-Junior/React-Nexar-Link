@@ -114,6 +114,7 @@ function Container() {
                     <Route path='/' element={<LandingPage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/signin" element={<LogIn />} />
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
                 </Routes>
             </main>
         </div>

@@ -4,7 +4,7 @@ import ImageURL from '/src/assets/5 terrific Home Assistant dashboards you can d
 
 function Hero() {
     return (
-        <div className='flex flex-col lg:flex-row pt-10 pb-20 px-4 sm:px-10 lg:px-20 justify-between items-center bg-teal-600 text-white'>
+        <div className='flex flex-col h-screen overflow-hidden lg:flex-row pt-10 pb-20 px-4 sm:px-10 lg:px-20 justify-between items-center bg-teal-600 text-white'>
             
             {/* Hero Message (Left Side) */}
             <div className="hero-message flex flex-col justify-center items-start max-w-xl lg:w-1/2 pr-0 lg:pr-10 mb-10 lg:mb-0">
@@ -55,7 +55,7 @@ function Hero() {
                 <img
                     src={ImageURL}
                     alt="NexarLink IoT Platform Demo"
-                    className="rounded-xl shadow-2xl w-50 h-120 max-w-lg" 
+                    className="rounded-xl shadow-2xl w-100 h-200 max-w-lg" 
                 />
             </div>
         </div>

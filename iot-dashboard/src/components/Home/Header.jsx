@@ -116,7 +116,7 @@ function Header({ isDarkMode, toggleDarkMode, signUserOut, userData }) {
                         <input
                             type='text'
                             placeholder='Search...'
-                            className={`border-2 rounded-md w-[200px] sm:w-[250px] h-[40px] p-4 focus:outline-none focus:ring-2 focus:ring-green-500
+                            className={`border-teal-2 rounded-md w-[200px] sm:w-[250px] h-[40px] p-4 focus:outline-none focus:ring-2 focus:ring-green-500
                                 transition-all duration-300 ease-in-out bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600
                             `}
                         />

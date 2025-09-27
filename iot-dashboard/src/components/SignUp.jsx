@@ -127,7 +127,7 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
                 <div className="mt-6 text-center text-sm">
                     <p className="text-gray-600 dark:text-gray-400">
                         Already have an account?
-                        <Link to="/login" className="font-medium text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 hover:underline transition-colors ml-1">
+                        <Link to="/signin" className="font-medium text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 hover:underline transition-colors ml-1">
                             Log In
                         </Link>
                     </p>
