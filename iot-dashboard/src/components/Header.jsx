@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
-import { BsFillBellFill, BsSearch, BsCpuFill, BsPerson, BsList, BsMoonFill, BsSunFill, BsX } from 'react-icons/bs';
+import React, { useState } from 'react';
+import { BsFillBellFill, BsSearch, BsCpuFill, BsList, BsMoonFill, BsSunFill, BsX } from 'react-icons/bs';
 
-function Header({ isSidebarOpen, setIsSidebarOpen, toggleDarkMode, isDarkMode, signUserOut, userData }) {
+// FIX: Changed 'setDashboardName' to 'dashboardName' in the prop list.
+function Header({ isSidebarOpen, setIsSidebarOpen, toggleDarkMode, isDarkMode, dashboardName }) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [theme, setTheme] = useState('light');
   const [notificationCount, setNotificationCount] = useState(0);
@@ -21,7 +22,7 @@ function Header({ isSidebarOpen, setIsSidebarOpen, toggleDarkMode, isDarkMode, s
 
 
   return (
-    <header className={`sticky top-0 z-[999] h-[60px] flex items-center justify-between  backdrop-blur-[10px] px-[30px] shadow-[0_6px_7px_-3px_rgba(0,0,0,0.35)] ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <header className={`sticky top-0 z-[999] h-[60px] w-full flex items-center justify-between  backdrop-blur-[10px] px-[30px] shadow-[0_6px_7px_-3px_rgba(0,0,0,0.35)] ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <div className='flex items-center gap-4'>
         {
           isSidebarOpen ?
@@ -32,7 +33,8 @@ function Header({ isSidebarOpen, setIsSidebarOpen, toggleDarkMode, isDarkMode, s
         <div className='sidebar-title'>
           <div className='logo text-[#008c69] text-[20px] font-semibold flex gap-2'>
             <BsCpuFill className='align-middle leading-[1px] text-[26px] mr-[5px]' />
-            <h1 className='hidden sm:inline'>Nexar|Link<span className='text-[#ffb650]'>.</span></h1>
+            {/* FIX: Use the 'dashboardName' value prop here */}
+            <h1 className='hidden sm:inline capitalize'>{dashboardName}<span className='text-[#ffb650]'>.</span></h1>
           </div>
         </div>
       </div>
@@ -57,12 +59,6 @@ function Header({ isSidebarOpen, setIsSidebarOpen, toggleDarkMode, isDarkMode, s
         <div className="alert-span flex">
           <BsFillBellFill size={24} className='icon cursor-pointer' onClick={handleCount} />
           <span className='flex items-center justify-center relative top-[1px] rounded-full p-1 right-[10px] bg-red-500 h-4 text-white font-semibold text-xs w-4'>{notificationCount}</span>
-        </div>
-        <div className="person flex">
-          {!userData ?
-            <BsPerson size={24} className='icon cursor-pointer' onClick={handleCount} />
-            : <span className='flex items-center justify-center relative top-[1px] rounded-full p-1 right-[10px] bg-red-500 h-4 text-white font-semibold text-xs w-4'>{result.user.photoURL}</span>
-          }
         </div>
         <button id="theme-toggle" className="theme-toggle-btn" aria-label="Toggle dark/light mode" onClick={handleThemeToggle}>
           {

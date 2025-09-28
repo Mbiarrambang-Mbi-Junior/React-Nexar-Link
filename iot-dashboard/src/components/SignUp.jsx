@@ -8,39 +8,36 @@ import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
+// The setUserData prop is now correctly received from the parent
 function SignUp({ isDarkMode, setIsAuth, setUserData }) { 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    // The function already correctly uses signInWithPopup
     const signInWithGoogle = async () => {
         try {
             const result = await signInWithPopup(auth, provider);
-            const user = result.user; // Use a cleaner variable name
+            const user = result.user; 
             
             // Store Auth Token
             cookies.set("auth-token", user.accessToken, { path: '/', maxAge: 3600 * 24 * 7 });
             console.log('Google Sign Up successful. User UID:', user.uid);
             
-            // Set User Data - Ensuring it captures all relevant fields from the Firebase User object
+            // Set User Data
             setUserData({
-                // The structure for user data is usually based on the user object returned by Firebase
                 photoURL: user.photoURL, 
-                // Fallback for name if displayName is null
                 name: user.displayName || user.email?.split('@')[0], 
                 email: user.email,
                 uid: user.uid
             })
             
             setIsAuth(true); 
-            // Navigate to the dashboard name setup page
-            navigate('/dashboard'); 
+            // FIX: Navigate to the dashboard name setup page as required
+            navigate('/dashboard-name'); 
         } catch (error) {
-            // Log the full error object for debugging
+            // FIX: Display a user-friendly message by using only the error.message property
             console.error("Google Sign Up Error:", error);
-            // Display a user-friendly message
-            alert("Google Sign Up Failed: " + error.message);
+            alert(`Google Sign Up Failed: ${error.message}`);
         }
     };
 
@@ -56,17 +53,18 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
 
             // Setting basic user data for email/password sign up
             setUserData({
-                photoURL: user.photoURL, // This might be null for email/password sign-ups
-                name: user.email?.split('@')[0], // Use email prefix as temporary name
+                photoURL: user.photoURL, 
+                name: user.email?.split('@')[0], 
                 email: user.email,
                 uid: user.uid
             })
             
             setIsAuth(true); 
-            navigate('/dashboard'); 
+            // FIX: Navigate to the dashboard name setup page as required
+            navigate('/dashboard-name'); 
         } catch (error) {
             console.error("Email/Password Sign Up Error:", error.message);
-            alert("Sign Up Failed: " + error.message);
+            alert(`Sign Up Failed: ${error.message}`);
         }
     };
 
@@ -138,7 +136,7 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
                 <div className="mt-6 text-center text-sm">
                     <p className="text-gray-600 dark:text-gray-400">
                         Already have an account?
-                        <Link to="/login" className="font-medium text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 hover:underline transition-colors ml-1">
+                        <Link to="/signin" className="font-medium text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 hover:underline transition-colors ml-1">
                             Log In
                         </Link>
                     </p>

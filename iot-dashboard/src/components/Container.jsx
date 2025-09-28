@@ -1,6 +1,5 @@
 // src/Container.jsx
 import React, { useState } from 'react';
-// IMPORT FIX: Added Navigate for redirection logic
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -9,7 +8,7 @@ import SignUp from './SignUp';
 import DashboardName from './DashboardName';
 import LogIn from './LogIn';
 import Power from './Power';
-import ForgotPassword from './ForgotPassword'; // Ensure this import is correct
+import ForgotPassword from './ForgotPassword'; 
 import DeviceManagement from './DeviceManagement';
 import DeviceDetails from './DeviceDetails';
 import DataAnalytics from './DataAnalytics';
@@ -24,13 +23,13 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 function Container() {
+    const [dashboardName, setDashboardName] = useState('');
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
     const [isDarkMode, setIsDarkMode] = useState(false);
-    // FIX 1: Corrected typo from 'serData' to 'userData'
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState(null); // userData state is crucial
 
-    // Get current path to determine if we are already on a public page
+    // Get current path for redirection logic
     const location = useLocation();
 
     const toggleDarkMode = () => {
@@ -42,16 +41,18 @@ function Container() {
     };
 
     const signUserOut = () => {
-        cookies.remove("auth-token", { path: '/dashboard' });
+        cookies.remove("auth-token", { path: '/' }); 
         setIsAuth(false);
+        setDashboardName(''); // Clear dashboard name on logout
     };
 
 
     // --- Core Routing Logic ---
-    // If the user is authenticated (isAuth is true)
-    if (isAuth) {
 
-        // --- AUTHENTICATED VIEW ---
+    // 1. Authenticated AND Dashboard Name is Set
+    if (isAuth && dashboardName) {
+        
+        // --- AUTHENTICATED VIEW (Full Dashboard Access) ---
         return (
             <div className='flex flex-col h-screen'>
                 <Header
@@ -60,17 +61,15 @@ function Container() {
                     toggleDarkMode={toggleDarkMode}
                     isDarkMode={isDarkMode}
                     signUserOut={signUserOut}
-                    // FIX 2: Passed the userData state (not the setter) to Header
                     userData={userData}
+                    dashboardName={dashboardName}
                 />
 
                 <div className='flex flex-1 overflow-hidden'>
-                    {/* Desktop Sidebar */}
+                    {/* Sidebar components... */}
                     <div className={`transition-all duration-300 ${isSidebarOpen ? 'w-[280px]' : 'w-[64px]'} ${isDarkMode ? 'bg-gray-800' : 'bg-white'} hidden md:block`}>
                         <Sidebar open={isSidebarOpen} isDarkMode={isDarkMode} />
                     </div>
-
-                    {/* Mobile Sidebar */}
                     <div
                         className={`fixed inset-y-0 left-0 z-50 md:hidden transition-transform duration-300 ease-in-out w-[280px] shadow-lg ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
                             } ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
@@ -82,19 +81,20 @@ function Container() {
                     {/* Main Content Area */}
                     <main className={`flex-1 overflow-y-auto scrollbar-hide p-4 pt-5 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
                         <Routes>
-                            {/* Authenticated Routes - / is the Dashboard */}
-                            <Route path="/power" element={<Power isDarkMode={isDarkMode} />} />
+                            {/* Authenticated Routes */}
                             <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
+                            <Route path="/power" element={<Power isDarkMode={isDarkMode} />} />
                             <Route path="/devices/:id" element={<DeviceDetails isDarkMode={isDarkMode} />} />
-                            <Route path="/dashboard-name" element={<DashboardName isDarkMode={isDarkMode} setIsAuth={setIsAuth} />} />
+                            <Route path="/dashboard-name" element={<DashboardName isDarkMode={isDarkMode} setIsAuth={setIsAuth} setDashboardName={setDashboardName} />} />
                             <Route path="/data-analytics" element={<DataAnalytics isDarkMode={isDarkMode} />} />
+                            <Route path="/device-management" element={<DeviceManagement isDarkMode={isDarkMode} />} />
                             <Route path="/user-management" element={<UserManagement isDarkMode={isDarkMode} />} />
                             <Route path="/attendance" element={<Attendance isDarkMode={isDarkMode} />} />
                             <Route path="/reports" element={<Reports isDarkMode={isDarkMode} />} />
                             <Route path="/alerts" element={<Alerts isDarkMode={isDarkMode} />} />
                             <Route path="/settings" element={<Settings isDarkMode={isDarkMode} />} />
 
-                            {/* Catch any other URL and redirect to dashboard */}
+                            {/* Catch any other URL and redirect to the dashboard home */}
                             <Route path="*" element={<Navigate to="/" replace />} />
                         </Routes>
                     </main>
@@ -102,18 +102,60 @@ function Container() {
             </div>
         );
     }
+    
+    // 2. Authenticated BUT Dashboard Name is NOT Set
+    // If authenticated, but don't have a dashboardName, and aren't already on the setup page, redirect.
+    if (isAuth && !dashboardName && location.pathname !== '/dashboard-name') {
+        return <Navigate to="/dashboard-name" replace />;
+    }
+    
 
-
-    // --- UNAUTHENTICATED VIEW ---
+    // 3. Unauthenticated OR Authenticated & on DashboardName Setup Page
     return (
         <div className='flex flex-col h-screen'>
             <main className={`flex-1 overflow-y-auto scrollbar-hide transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
                 <Routes>
                     {/* Public Routes */}
                     <Route path='/' element={<LandingPage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/signin" element={<LogIn />} />
+                    
+                    {/* Ensure setIsAuth and setUserData are passed to SignUp */}
+                    <Route 
+                        path="/signup" 
+                        element={
+                            <SignUp 
+                                setIsAuth={setIsAuth} 
+                                setUserData={setUserData} // This must be the correct setter function
+                            />
+                        } 
+                    />
+                    
+                    {/* Ensure setIsAuth and setUserData are passed to LogIn */}
+                    <Route 
+                        path="/signin" 
+                        element={
+                            <LogIn 
+                                setIsAuth={setIsAuth} 
+                                setUserData={setUserData} 
+                            />
+                        } 
+                    />
+                    
                     <Route path="/forgot-password" element={<ForgotPassword />} />
+                    
+                    {/* Dashboard Name Setup Route */}
+                    <Route 
+                        path="/dashboard-name" 
+                        element={
+                            isAuth ? (
+                                <DashboardName isDarkMode={isDarkMode} setIsAuth={setIsAuth} setDashboardName={setDashboardName} />
+                            ) : (
+                                <Navigate to="/signin" replace />
+                            )
+                        } 
+                    />
+
+                    {/* Catch any other URL and redirect appropriately */}
+                    <Route path="*" element={<Navigate to={isAuth ? "/dashboard-name" : "/"} replace />} />
                 </Routes>
             </main>
         </div>
