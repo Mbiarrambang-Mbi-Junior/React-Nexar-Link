@@ -1,184 +1,177 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { BsSearch, BsCpuFill, BsList, BsMoonFill, BsSunFill, BsX, BsChevronDown } from 'react-icons/bs';
+import { Link as ScrollLink } from 'react-scroll';
+import { BsCpuFill, BsList, BsMoonFill, BsSunFill, BsX } from 'react-icons/bs';
 
-// Ensure toggleDarkMode is included in the props list if it's used below
-function Header({ isDarkMode, toggleDarkMode, signUserOut, userData }) { 
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [toggleMenu, setToggleMenu] = useState(false); // State for mobile menu visibility
-    const [isDocDropdownOpen, setIsDocDropdownOpen] = useState(false); 
-    // const [theme, setTheme] = useState('light'); // Removed unused state
 
-    const toggleSearch = () => {
-        setIsSearchOpen(!isSearchOpen);
-    };
+function Header({ isDarkMode, handletheme }) {
+    const [toggleMenu, setToggleMenu] = useState(false);
+    const [isDocDropdownOpen, setIsDocDropdownOpen] = useState(false);
+
+
+    const toggleMenuState = () => {
+        setToggleMenu(prev => !prev);
+        setIsDocDropdownOpen(false);
+    }
 
     const toggleDocDropdown = () => {
         setIsDocDropdownOpen(prev => !prev);
     };
-    
-    // Removed redundant handleMenuClick, use toggle function directly
 
     const handleLinkClick = () => {
-        setIsDocDropdownOpen(false); // Close dropdown if a link is clicked
-        setToggleMenu(false); // Close the mobile menu automatically
+        setIsDocDropdownOpen(false);
+        setToggleMenu(false);
     }
+
 
     // Helper classes for theming the desktop dropdown
     const dropdownBg = isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200';
-    const linkHover = isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100';
+    // Helper classes for theming the overall header
+    const headerBg = isDarkMode ? 'bg-gray-900 border-gray-700 text-white' : 'bg-white border-gray-200 text-gray-800';
 
-    // Desktop/Mobile Navigation Links Data
     const navLinks = [
-        { name: "Getting Started", to: "/getting-started", isDropdown: false },
-        { 
-            name: "Documentation", 
-            to: "#", 
-            isDropdown: true,
-            subLinks: [
+        { name: "Home", to: "/" },
+        { name: "Features", to: "features" },
+        { name: "About Us", to: "aboutus" },
+        {
+            name: "Documentation", hasDropdown: true, subLinks: [
                 { name: "API Reference", to: "/docs/api" },
-                { name: "User Guides", to: "/docs/guides" },
-                { name: "FAQ", to: "/docs/faq" },
-                { name: "Automation", to: "/docs/automation" },
-                { name: "Energy Management", to: "/docs/energy" },
-                { name: "Device Organisation", to: "/docs/devices" },
-                { name: "Dashboards", to: "/docs/dashboards" },
-                { name: "Advanced configuration", to: "/docs/advanced" },
+                { name: "Guides", to: "/docs/guides" },
+                { name: "Blog", to: "/blog" },
+                { name: "Help Center", to: "/help" },
+                { name: "Careers", to: "/careers" },
+                { name: "Privacy Policy", to: "/privacy" },
             ]
         },
-        { name: "Integration", to: "/integration", isDropdown: false },
-        { name: "Blog", to: "/blog", isDropdown: false },
-        { name: "Need help?", to: "/help", isDropdown: false },
+        { name: "Contact", to: "contactus" },
     ];
 
-
     return (
-        <header className={`sticky top-0 z-[999] h-[60px] flex items-center justify-between backdrop-blur-[10px] px-[30px] shadow-[0_6px_7px_-3px_rgba(0,0,0,0.35)] ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
-            
-            {/* Logo */}
-            <div className='logo text-[#008c69] text-[20px] font-semibold flex gap-2'>
-                <BsCpuFill className='align-middle leading-[1px] text-[26px] mr-[5px]' />
-                <h1 className='hidden sm:inline'>Nexar|Link<span className='text-[#ffb650]'>.</span></h1>
-            </div>
+        <header className={`fixed w-full top-0 z-50 shadow-md transition-colors duration-300 border-b ${headerBg}`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-between items-center h-16">
 
-            {/* Desktop Navigation (Hidden on Small Screens) */}
-            <nav className="topnav-bar hidden md:block">
-                <ul className="flex space-x-6 text-sm font-medium">
-                    {navLinks.map((link) => (
-                        <li key={link.name} className="relative">
-                            {link.isDropdown ? (
-                                <>
-                                    <button
-                                        onClick={toggleDocDropdown}
-                                        className="nav-link flex items-center text-[#008c69] hover:text-[#008c69] dark:hover:text-green-400 transition"
-                                        aria-expanded={isDocDropdownOpen}
-                                    >
-                                        {link.name}
-                                        <BsChevronDown className={`ml-1 h-3 w-3 transition-transform duration-200 ${isDocDropdownOpen ? 'rotate-180' : 'rotate-0'}`} />
-                                    </button>
-                                    {isDocDropdownOpen && (
-                                        <div 
-                                            className={`absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 rounded-md shadow-lg border ${dropdownBg} ring-1 ring-black ring-opacity-5 z-20`}
-                                            role="menu"
+                    {/* Logo */}
+                    <Link to="/" className="flex items-center space-x-2 text-2xl font-bold text-teal-600 dark:text-teal-400">
+                        <BsCpuFill size={30} className='text-green-400' />
+                        <h1>Nexar|Link<span className='text-orange-400'>.</span></h1>
+                    </Link>
+
+                    {/* Desktop Navigation */}
+                    <nav className="hidden lg:flex flex-grow justify-center space-x-8">
+                        {navLinks.map((link, index) => (
+                            <div key={index} className="relative group">
+                                {link.hasDropdown ? (
+                                    <>
+                                        <button
+                                            onClick={toggleDocDropdown}
+                                            className="text-teal-700 hover:text-teal-600 dark:hover:text-teal-400 font-medium flex items-center transition"
                                         >
-                                            <div className="py-1">
-                                                {link.subLinks.map(subLink => (
+                                            {link.name}
+                                        </button>
+                                        {/* Desktop Dropdown Menu */}
+                                        {isDocDropdownOpen && (
+                                            <div className={`absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 ${dropdownBg}`}>
+                                                {link.subLinks.map((subLink, subIndex) => (
                                                     <Link
-                                                        key={subLink.name}
+                                                        key={subIndex}
                                                         to={subLink.to}
-                                                        onClick={() => setIsDocDropdownOpen(false)} 
-                                                        className={`block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 ${linkHover}`}
-                                                        role="menuitem"
+                                                        className="block px-4 py-2 text-sm text-teal-700 hover:text-teal-600 transition"
+                                                        onClick={() => setIsDocDropdownOpen(false)}
                                                     >
                                                         {subLink.name}
                                                     </Link>
                                                 ))}
                                             </div>
-                                        </div>
-                                    )}
-                                </>
-                            ) : (
-                                <Link to={link.to} className="nav-link text-[#008c69] hover:text-[#008c69] dark:hover:text-green-400 transition">
-                                    {link.name}
-                                </Link>
-                            )}
-                        </li>
-                    ))}
-                </ul>
-            </nav>
-            
-            {/* Right Side Icons (Search & Toggles) */}
-            <div className='flex items-center gap-4 text-[#008c69]'>
-                
-                {/* Search Bar */}
-                <div className='relative flex items-center gap-2 justify-center'>
-                    {isSearchOpen && (
-                        <input
-                            type='text'
-                            placeholder='Search...'
-                            className={`border-teal-2 rounded-md w-[200px] sm:w-[250px] h-[40px] p-4 focus:outline-none focus:ring-2 focus:ring-green-500
-                                transition-all duration-300 ease-in-out bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600
-                            `}
-                        />
-                    )}
-                    <BsSearch size={24} className='icon cursor-pointer hover:opacity-80 transition' onClick={toggleSearch} />
-                </div>
+                                        )}
+                                    </>
+                                ) : (
+                                    <ScrollLink
+                                        to={link.to}
+                                        className="text-teal-600 hover:text-teal-400 font-medium transition"
+                                    >
+                                        {link.name}
+                                    </ScrollLink>
+                                )}
+                            </div>
+                        ))}
+                    </nav>
+                    {/* signup */}
+                    <div
+                        className="signup-login 
+        // FIX: Hide by default on mobile screens (sm, md)
+        hidden 
+        // FIX: Display as a flex row starting from the 'large' breakpoint
+        lg:flex 
+        items-center space-x-4 mr-5"
+                    >
+                        {/* Log In Button (Often styled to stand out) */}
+                        <Link
+                            to='/login'
+                            // Used /login instead of /signin to match your file structure (LogIn.jsx)
+                            className={`px-4 py-2 rounded-lg transition-colors font-medium
+            text-teal-700 hover:text-teal-600 dark:hover:text-teal-400`}
+                        >
+                            Log In
+                        </Link>
 
-                <div className="signin-login">
-                    <button className='flex gap-2 items-center justify-center'>
-                        {/* FIX: Corrected path to /signin and text to 'Sign Up' (maps to SignUp.jsx) */}
-                        <Link to="/signup" className='hover:text-[#008c69] transition duraion-300'>Sign Up</Link>
-                        {/* FIX: Corrected path to /login and text to 'Log In' (maps to LogIn.jsx) */}
-                        <Link to="/signin" className='hover:text-[#008c69] transition duraion-300'>Log In</Link>
-                    </button>
-                </div>
+                        {/* Sign Up Button (Often styled as the primary CTA) */}
+                        <Link
+                            to='/signup'
+                            className={`px-4 py-2 rounded-lg transition-colors font-semibold shadow-md 
+            bg-teal-600 text-white hover:bg-teal-700`}
+                        >
+                            Sign Up
+                        </Link>
+                    </div>
+                    {/* Right Icons and Buttons */}
+                    <div className="flex items-center space-x-4">
 
-                {/* Theme Toggle Button (Logic is correct: show sun when dark, show moon when light) */}
-                <button id="theme-toggle" className="theme-toggle-btn" aria-label="Toggle dark/light mode" onClick={toggleDarkMode}>
-                    {isDarkMode ?
-                        <BsSunFill size={24} className='icon cursor-pointer text-yellow-500'/>
-                        :
-                        <BsMoonFill size={24} className='icon cursor-pointer text-gray-500'/>
-                    }
-                </button>
-                
-                {/* Mobile Menu Toggle (Visible on Small Screens) */}
-                <div className='md:hidden'>
-                    {toggleMenu ?
-                        // FIX: Use setToggleMenu(false) to close
-                        <BsX size={32} className='text-[#008c69] cursor-pointer' onClick={() => setToggleMenu(false)} /> 
-                        : 
-                        // FIX: Use setToggleMenu(true) to open
-                        <BsList size={32} className='text-[#008c69] cursor-pointer' onClick={() => setToggleMenu(true)} />
-                    }
+                        {/* Dark Mode Toggle (Now uses the prop function) */}
+                        <button
+                            onClick={handletheme}
+                            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition duration-300 text-teal-600"
+                            aria-label="Toggle Dark Mode"
+                        >
+                            {isDarkMode ? <BsSunFill size={20} className="text-yellow-400" /> : <BsMoonFill size={20} className="text-gray-500" />}
+                        </button>
+
+                        {/* Mobile Menu Button */}
+                        <button
+                            onClick={toggleMenuState}
+                            className="lg:hidden p-2 text-teal-700 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition duration-300"
+                            aria-label="Toggle Menu"
+                        >
+                            {toggleMenu ? <BsX size={24} /> : <BsList size={24} />}
+                        </button>
+                    </div>
                 </div>
             </div>
-            
-            {/* Mobile Navigation Menu (Fixed & Full-Screen) */}
+
+            {/* Mobile Menu (Conditional Rendering) */}
             {toggleMenu && (
-                <div className={`fixed inset-0 top-[60px] w-full h-[calc(100vh-60px)] z-50 p-6 
-                                ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'} 
-                                transition-transform duration-300 ease-in-out md:hidden`}>
-                    <ul className="flex flex-col space-y-4 text-xl font-medium">
-                        {navLinks.map((link) => (
-                            <li key={link.name}>
-                                {link.isDropdown ? (
+                <div className={`lg:hidden shadow-lg p-4 transition-all duration-300 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+                    <ul className="space-y-3">
+                        {navLinks.map((link, index) => (
+                            <li key={index} className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                                {link.hasDropdown ? (
                                     <>
-                                        <button
+                                        {/* Dropdown Toggle */}
+                                        <div
+                                            className="flex justify-between items-center py-2"
                                             onClick={toggleDocDropdown}
-                                            className="w-full text-left py-2 flex items-center"
                                         >
-                                            {link.name}
-                                            <BsChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${isDocDropdownOpen ? 'rotate-180' : 'rotate-0'}`} />
-                                        </button>
+                                            <span className="font-medium ">{link.name}</span>
+                                        </div>
+                                        {/* Mobile Sub-Links */}
                                         {isDocDropdownOpen && (
-                                            <ul className="pl-4 mt-2 space-y-2 text-base border-l border-gray-300 dark:border-gray-700">
-                                                {link.subLinks.map(subLink => (
-                                                    <li key={subLink.name}>
+                                            <ul className={`pl-4 pb-2 space-y-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                                {link.subLinks.map((subLink, subIndex) => (
+                                                    <li key={subIndex}>
                                                         <Link
                                                             to={subLink.to}
-                                                            onClick={handleLinkClick} // Closes both dropdown and menu
-                                                            className="block py-1 hover:text-[#008c69] dark:hover:text-green-400 transition"
+                                                            onClick={handleLinkClick}
+                                                            className="block py-1 hover:text-teal-600 dark:hover:text-teal-400 transition"
                                                         >
                                                             {subLink.name}
                                                         </Link>
@@ -188,10 +181,10 @@ function Header({ isDarkMode, toggleDarkMode, signUserOut, userData }) {
                                         )}
                                     </>
                                 ) : (
-                                    <Link 
-                                        to={link.to} 
-                                        onClick={handleLinkClick} // Closes menu
-                                        className="block py-2 hover:text-[#008c69] dark:hover:text-green-400 transition"
+                                    <Link
+                                        to={link.to}
+                                        onClick={handleLinkClick}
+                                        className="block py-2 hover:text-teal-600 dark:hover:text-teal-400 transition font-medium"
                                     >
                                         {link.name}
                                     </Link>

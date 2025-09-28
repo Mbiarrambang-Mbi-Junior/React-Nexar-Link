@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaGoogle } from 'react-icons/fa';
-import { BsFillPersonLinesFill } from 'react-icons/bs'; // Removed BsDisplay
+import { BsFillPersonLinesFill } from 'react-icons/bs';
 import { auth, provider } from '../config/firebase';
 import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -9,32 +9,37 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 function SignUp({ isDarkMode, setIsAuth, setUserData }) { 
-    // Removed: const [dashboardName, setDashboardName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    // The function already correctly uses signInWithPopup
     const signInWithGoogle = async () => {
         try {
             const result = await signInWithPopup(auth, provider);
+            const user = result.user; // Use a cleaner variable name
             
             // Store Auth Token
-            cookies.set("auth-token", result.user.accessToken, { path: '/', maxAge: 3600 * 24 * 7 });
-            console.log('Google Sign Up successful:', result.user.refreshToken);
+            cookies.set("auth-token", user.accessToken, { path: '/', maxAge: 3600 * 24 * 7 });
+            console.log('Google Sign Up successful. User UID:', user.uid);
             
-            // Set User Data
+            // Set User Data - Ensuring it captures all relevant fields from the Firebase User object
             setUserData({
-                photoURL: result.user.photoURL, 
-                name: result.user.displayName || result.user.email?.split('@')[0], 
-                email: result.user.email,
-                uid: result.user.uid
+                // The structure for user data is usually based on the user object returned by Firebase
+                photoURL: user.photoURL, 
+                // Fallback for name if displayName is null
+                name: user.displayName || user.email?.split('@')[0], 
+                email: user.email,
+                uid: user.uid
             })
+            
             setIsAuth(true); 
-            // FIX: Changed navigation to the default home ('/') or dashboard, 
-            // since the separate '/dashboard-name' step is no longer part of this flow.
-            navigate('/dashboard-name'); 
+            // Navigate to the dashboard name setup page
+            navigate('/dashboard'); 
         } catch (error) {
-            console.error("Google Sign Up Error:", error.message);
+            // Log the full error object for debugging
+            console.error("Google Sign Up Error:", error);
+            // Display a user-friendly message
             alert("Google Sign Up Failed: " + error.message);
         }
     };
@@ -43,13 +48,22 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
         e.preventDefault(); 
         try {
             const result = await createUserWithEmailAndPassword(auth, email, password);
-            
+            const user = result.user;
+
             // Store Auth Token
-            cookies.set("auth-token", result.user.accessToken, { path: '/', maxAge: 3600 * 24 * 7 });
-            console.log('Email Sign Up successful:', result.user.refreshToken);
+            cookies.set("auth-token", user.accessToken, { path: '/', maxAge: 3600 * 24 * 7 });
+            console.log('Email Sign Up successful. User UID:', user.uid);
+
+            // Setting basic user data for email/password sign up
+            setUserData({
+                photoURL: user.photoURL, // This might be null for email/password sign-ups
+                name: user.email?.split('@')[0], // Use email prefix as temporary name
+                email: user.email,
+                uid: user.uid
+            })
             
             setIsAuth(true); 
-            navigate('/dashboard-name'); 
+            navigate('/dashboard'); 
         } catch (error) {
             console.error("Email/Password Sign Up Error:", error.message);
             alert("Sign Up Failed: " + error.message);
@@ -68,9 +82,6 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
 
                 {/* Sign Up Form */}
                 <form onSubmit={handleSignUp} className="space-y-6">
-                    
-                    {/* REMOVED: Dashboard Name Input (FIX 3) */}
-                    
                     {/* Email Input */}
                     <div className="relative">
                         <FaEnvelope className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -127,7 +138,7 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
                 <div className="mt-6 text-center text-sm">
                     <p className="text-gray-600 dark:text-gray-400">
                         Already have an account?
-                        <Link to="/signin" className="font-medium text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 hover:underline transition-colors ml-1">
+                        <Link to="/login" className="font-medium text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 hover:underline transition-colors ml-1">
                             Log In
                         </Link>
                     </p>

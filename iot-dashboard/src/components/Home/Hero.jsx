@@ -1,10 +1,12 @@
 import React from 'react';
 import { BsArrowRight, BsGithub, BsTrophyFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import ImageURL from '/src/assets/5 terrific Home Assistant dashboards you can deploy today.jpeg'
 
-function Hero() {
+// Add isDarkMode and handletheme to props
+function Hero({ isDarkMode, handletheme }) { 
     return (
-        <div className='flex flex-col h-screen overflow-hidden lg:flex-row pt-10 pb-20 px-4 sm:px-10 lg:px-20 justify-between items-center bg-teal-600 text-white'>
+        <div className='hero flex flex-col h-screen overflow-hidden lg:flex-row pt-30 pb-20 px-4 sm:px-10 lg:px-20 justify-between items-center bg-teal-600 text-white'>
             
             {/* Hero Message (Left Side) */}
             <div className="hero-message flex flex-col justify-center items-start max-w-xl lg:w-1/2 pr-0 lg:pr-10 mb-10 lg:mb-0">
@@ -20,18 +22,17 @@ function Hero() {
                 
                 {/* Button */}
                 <div className="mb-8">
-                    {/* FIX 5: Styled button for contrast and hover effect. */}
-                    <button className='flex bg-white text-teal-600 items-center justify-center gap-2 
-                                         font-semibold rounded-lg py-3 px-6 shadow-lg 
-                                         hover:bg-gray-100 transition duration-200'>
-                        <span>Get Started</span> 
-                        <BsArrowRight size={24} className='icon' />
-                    </button>
+                    {/* FIX 5: Styled button... */}
+                    <Link
+                        to='/signup'
+                        className='py-3 px-8 text-lg font-bold rounded-lg shadow-lg bg-white text-teal-600 hover:bg-teal-50 hover:scale-[1.03] transition duration-300 flex items-center gap-2'
+                    >
+                        Get Started <BsArrowRight />
+                    </Link>
                 </div>
-                
-                {/* Trophy/Icon Text Block */}
-                {/* FIX 6: Improved styling for the icon block. Changed width classes and adjusted padding. */}
-                <div className="icon-trophy border-2 border-teal-400 rounded-xl py-4 px-6 flex items-center gap-4 w-full max-w-md bg-teal-700/50">
+
+                {/* Info Block */}
+                <div className="rounded-full py-4 px-6 flex items-center gap-4 w-full max-w-md bg-teal-700/50">
                     
                     <div className="hero-icons flex gap-4 text-teal-200">
                         <BsTrophyFill className='icon' size={30} />
@@ -47,11 +48,6 @@ function Hero() {
             
             {/* Hero Image (Right Side) */}
             <div className="hero-image lg:w-1/2 flex justify-center">
-                {/* FIX: The key to responsiveness is using the following classes:
-                  - 'w-full': Makes the image take up 100% of its parent container's width.
-                  - 'h-auto': Ensures the height scales proportionally with the width.
-                  - 'max-w-lg': Caps the maximum size of the image on large screens to prevent it from becoming too massive.
-                */}
                 <img
                     src={ImageURL}
                     alt="NexarLink IoT Platform Demo"

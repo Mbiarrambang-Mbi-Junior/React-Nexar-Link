@@ -10,13 +10,16 @@ function Sponsored() {
         { name: 'Twitter', icon: BsTwitter, color: 'text-sky-500' },
         { name: 'Instagram', icon: BsInstagram, color: 'text-fuchsia-600' },
         { name: 'GitHub', icon: BsGithub, color: 'text-gray-900' },
-        { name: 'PavWay Group', icon: PavWayIcon, color: 'text-green-600'},
-        { name: 'TimeUp Delivery', icon: TimeUp, color: 'text-green-600'}
+        { name: 'PavWay Group', icon: PavWayIcon, color: 'text-green-600' },
+        { name: 'TimeUp Delivery', icon: TimeUp, color: 'text-green-600' }
     ];
 
     return (
-        <section className='sponsored-container py-12 px-4 bg-white dark:bg-gray-900 transition-colors duration-300'>
-            <h2 className="text-center text-xl font-semibold mb-8 text-gray-700 dark:text-gray-300">
+        <section className='sponsore py-12 px-4 bg-white dark:bg-gray-900 transition-colors duration-300'>
+            <h2 className="text-center text-xl font-semibold mb-8 text-gray-700 dark:text-gray-300
+                           relative after:content-[''] after:absolute 
+                           after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 
+                           after:w-20 after:h-1 after:bg-teal-600 after:dark:bg-teal-400">
                 Trusted by Leading Tech
             </h2>
 

@@ -31,10 +31,14 @@ const featuresData = [
 
 function Features() {
     return (
-        <section className='flex flex-col w-full items-center justify-center py-16 px-4 bg-gray-50 dark:bg-gray-800 transition-colors duration-300'>
+        <section id='features' className='flex flex-col w-full items-center justify-center py-16 px-4 bg-gray-50 dark:bg-gray-800 transition-colors duration-300'>
             
-            {/* FIX 1: Corrected illegal <h1> tag ('hs') to a proper <h2> */}
-            <h2 className="text-4xl font-extrabold mb-12 text-gray-800 dark:text-white">
+            <h2 className="
+                text-4xl font-extrabold mb-12 text-gray-800 dark:text-white
+                relative after:content-[''] after:absolute 
+                after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 
+                after:w-20 after:h-1 after:bg-teal-600 after:dark:bg-teal-400
+            ">
                 Core Features
             </h2>
             
@@ -42,10 +46,9 @@ function Features() {
                 {featuresData.map((feature, index) => (
                     <div 
                         key={index}
-                        // FIX 2: Improved card responsiveness and styling
                         className="feature-card flex flex-col items-center p-6 rounded-xl shadow-xl 
-                                   hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 ease-in-out 
-                                   bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 w-full sm:w-80 md:w-64"
+                                 hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 ease-in-out 
+                                 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 w-full sm:w-80 md:w-64"
                     >
                         {/* Icon */}
                         <div className="icon p-4 mb-4 rounded-full bg-teal-50 dark:bg-teal-900">
@@ -53,7 +56,6 @@ function Features() {
                         </div>
                         
                         {/* Title */}
-                        {/* FIX 3: Styled title text and removed redundant background/rounded classes */}
                         <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">
                             {feature.title}
                         </h3>
@@ -64,7 +66,6 @@ function Features() {
                         </p>
                         
                         {/* Footer/CTA */}
-                        {/* FIX 4: Improved footer styling for better contrast and clarity */}
                         <div className="footer-card pt-4 border-t border-gray-200 dark:border-gray-700 w-full text-center">
                             <span className='text-sm font-semibold text-teal-600 dark:text-teal-400'>
                                 {feature.footer}

@@ -83,9 +83,8 @@ function Container() {
                     <main className={`flex-1 overflow-y-auto scrollbar-hide p-4 pt-5 transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
                         <Routes>
                             {/* Authenticated Routes - / is the Dashboard */}
-                            <Route path="/" element={<LandingPage />} />
-                            <Route path="/dashboard" element={<Home isDarkMode={isDarkMode} />} />
                             <Route path="/power" element={<Power isDarkMode={isDarkMode} />} />
+                            <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
                             <Route path="/devices/:id" element={<DeviceDetails isDarkMode={isDarkMode} />} />
                             <Route path="/dashboard-name" element={<DashboardName isDarkMode={isDarkMode} setIsAuth={setIsAuth} />} />
                             <Route path="/data-analytics" element={<DataAnalytics isDarkMode={isDarkMode} />} />
