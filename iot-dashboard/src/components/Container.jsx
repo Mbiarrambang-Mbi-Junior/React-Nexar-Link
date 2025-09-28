@@ -47,6 +47,23 @@ function Container() {
     };
 
 
+    // Place this inside the Container function in Container.jsx
+// useEffect(() => {
+//     if (isAuth) {
+//         // TODO: Implement the asynchronous logic here to fetch the full user object
+//         // Example: onAuthStateChanged(auth, (user) => { if (user) { setUserData(user); } });
+        
+//         // TEMPORARY MOCK TO UNBLOCK RENDERING (Replace with real async call)
+//         // If you need to test quickly without the full Firebase setup:
+//         setUserData({ 
+//             uid: '123', 
+//             email: 'admin@example.com', 
+//             name: 'Administrator', 
+//             photoURL: null, 
+//             role: 'Admin' 
+//         });
+//     }
+// }, [isAuth]);
     // --- Core Routing Logic ---
 
     // 1. Authenticated AND Dashboard Name is Set
@@ -88,7 +105,7 @@ function Container() {
                             <Route path="/dashboard-name" element={<DashboardName isDarkMode={isDarkMode} setIsAuth={setIsAuth} setDashboardName={setDashboardName} />} />
                             <Route path="/data-analytics" element={<DataAnalytics isDarkMode={isDarkMode} />} />
                             <Route path="/device-management" element={<DeviceManagement isDarkMode={isDarkMode} />} />
-                            <Route path="/user-management" element={<UserManagement isDarkMode={isDarkMode} />} />
+                            <Route path="/user-management" element={<UserManagement isDarkMode={isDarkMode} userData={userData}/>} />
                             <Route path="/attendance" element={<Attendance isDarkMode={isDarkMode} />} />
                             <Route path="/reports" element={<Reports isDarkMode={isDarkMode} />} />
                             <Route path="/alerts" element={<Alerts isDarkMode={isDarkMode} />} />

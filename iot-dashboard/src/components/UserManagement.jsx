@@ -17,26 +17,32 @@ function UserManagement({ isDarkMode, userData }) {
     // Extract photo URL and name variables from userData, mirroring Header.jsx
     const userPhotoUrl = userData?.photoURL;
     const userName = userData?.name || userData?.email?.split('@')[0] || 'User';
-   /* useEffect(() => {
+
+    // FIX: UNCOMMENTED THE useEffect BLOCK
+    useEffect(() => {
         if (userData) {
-            const usernameFromEmail = userData.email ? userData.email.split('@')[0] : 'User';
+            // Use the name from userData, or derive it from email if not present
+            const name = userData.name || (userData.email ? userData.email.split('@')[0] : 'User');
             
             // NOTE: Assuming the logged-in user has an 'Admin' role for this management page.
+            // In a real app, this role should come from the database.
             const user_role = userData.role || 'Admin'; 
+            
             setCurrentUser({
                 id: userData.uid || 0,
-                name: userData.name,
+                name: name,
                 photoURL: userData.photoURL,
                 email: userData.email,
                 role: user_role,
             });
         }
-    }, [userData]); */
+    }, [userData]); 
 
     // Render a loading state while user data is being processed 
+    // This check is now effective because the useEffect runs after render.
     if (!currentUser) {
+        // Remove console.log from here as it creates too much noise
         return <div className="p-8 text-center text-gray-500 dark:text-gray-400">Loading user data...</div>;
-        console.log('Loading user data...');
     }
 
     // Function to handle editing a user (placeholder)
