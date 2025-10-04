@@ -1,11 +1,25 @@
-import React, { useState } from 'react';
-// Added MdOutlineElectricalServices for a generic device icon, and BsTrash3Fill for delete
-import { BsDeviceSsdFill, BsLightbulbFill, BsFan, BsPlusCircleFill, BsTrash3Fill } from 'react-icons/bs'; 
+import React, { useState, useEffect } from 'react';
+import { 
+    BsDeviceSsdFill, 
+    BsLightbulbFill, 
+    BsFan, 
+    BsPlusCircleFill, 
+    BsTrash3Fill // for delete (optional but good practice)
+} from 'react-icons/bs'; 
 import { FaTshirt } from 'react-icons/fa';
 import { MdOutlineElectricalServices } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-// Utility function to get the icon based on device type
+// Import necessary Firebase Firestore functions
+import { db } from '../config/firebase'; 
+import { 
+    collection, 
+    onSnapshot, 
+    doc, 
+    updateDoc 
+} from "firebase/firestore"; 
+
+// Utility function remains the same
 const getDeviceIcon = (type) => {
     switch (type.toLowerCase()) {
         case 'light':
@@ -21,170 +35,249 @@ const getDeviceIcon = (type) => {
     }
 };
 
-function DeviceManagement({ isDarkMode }) {
-    const [devices, setDevices] = useState([
-        { id: 'parlor-light', name: 'Parlor Light', type: 'light', icon: getDeviceIcon('light'), status: false },
-        { id: 'room-light', name: 'Room Light', type: 'light', icon: getDeviceIcon('light'), status: false },
-        { id: 'fan', name: 'Fan', type: 'fan', icon: getDeviceIcon('fan'), status: false },
-    ]);
+function DeviceManagement({ isDarkMode, userData }) { 
     
-    // NEW STATE for form inputs
+    const [devices, setDevices] = useState([]); 
+    
     const [newDeviceName, setNewDeviceName] = useState('');
-    const [newDeviceType, setNewDeviceType] = useState('light'); // Default to 'light'
+    const [newDeviceType, setNewDeviceType] = useState('light');
+    
+    // ⭐ NEW STATE FOR PROVISIONING FLOW
+    const [isProvisioning, setIsProvisioning] = useState(false);
+    // Default IP for common IoT devices (like ESP32/ESP8266) in Soft AP mode
+    const [setupIP, setSetupIP] = useState('192.168.4.1'); 
 
-    const handleToggle = (id) => {
-        setDevices(prevDevices =>
-            prevDevices.map(device =>
-                device.id === id ? { ...device, status: !device.status } : device
-            )
-        );
-    };
 
-    // NEW FUNCTION: Handle form submission to add a device
-    const handleAddDeviceSubmit = (e) => {
-        e.preventDefault();
+    // --------------------------------------------------------
+    // A. FETCH DEVICES (READ) - Remains the same
+    // --------------------------------------------------------
+    useEffect(() => {
+        if (!userData || !userData.uid) return;
 
-        if (!newDeviceName.trim()) {
-            alert("Device name cannot be empty.");
-            return;
-        }
-
-        const newId = newDeviceName.toLowerCase().replace(/\s/g, '-');
+        const devicesRef = collection(db, "users", userData.uid, "devices");
         
-        // Prevent adding a device if an ID already exists (simple uniqueness check)
-        if (devices.some(device => device.id === newId)) {
-            alert(`Device with name "${newDeviceName}" already exists.`);
+        const unsubscribe = onSnapshot(devicesRef, (snapshot) => {
+            const devicesList = [];
+            snapshot.forEach((doc) => {
+                devicesList.push({ id: doc.id, ...doc.data() });
+            });
+            setDevices(devicesList);
+        }, (error) => {
+            console.error("Error fetching devices:", error);
+        });
+
+        return () => unsubscribe();
+    }, [userData]);
+
+
+    // --------------------------------------------------------
+    // B. PROVISION DEVICE (Replaces old Add function)
+    // --------------------------------------------------------
+    const handleProvisionDevice = async (e) => {
+        e.preventDefault();
+        
+        // NOTE: In a production app, you would securely fetch home Wi-Fi credentials 
+        // from the user or the operating system. For this simulation, we use placeholders.
+        const homeSSID = "Your_Home_WiFi";
+        const homePassword = "Your_Home_Password";
+    
+        if (!newDeviceName.trim() || !userData || !userData.uid) {
+            alert("Device name is required, and user must be logged in.");
             return;
         }
 
-        const newDevice = {
-            id: newId,
-            name: newDeviceName.trim(),
-            type: newDeviceType,
-            icon: getDeviceIcon(newDeviceType),
-            status: false,
-        };
-
-        setDevices(prevDevices => [...prevDevices, newDevice]);
-
-        // Clear the form
-        setNewDeviceName('');
-        setNewDeviceType('light');
+        try {
+            // Step 1: Send configuration payload to the device's temporary IP
+            // This assumes the device (e.g., an ESP32) is running an HTTP server
+            // and the user's PC is connected to the device's temporary Wi-Fi network.
+            const response = await fetch(`http://${setupIP}/configure`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ssid: homeSSID,
+                    password: homePassword,
+                    firebaseUid: userData.uid, // PASS THE UID TO THE DEVICE
+                    deviceName: newDeviceName.trim(),
+                    deviceType: newDeviceType
+                }),
+            });
+    
+            if (!response.ok) {
+                throw new Error('Device configuration failed. Check IP or device status.');
+            }
+    
+            // Assuming the device returns a success response with a new device ID
+            const data = await response.json();
+            
+            alert(`Configuration sent! The device should now connect to your home Wi-Fi and register to your dashboard shortly. Device ID: ${data.deviceId || 'N/A'}`);
+            
+            // Reset state
+            setIsProvisioning(false);
+            setNewDeviceName('');
+            setNewDeviceType('light');
+    
+        } catch (error) {
+            console.error("Provisioning error:", error);
+            alert(`Error: ${error.message}. Make sure you are connected to the device's temporary setup Wi-Fi network.`);
+        }
     };
 
-    return (
-        <div className={`p-4 rounded-lg shadow-md min-h-screen ${isDarkMode ? 'dark:bg-gray-900 dark:text-gray-100' : ''}`}>
-            <h1 className='text-2xl font-bold mb-6 text-teal-500'>Device Management</h1>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-                
-                {/* 1. Existing Device Cards (Mapped from state) */}
+    // --------------------------------------------------------
+    // C. TOGGLE DEVICE STATUS (UPDATE) - Remains the same
+    // --------------------------------------------------------
+    const handleToggle = async (deviceId, currentStatus) => {
+        if (!userData || !userData.uid) {
+            alert("Must be logged in to control devices.");
+            return;
+        }
+        
+        try {
+            const deviceDocRef = doc(db, "users", userData.uid, "devices", deviceId);
+            
+            await updateDoc(deviceDocRef, {
+                status: !currentStatus // Toggle status
+            });
+            
+        } catch (error) {
+            console.error("Error updating device status:", error);
+            alert("Failed to toggle device status.");
+        }
+    };
+    
+    
+    return (
+        <div className={`p-6 min-h-screen ${isDarkMode ? 'bg-zinc-900 text-gray-100' : 'bg-gray-50 text-gray-900'}`}>
+            {/* Header */}
+            <h1 className="text-3xl font-bold mb-6">Device Management</h1>
+
+            {/* Device Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
+                {/* Device Cards (Mapped from Firestore state) - Remains the same */}
                 {devices.map((device) => (
                     <div
-                        key={device.id}
-                        className={`
-                            device-card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center text-center
-                            transition-transform duration-300 ease-in-out hover:scale-105 hover:cursor-pointer
-                            ${!device.status && 'opacity-85'}
-                            ${isDarkMode ? 'bg-gray-800 text-gray-100 shadow-xl hover:shadow-2xl' : 'bg-white shadow-md hover:shadow-xl'}
-                        `}
+                        key={device.id} 
+                        className={`p-6 rounded-xl shadow-lg flex flex-col items-center justify-between transition-all duration-300 ${device.status 
+                            ? (isDarkMode ? 'bg-teal-700 text-white shadow-teal-500/50' : 'bg-teal-500 text-white shadow-teal-300/50') 
+                            : (isDarkMode ? 'bg-zinc-800 text-gray-300 hover:bg-zinc-700' : 'bg-white hover:bg-gray-100')}`
+                        }
                     >
                         {/* Link Wrapper */}
                         <Link to={`/devices/${device.id}`} className='flex flex-col items-center justify-center w-full'>
-                            <div className='mb-4 text-gray-800 dark:text-gray-100'>
-                                {device.icon}
+                            <div className='mb-4'>
+                                {/* Use getDeviceIcon with the stored type */}
+                                {getDeviceIcon(device.type)} 
                             </div>
                             
-                            <h3 className='text-xl font-semibold mb-2 text-black dark:text-gray-100'>{device.name}</h3>
-
-                            <p className={`text-sm font-medium ${device.status ? 'text-green-500' : 'text-red-500'}`}>
-                                Status: {device.status ? 'On' : 'Off'}
+                            <h3 className="text-xl font-semibold mb-1 text-center">{device.name}</h3>
+                            <p className={`text-sm font-medium mb-4 ${device.status ? 'text-white' : (isDarkMode ? 'text-teal-400' : 'text-teal-600')}`}>
+                                Status: {device.status ? 'ON' : 'OFF'}
                             </p>
                         </Link>
 
-                        {/* Toggle Button (outside of Link to prevent navigation on click) */}
+                        {/* Toggle Button */}
                         <button
-                            onClick={(e) => {
-                                e.preventDefault();
-                                handleToggle(device.id);
-                            }}
-                            className={`mt-4 px-6 py-2 rounded-full font-bold transition-colors duration-300 ${
-                                device.status 
-                                    ? 'bg-red-500 text-white hover:bg-red-600' 
-                                    : 'bg-green-500 text-white hover:bg-green-600'
-                            }`}
+                            onClick={() => handleToggle(device.id, device.status)}
+                            className={`w-full py-2 rounded-full font-bold transition-colors duration-200 ${device.status 
+                                ? 'bg-white text-teal-500 hover:bg-gray-100' 
+                                : (isDarkMode ? 'bg-teal-600 text-white hover:bg-teal-700' : 'bg-teal-500 text-white hover:bg-teal-600')}`
+                            }
                         >
                             {device.status ? 'Turn Off' : 'Turn On'}
                         </button>
                     </div>
                 ))}
+            </div>
 
-                {/* 2. COMPLETED: The "Add Device" Card now contains the form */}
-                <div 
-                    className={`
-                        add-device-card p-6 rounded-lg shadow-lg flex flex-col items-center justify-center text-center
-                        border-4 border-dashed border-teal-500/50 
-                        transition-colors duration-300 
-                        ${isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}
-                    `}
-                >
-                    <form onSubmit={handleAddDeviceSubmit} className='w-full space-y-4'>
-                        <h3 className='text-xl font-semibold mb-1 text-teal-500'>Add New Device</h3>
-                        
-                        {/* Device Name Input */}
-                        <div className="flex flex-col items-start w-full">
-                            <label 
-                                htmlFor="deviceName" 
-                                className='text-sm font-medium mb-1'
-                            >
-                                Device Name
-                            </label>
-                            <input
-                                type="text"
-                                id="deviceName"
-                                value={newDeviceName}
-                                onChange={(e) => setNewDeviceName(e.target.value)}
-                                placeholder="e.g., Bedroom Fan"
-                                required
-                                className={`w-full p-2 border rounded-md focus:ring-teal-500 focus:border-teal-500 ${isDarkMode 
-                                    ? 'bg-gray-800 border-gray-600 text-gray-100' 
-                                    : 'bg-white border-gray-300 text-gray-900'}`}
-                            />
-                        </div>
+            {/* ⭐ WI-FI PROVISIONING UI (Replaces the simple form) */}
+            <div className="max-w-md mx-auto">
+                <div className={`p-6 rounded-xl shadow-2xl ${isDarkMode ? 'bg-zinc-800' : 'bg-white'}`}>
+                    <h2 className="text-2xl font-bold mb-4 text-center">Add New Device</h2>
 
-                        {/* Device Type Select */}
-                        <div className="flex flex-col items-start w-full">
-                            <label 
-                                htmlFor="deviceType" 
-                                className='text-sm font-medium mb-1'
-                            >
-                                Device Type
-                            </label>
-                            <select
-                                id="deviceType"
-                                value={newDeviceType}
-                                onChange={(e) => setNewDeviceType(e.target.value)}
-                                className={`w-full p-2 border rounded-md focus:ring-teal-500 focus:border-teal-500 ${isDarkMode 
-                                    ? 'bg-gray-800 border-gray-600 text-gray-100' 
-                                    : 'bg-white border-gray-300 text-gray-900'}`}
-                            >
-                                <option value="light">Light</option>
-                                <option value="fan">Fan</option>
-                                <option value="appliance">Appliance</option>
-                                <option value="ssd">SSD/Storage</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        {/* Submit Button */}
+                    {!isProvisioning ? (
                         <button
-                            type="submit"
-                            className="w-full py-2 flex items-center justify-center rounded-full font-bold text-white bg-teal-500 hover:bg-teal-600 transition-colors duration-200"
+                            onClick={() => setIsProvisioning(true)}
+                            className="w-full py-3 flex items-center justify-center rounded-full font-bold text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-200"
                         >
                             <BsPlusCircleFill size={20} className='mr-2' />
-                            Add Device
+                            Start Wi-Fi Provisioning
                         </button>
-                    </form>
+                    ) : (
+                        <form onSubmit={handleProvisionDevice} className="space-y-4">
+                            <p className={`text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-600'} border-l-4 pl-3 border-teal-500`}>
+                                **Setup Mode:** First, manually connect your computer/phone to the new device's temporary Wi-Fi network (e.g., "MyDevice-Setup") before proceeding.
+                            </p>
+                            
+                            {/* Device Setup IP Input */}
+                            <div>
+                                <label className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Device Setup IP (e.g., 192.168.4.1)</label>
+                                <input
+                                    type="text"
+                                    value={setupIP}
+                                    onChange={(e) => setSetupIP(e.target.value)}
+                                    required
+                                    placeholder="e.g., 192.168.4.1"
+                                    className={`w-full p-2 border rounded-md focus:ring-teal-500 focus:border-teal-500 ${isDarkMode 
+                                        ? 'bg-gray-800 border-gray-600 text-gray-100' 
+                                        : 'bg-white border-gray-300 text-gray-900'}`
+                                    }
+                                />
+                            </div>
+
+                            {/* Device Name Input */}
+                            <div>
+                                <label className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Device Name</label>
+                                <input
+                                    type="text"
+                                    value={newDeviceName}
+                                    onChange={(e) => setNewDeviceName(e.target.value)}
+                                    required
+                                    placeholder="e.g., Bedroom Light"
+                                    className={`w-full p-2 border rounded-md focus:ring-teal-500 focus:border-teal-500 ${isDarkMode 
+                                        ? 'bg-gray-800 border-gray-600 text-gray-100' 
+                                        : 'bg-white border-gray-300 text-gray-900'}`
+                                    }
+                                />
+                            </div>
+
+                            {/* Device Type Select */}
+                            <div>
+                                <label className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Device Type</label>
+                                <select
+                                    value={newDeviceType}
+                                    onChange={(e) => setNewDeviceType(e.target.value)}
+                                    className={`w-full p-2 border rounded-md focus:ring-teal-500 focus:border-teal-500 ${isDarkMode 
+                                        ? 'bg-gray-800 border-gray-600 text-gray-100' 
+                                        : 'bg-white border-gray-300 text-gray-900'}`
+                                    }
+                                >
+                                    <option value="light">Light</option>
+                                    <option value="fan">Fan</option>
+                                    <option value="appliance">Appliance</option>
+                                    <option value="ssd">SSD/Storage</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            {/* Submit Button */}
+                            <button
+                                type="submit"
+                                className="w-full py-2 flex items-center justify-center rounded-full font-bold text-white bg-teal-500 hover:bg-teal-600 transition-colors duration-200"
+                            >
+                                Send Wi-Fi Credentials
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => setIsProvisioning(false)}
+                                className={`w-full py-2 rounded-full font-bold transition-colors duration-200 ${isDarkMode ? 'text-red-400' : 'text-red-600'}`}
+                            >
+                                Cancel Setup
+                            </button>
+                        </form>
+                    )}
                 </div>
             </div>
         </div>
