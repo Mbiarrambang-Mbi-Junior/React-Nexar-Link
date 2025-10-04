@@ -105,7 +105,7 @@ function LogIn({ isDarkMode, setIsAuth, setUserData }) {
                 {/* Footer Links */}
                 <div className="mt-6 text-center text-sm">
                     <Link
-                        to="/signin"
+                        to="/signup"
                         className={`font-medium hover:underline transition-colors ${isDarkMode ? 'text-gray-400 hover:text-gray-300' : 'text-gray-600 hover:text-gray-700'}`}
                     >
                         Don't have an account? Sign Up

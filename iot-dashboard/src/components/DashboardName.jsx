@@ -8,7 +8,7 @@ import { setDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 
 // Data structure for the world regions
 const WORLD_REGIONS = [
-    { name: 'Africa', value: 'Africa' },
+    { name: 'Africa  (Cameroon)', value: 'Africa' },
     { name: 'Asia', value: 'Asia' },
     { name: 'Europe', value: 'Europe' },
     { name: 'North America', value: 'North_America' },
