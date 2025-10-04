@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BsDownload } from 'react-icons/bs';
 import { useParams } from 'react-router-dom';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism"
+import { dracula } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { FaRegCopy } from 'react-icons/fa';
 import projectsData from '../utils/projects.json';
 
