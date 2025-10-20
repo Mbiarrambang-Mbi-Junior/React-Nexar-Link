@@ -3,7 +3,7 @@ import Typed from 'typed.js'; // You need to install the Typed.js library
 import '../models/Hero.css';
 import heropic from '../assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png';
 
-export default function Hero({ isDarkMode }) {
+export default function Hero() {
   useEffect(() => {
     // This code will run after the component has mounted to the DOM
     const options = {
@@ -24,7 +24,7 @@ export default function Hero({ isDarkMode }) {
 
   return (
     <>
-      <section className={`hero-section ${isDarkMode ? 'bg-white' : 'bg-[#191854]'}`} id="home">
+      <section className="hero-section" id="home">
         <div className="hero-content">
           <div className="intro-card">
             <span className="intro-text">
@@ -48,16 +48,16 @@ export default function Hero({ isDarkMode }) {
             </a>
           </div>
           <div className="social-links">
-            <a href="#" className="social-icon" aria-label="Instagram">
+            <a href="#" className="social-icon p-4" aria-label="Instagram">
               <i className="uil uil-instagram"></i>
             </a>
-            <a href="#" className="social-icon" aria-label="LinkedIn">
+            <a href="#" className="social-icon p-4" aria-label="LinkedIn">
               <i className="uil uil-linkedin-alt"></i>
             </a>
-            <a href="#" className="social-icon" aria-label="Dribbble">
+            <a href="#" className="social-icon p-4" aria-label="Dribbble">
               <i className="uil uil-dribbble"></i>
             </a>
-            <a href="#" className="social-icon" aria-label="GitHub">
+            <a href="#" className="social-icon p-4" aria-label="GitHub">
               <i className="uil uil-github-alt"></i>
             </a>
           </div>

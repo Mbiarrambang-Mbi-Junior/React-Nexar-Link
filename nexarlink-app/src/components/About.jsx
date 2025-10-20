@@ -1,16 +1,14 @@
 import React from 'react'
-import {FaCode,FaMicrochip,FaDatabase} from 'react-icons/fa'
-
 import '../models/about.css'
 
-export default function About({ isDarkMode }) {
+export default function About() {
     return (
         <>
-            <section className={`about-section ${isDarkMode ? 'bg-white' : 'bg-[#191854]'} p-[5rem_2rem] text-center m-[0_auto]`} id="about">
-                <div className="section-header mb-[3rem]">
-                    <h2 className="section-title text-[2rem] text-white">About Me</h2>
+            <section className="about-section" id="about">
+                <div className="section-header">
+                    <h2 className="section-title">About Me</h2>
                 </div>
-                <div class="grid gap-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-start">
+                <div className="about-container">
                     <article className="about-content">
                         <h3 className="about-subtitle">My Introduction</h3>
                         <p>
@@ -33,22 +31,17 @@ export default function About({ isDarkMode }) {
 
                     <div className="skills-grid">
                         <div className="skill-category">
-                            <h4 className="skill-title flex gap-4">
-                                <FaCode />
-                                <span>Frontend</span></h4>
+                            <h4 className="skill-title">Frontend</h4>
                             <ul className="skill-list">
                                 <li><span>HTML</span></li>
                                 <li><span>CSS</span></li>
-                                <li><span>Tailwind</span></li>
+                                <li><span>Bootstrap</span></li>
                                 <li><span>JavaScript</span></li>
                                 <li><span>React</span></li>
                             </ul>
                         </div>
                         <div className="skill-category">
-                            <h4 className="skill-title flex gap-4">
-                                <FaMicrochip />
-                                <span>Embedded Systems</span>
-                            </h4>
+                            <h4 className="skill-title">Embedded Systems</h4>
                             <ul className="skill-list">
                                 <li><span>ARM</span></li>
                                 <li><span>C</span></li>
@@ -57,10 +50,7 @@ export default function About({ isDarkMode }) {
                             </ul>
                         </div>
                         <div className="skill-category">
-                            <h4 className="skill-title flex gap-4">
-                                <FaDatabase />
-                                <span>Database</span>
-                            </h4>
+                            <h4 className="skill-title">Database</h4>
                             <ul className="skill-list">
                                 <li><span>MySQL</span></li>
                                 <li><span>Firebase</span></li>
