@@ -24,7 +24,8 @@ const cookies = new Cookies();
 function Container() {
     const [dashboardName, setDashboardName] = useState('');
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+    // Check for "auth-token". It will be a string (truthy) if present, or undefined (falsy) if not.
+    const [isAuth, setIsAuth] = useState(!!cookies.get("auth-token")); 
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [userData, setUserData] = useState(null); // userData state is crucial
 
@@ -42,15 +43,14 @@ function Container() {
     const signUserOut = () => {
         cookies.remove("auth-token", { path: '/' });
         setIsAuth(false);
+        setUserData(null); // Clear user data on logout
         setDashboardName(''); // Clear dashboard name on logout
     };
 
     // --- Core Routing Logic ---
 
-    // 1. Authenticated AND Dashboard Name is Set
+    // 1. Authenticated AND Dashboard Name is Set (Full Dashboard Access)
     if (isAuth && dashboardName) {
-
-        // --- AUTHENTICATED VIEW (Full Dashboard Access) ---
         return (
             <div className='flex flex-col h-screen'>
                 <Header
@@ -100,60 +100,31 @@ function Container() {
             </div>
         );
     }
+    
     // 2. Authenticated but Dashboard Name NOT Set (Redirect to setup)
     else if (isAuth && !dashboardName) {
-        // ... (existing logic)
+        // The error was here: if a user is authenticated but hits any path other than '/dashboard-name', 
+        // the code should render the DashboardName component directly, or redirect to it if on an irrelevant path.
+        // It's cleaner to handle this redirect in the Routes.
+
         return (
             <main className={`flex-1 min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
                 <Routes>
+                    {/* Only allow DashboardName route when authenticated but not set */}
                     <Route
-                        path="/"
-                        element={
-                            <LandingPage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}
-                                setIsAuth={setIsAuth} userData={userData}
-                            />
-                        }
+                        path="/dashboard-name"
+                        element={<DashboardName isDarkMode={isDarkMode} setDashboardName={setDashboardName} />}
                     />
+                    {/* Redirect any other path (including '/') to the setup page */}
                     <Route path="*" element={<Navigate to="/dashboard-name" replace />} />
                 </Routes>
             </main>
         );
     }
-    //3. Authenticated but Dashboard Name NOT Set (Redirect to setup)
-    else if (isAuth && !dashboardName) {
-        // ... (existing logic)
-        return (
-            <main className={`flex-1 min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
-                <Routes>
-                    <Route path="/" element={<LandingPage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />} />
-                    <Route
-                        path="/signup"
-                        element={
-                            <SignUp
-                                setIsAuth={setIsAuth}
-                                setUserData={setUserData}
-                            />
-                        }
-                    />
-                    {/* Ensure setIsAuth and setUserData are passed to LogIn */}
-                    <Route
-                        path="/signin"
-                        element={
-                            <LogIn
-                                setIsAuth={setIsAuth}
-                                setUserData={setUserData}
-                            />
-                        }
-                    />
-                    <Route path="/forgot-password" element={<ForgotPassword />} />
-                    <Route path="*" element={<Navigate to="/signin" replace />} />
-                </Routes>
-            </main>
-        );
-    }
-    // 4. Not Authenticated (Redirect to Login/Landing)
-    else {
-        // ... (existing logic)
+    
+    // 3. Not Authenticated (Show Login/Signup/Landing/Forgot Password)
+    // Note: Removed the unused '4.' comment and consolidated.
+    else { 
         return (
             <main className={`flex-1 min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
                 <Routes>
@@ -181,20 +152,10 @@ function Container() {
 
                     <Route path="/forgot-password" element={<ForgotPassword />} />
 
-                    {/* Dashboard Name Setup Route */}
-                    <Route
-                        path="/dashboard-name"
-                        element={
-                            isAuth ? (
-                                <DashboardName isDarkMode={isDarkMode} setIsAuth={setIsAuth} setDashboardName={setDashboardName} />
-                            ) : (
-                                <Navigate to="/signin" replace />
-                            )
-                        }
-                    />
-
-                    {/* Catch any other URL and redirect appropriately */}
-                    <Route path="*" element={<Navigate to={isAuth ? "/dashboard-name" : "/"} replace />} />
+                    {/* The DashboardName route logic was redundant here and is simplified: 
+                        If not authenticated, redirect to signin/landing for *any* protected route attempt. */}
+                    <Route path="/dashboard-name" element={<Navigate to="/signin" replace />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </main>
         );
