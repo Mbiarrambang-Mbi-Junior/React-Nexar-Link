@@ -8,8 +8,8 @@ import AboutUs from './AboutUs'
 import ContactUs from './ContactUs'
 import { useState} from 'react'
 
-// Removed 'isDarkMode' from props, as the state is managed here
-function LandingPage() { 
+// LandingPage is receiving both isAuth and userData from Container.jsx
+function LandingPage({isAuth, userData}) { 
       // Keep the state management here
       const [isDarkMode, setIsDarkMode] = useState(false); 
       
@@ -20,8 +20,8 @@ function LandingPage() {
   return (
     // Apply dark mode class to the main container
     <div className={isDarkMode ? 'dark' : ''}> 
-      {/* Pass both isDarkMode and handletheme to children */}
-      <Header isDarkMode={isDarkMode} handletheme={handletheme} />
+      {/* FIX: Removed the redundant 'isAuth' prop from Header. */}
+      <Header isDarkMode={isDarkMode} handletheme={handletheme} userData={userData} />
       <Hero isDarkMode={isDarkMode} handletheme={handletheme} />
       <Features isDarkMode={isDarkMode} handletheme={handletheme} />
       <AboutUs isDarkMode={isDarkMode} handletheme={handletheme} />

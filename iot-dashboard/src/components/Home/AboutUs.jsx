@@ -1,5 +1,5 @@
 import React from 'react';
-import ImgURL from '/src/assets/120468-OPU796-541.jpg'
+import ImgURL from '/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png'
 import { BsCheckCircleFill, BsLightningFill, BsCpuFill } from 'react-icons/bs';
 
 function AboutUs() {

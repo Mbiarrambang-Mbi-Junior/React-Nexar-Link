@@ -2,6 +2,7 @@ import React from 'react';
 import { BsGoogle, BsFacebook, BsTwitter, BsInstagram, BsGithub } from 'react-icons/bs';
 import PavWayIcon from '../../assets/icons/PaveWayIcon'
 import TimeUp from '../../assets/icons/TimeUp';
+import NexarLink from '../../assets/icons/NexarLink';
 
 function Sponsored() {
     const sponsoredLinks = [
@@ -11,7 +12,8 @@ function Sponsored() {
         { name: 'Instagram', icon: BsInstagram, color: 'text-fuchsia-600' },
         { name: 'GitHub', icon: BsGithub, color: 'text-gray-900' },
         { name: 'PavWay Group', icon: PavWayIcon, color: 'text-green-600' },
-        { name: 'TimeUp Delivery', icon: TimeUp, color: 'text-green-600' }
+        { name: 'TimeUp Delivery', icon: TimeUp, color: 'text-green-600' },
+        { name: 'NexarLink', icon: NexarLink, color: 'text-green-600'}
     ];
 
     return (

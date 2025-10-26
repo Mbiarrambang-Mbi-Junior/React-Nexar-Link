@@ -48,11 +48,11 @@ function Sidebar({ open, isDarkMode }) {
             <BsPeopleFill className='icon'/> {open && 'User Management'}
           </RouterLink>
         </li>
-        <li className={`sidebar-list-item p-5 text-lg hover:cursor-pointer hover:bg-gray-100 ${isDarkMode ? 'hover:bg-gray-700' : ''} rounded-lg transition-colors ${getActiveClass('/attendance')}`}>
+        {/*<li className={`sidebar-list-item p-5 text-lg hover:cursor-pointer hover:bg-gray-100 ${isDarkMode ? 'hover:bg-gray-700' : ''} rounded-lg transition-colors ${getActiveClass('/attendance')}`}>
           <RouterLink to="/attendance" className='flex gap-2 items-center font-semibold'>
             <BsPerson className='icon'/> {open && 'Attendance'}
           </RouterLink>
-        </li>
+        </li>*/}
         <li className={`sidebar-list-item p-5 text-lg hover:cursor-pointer hover:bg-gray-100 ${isDarkMode ? 'hover:bg-gray-700' : ''} rounded-lg transition-colors ${getActiveClass('/reports')}`}>
           <RouterLink to="/reports" className='flex gap-2 items-center font-semibold'>
             <BsMenuButtonWideFill className='icon'/> {open && 'Reports'}

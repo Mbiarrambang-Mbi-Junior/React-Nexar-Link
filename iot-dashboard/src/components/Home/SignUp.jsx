@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaGoogle } from 'react-icons/fa';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
-import { auth, provider } from '../config/firebase';
+import { auth, provider } from '../../config/firebase';
 import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
 
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 // The setUserData prop is now correctly received from the parent
-function SignUp({ isDarkMode, setIsAuth, setUserData }) { 
+function SignUp({ isDarkMode, setIsAuth, setUserData }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -17,23 +17,23 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
     const signInWithGoogle = async () => {
         try {
             const result = await signInWithPopup(auth, provider);
-            const user = result.user; 
-            
+            const user = result.user;
+
             // Store Auth Token
             cookies.set("auth-token", user.accessToken, { path: '/', maxAge: 3600 * 24 * 7 });
             console.log('Google Sign Up successful. User UID:', user.uid);
-            
+
             // Set User Data
             setUserData({
-                photoURL: user.photoURL, 
-                name: user.displayName || user.email?.split('@')[0], 
+                photoURL: user.photoURL,
+                name: user.displayName || user.email?.split('@')[0],
                 email: user.email,
                 uid: user.uid
             })
-            
-            setIsAuth(true); 
+
+            setIsAuth(true);
             // FIX: Navigate to the dashboard name setup page as required
-            navigate('/dashboard-name'); 
+            navigate('/dashboard-name');
         } catch (error) {
             // FIX: Display a user-friendly message by using only the error.message property
             console.error("Google Sign Up Error:", error);
@@ -42,7 +42,7 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
     };
 
     const handleSignUp = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         try {
             const result = await createUserWithEmailAndPassword(auth, email, password);
             const user = result.user;
@@ -53,15 +53,15 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
 
             // Setting basic user data for email/password sign up
             setUserData({
-                photoURL: user.photoURL, 
-                name: user.email?.split('@')[0], 
+                photoURL: user.photoURL,
+                name: user.email?.split('@')[0],
                 email: user.email,
                 uid: user.uid
             })
-            
-            setIsAuth(true); 
+
+            setIsAuth(true);
             // FIX: Navigate to the dashboard name setup page as required
-            navigate('/dashboard-name'); 
+            navigate('/dashboard-name');
         } catch (error) {
             console.error("Email/Password Sign Up Error:", error.message);
             alert(`Sign Up Failed: ${error.message}`);
@@ -124,14 +124,14 @@ function SignUp({ isDarkMode, setIsAuth, setUserData }) {
                         onClick={signInWithGoogle}
                         className={`w-full flex gap-4 items-center justify-center hover:cursor-pointer py-3 rounded-lg font-bold text-lg shadow-md transition-colors duration-200 
                             ${isDarkMode
-                                ? 'bg-white text-gray-800 hover:bg-gray-100 border border-gray-300' 
-                                : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300' 
+                                ? 'bg-white text-gray-800 hover:bg-gray-100 border border-gray-300'
+                                : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
                             }`}
                     >
                         <FaGoogle className='text-red-500' /> Sign Up with Google
                     </button>
                 </div>
-                
+
                 {/* Footer Links */}
                 <div className="mt-6 text-center text-sm">
                     <p className="text-gray-600 dark:text-gray-400">

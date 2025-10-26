@@ -4,7 +4,7 @@ import { FaUser, FaLock } from 'react-icons/fa';
 import { BsFillGearFill } from 'react-icons/bs';
 
 // Import Firebase Auth methods and config
-import { auth } from '../config/firebase';
+import { auth } from '../../config/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import Cookies from 'universal-cookie';
@@ -30,8 +30,8 @@ function LogIn({ isDarkMode, setIsAuth, setUserData }) {
             // Update the parent authentication state and navigate to dashboardName route
             setIsAuth(true);
             // FIX: Navigate to the Dashboard Name setup route
-            navigate('/dashboard-name'); 
-            
+            navigate('/dashboard-name');
+
             // FIX: Ensure 'result.user' is used to get data
             setUserData({
                 photoURL: result.user.photoURL, // Must use 'photoURL'

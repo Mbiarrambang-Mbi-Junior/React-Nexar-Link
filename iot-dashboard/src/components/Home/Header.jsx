@@ -4,10 +4,13 @@ import { Link as ScrollLink } from 'react-scroll';
 import { BsCpuFill, BsList, BsMoonFill, BsSunFill, BsX } from 'react-icons/bs';
 
 
-function Header({ isDarkMode, handletheme }) {
+function Header({ isDarkMode, handletheme, userData }) {
     const [toggleMenu, setToggleMenu] = useState(false);
     const [isDocDropdownOpen, setIsDocDropdownOpen] = useState(false);
-
+    
+    // FIX: Derive isAuth status locally from the 'userData' object
+    const isAuth = !!userData; 
+    const userPhotoUrl = userData?.photoURL;
 
     const toggleMenuState = () => {
         setToggleMenu(prev => !prev);
@@ -97,33 +100,34 @@ function Header({ isDarkMode, handletheme }) {
                         ))}
                     </nav>
                     {/* signup */}
-                    <div
-                        className="signup-login 
-        // FIX: Hide by default on mobile screens (sm, md)
-        hidden 
-        // FIX: Display as a flex row starting from the 'large' breakpoint
-        lg:flex 
-        items-center space-x-4 mr-5"
-                    >
-                        {/* Log In Button (Often styled to stand out) */}
-                        <Link
-                            to='/login'
-                            // Used /login instead of /signin to match your file structure (LogIn.jsx)
-                            className={`px-4 py-2 rounded-lg transition-colors font-medium
-            text-teal-700 hover:text-teal-600 dark:hover:text-teal-400`}
+                    {/* Auth Status / Profile or Login Buttons */}
+                    {isAuth && userPhotoUrl ? (
+                        <div className="ml-4 flex items-center">
+                            <img
+                                src={userPhotoUrl} // Use the actual user photo URL
+                                alt={userData.displayName || 'User Profile'}
+                                className="h-10 w-10 rounded-full object-cover border border-teal-600 cursor-pointer"
+                            />
+                        </div>
+                    ) : (
+                        <div
+                            className="signup-login hidden lg:flex items-center space-x-4 mr-5"
                         >
-                            Log In
-                        </Link>
+                            {/* Log In Button */}
+                            <Link
+                                to='/login'
+                                className={`px-4 py-2 rounded-lg transition-colors font-medium
+ text-teal-700 hover:text-teal-600 dark:hover:text-teal-400`}
+                            >
+                                Log In
+                            </Link>
+                            {/* Sign Up Button */}
+                            <Link to='/signup' className={`px-4 py-2 rounded-lg transition-colors font-semibold
+     shadow-md bg-teal-600 text-white hover:bg-teal-700`}>Sign Up
+                            </Link>
+                        </div>
+                    )}
 
-                        {/* Sign Up Button (Often styled as the primary CTA) */}
-                        <Link
-                            to='/signup'
-                            className={`px-4 py-2 rounded-lg transition-colors font-semibold shadow-md 
-            bg-teal-600 text-white hover:bg-teal-700`}
-                        >
-                            Sign Up
-                        </Link>
-                    </div>
                     {/* Right Icons and Buttons */}
                     <div className="flex items-center space-x-4">
 

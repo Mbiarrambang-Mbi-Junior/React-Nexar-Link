@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/home.css';
 import { BsThermometerHalf, BsDroplet, BsCloud, BsFillBellFill, BsDeviceSsdFill} from 'react-icons/bs';
 import { FaBolt } from 'react-icons/fa';
 import { ResponsiveContainer, RadialBarChart, RadialBar, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
