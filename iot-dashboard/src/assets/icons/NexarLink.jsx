@@ -7,7 +7,7 @@ function NexarLink() {
          <img 
            src={nexarlinkIcon} 
            alt="Nexar|Link Icon" 
-           className="w-8 h-8"
+           className="w-18 h-20"
          />
        </div>
   )

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import NexarLink from '../../assets/icons/NexarLink';
 import { Link as ScrollLink } from 'react-scroll';
 import { BsCpuFill, BsList, BsMoonFill, BsSunFill, BsX } from 'react-icons/bs';
 
@@ -55,8 +56,8 @@ function Header({ isDarkMode, handletheme, userData }) {
                 <div className="flex justify-between items-center h-16">
 
                     {/* Logo */}
-                    <Link to="/" className="flex items-center space-x-2 text-2xl font-bold text-teal-600 dark:text-teal-400">
-                        <BsCpuFill size={30} className='text-green-400' />
+                    <Link to="/" className="flex items-center space-x-2 text-2xl text-[#049c63] font-bold">
+                        <NexarLink size={30} className='' />
                         <h1>Nexar|Link<span className='text-orange-400'>.</span></h1>
                     </Link>
 
@@ -68,7 +69,7 @@ function Header({ isDarkMode, handletheme, userData }) {
                                     <>
                                         <button
                                             onClick={toggleDocDropdown}
-                                            className="text-teal-700 hover:text-teal-600 dark:hover:text-teal-400 font-medium flex items-center transition"
+                                            className="text-teal-700 hover:text-[#f58424] dark:hover:text-[#f58424] font-medium flex items-center transition"
                                         >
                                             {link.name}
                                         </button>
@@ -79,7 +80,7 @@ function Header({ isDarkMode, handletheme, userData }) {
                                                     <Link
                                                         key={subIndex}
                                                         to={subLink.to}
-                                                        className="block px-4 py-2 text-sm text-teal-700 hover:text-teal-600 transition"
+                                                        className="block px-4 py-2 text-sm text-teal-700 hover:text-[#f58424] transition"
                                                         onClick={() => setIsDocDropdownOpen(false)}
                                                     >
                                                         {subLink.name}
@@ -91,7 +92,7 @@ function Header({ isDarkMode, handletheme, userData }) {
                                 ) : (
                                     <ScrollLink
                                         to={link.to}
-                                        className="text-teal-600 hover:text-teal-400 font-medium transition"
+                                        className="text-teal-600 hover:text-[#f58424] font-medium transition"
                                     >
                                         {link.name}
                                     </ScrollLink>

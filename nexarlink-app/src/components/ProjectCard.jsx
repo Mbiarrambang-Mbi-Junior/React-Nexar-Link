@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { SiFirebase, SiReact, SiNodedotjs, SiArduino, SiProcessingfoundation } from 'react-icons/si';
+import { BsHouse } from 'react-icons/bs';
+import { GiGemini } from 'react-icons/gi';
 
 // Map of technology names to their icons
 const technologyIcons = {
@@ -9,6 +11,8 @@ const technologyIcons = {
   SiReact: <SiReact />,
   SiNodedotjs: <SiNodedotjs />,
   SiArduino: <SiArduino />,
+  BsHouse: <BsHouse />,
+  GiGemini: <GiGemini />,
   SiProcessingfoundation: <SiProcessingfoundation />,
 };
 

@@ -13,11 +13,12 @@ function Hero({ isDarkMode, handletheme }) {
 
     // ✅ FIXED: Declare the function using 'const'
     const handleGetStarted = () => {
+        console.log("Attempting to navigate to /signup");
         navigate('/signup'); // This runs ONLY when the button is clicked
     }
 
     return (
-        <div className='hero flex flex-col h-screen overflow-hidden lg:flex-row pt-30 pb-20 px-4 sm:px-10 lg:px-20 justify-between items-center bg-teal-600 text-white'>
+        <div className='hero flex flex-col h-screen overflow-hidden lg:flex-row pt-30 pb-20 px-4 sm:px-10 lg:px-20 justify-between items-center bg-[#049c63] text-white z-0'>
 
             {/* Hero Message (Left Side) */}
             <div className="hero-message flex flex-col justify-center items-start max-w-xl lg:w-1/2 pr-0 lg:pr-10 mb-10 lg:mb-0">
@@ -31,14 +32,12 @@ function Hero({ isDarkMode, handletheme }) {
                 </p>
 
                 {/* Button */}
-                <div className="mb-8">
-                    <button 
+                    <button type='button'
                         onClick={handleGetStarted} // Triggers the navigation function
-                        className='py-3 px-8 text-lg font-bold rounded-lg shadow-lg bg-white text-teal-600 hover:bg-teal-50 hover:scale-[1.03] hover:cursor-pointer transition duration-300 flex items-center gap-2'
+                        className='py-3 px-8 mb-4 rounded-lg bg-white text-teal-600 flex items-center gap-2 hover:scale-105 transition-transform duration-200 font-semibold'
                     >
                         Get Started <BsArrowRight />
                     </button>
-                </div>
 
                 {/* Info Block */}
                 <div className="rounded-full py-4 px-6 flex items-center gap-4 w-full max-w-md bg-teal-700/50">

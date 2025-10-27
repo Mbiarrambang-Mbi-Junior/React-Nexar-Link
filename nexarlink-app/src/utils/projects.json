@@ -12,7 +12,9 @@
     ],
     "imageUrl": "/src/assets/Gemini_Generated_Image_kmgmd6kmgmd6kmgm.png",
     "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
-    "technologies": ["SiArduino"],
+    "technologies": [
+      "SiArduino"
+    ],
     "githubLink": "https://github.com/your-username/rtc-clock-repo",
     "liveLink": "https://www.youtube.com/@ByteBot-b1v",
     "detailsPath": "/projectDisplay/1"
@@ -30,7 +32,12 @@
     ],
     "imageUrl": "/src/assets/Gemini_Generated_Image_23eu4a23eu4a23eu.png",
     "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
-    "technologies": ["SiReact", "SiNodedotjs", "SiFirebase", "SiArduino"],
+    "technologies": [
+      "SiReact",
+      "SiNodedotjs",
+      "SiFirebase",
+      "SiArduino"
+    ],
     "githubLink": "https://github.com/your-username/rfid-system-repo",
     "liveLink": "https://www.youtube.com/@ByteBot-b1v",
     "detailsPath": "/projectDisplay/2"
@@ -48,7 +55,11 @@
     ],
     "imageUrl": "/src/assets/Gemini_Generated_Image_dum6fmdum6fmdum6.png",
     "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
-    "technologies": ["SiReact", "SiNodedotjs", "SiProcessingfoundation"],
+    "technologies": [
+      "SiReact",
+      "SiNodedotjs",
+      "SiProcessingfoundation"
+    ],
     "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/radar-code.ino",
     "liveLink": "https://www.youtube.com/@ByteBot-b1v",
     "detailsPath": "/projectDisplay/3"
@@ -66,14 +77,18 @@
     ],
     "imageUrl": "/src/assets/Gemini_Generated_Image_58tff858tff858tf.png",
     "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
-    "technologies": ["SiReact", "SiNodedotjs", "SiFirebase"],
+    "technologies": [
+      "SiReact",
+      "SiNodedotjs",
+      "SiFirebase"
+    ],
     "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/temp-sensor.ino",
     "liveLink": "https://www.youtube.com/@ByteBot-b1v",
     "detailsPath": "/projectDisplay/4"
   },
   {
     "id": 5,
-    "title": "IOT Dashboard with React and Firebase",
+    "title": "IOT Dashboard with React, Firebase and ESP8266/ESP32",
     "tagline": "A real-time dashboard built with React and Firebase for IOT data visualization.",
     "video": "https://www.youtube.com/watch?v=your-video-id-5",
     "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/esp8266_firebase/esp8266_firebase.ino",
@@ -84,7 +99,11 @@
     ],
     "imageUrl": "/src/assets/Gemini_Generated_Image_v0dmm1v0dmm1v0dm.png",
     "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
-    "technologies": ["SiReact", "SiArduino", "SiFirebase"],
+    "technologies": [
+      "SiReact",
+      "SiArduino",
+      "SiFirebase"
+    ],
     "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/iot-dashboard.ino",
     "liveLink": "https://www.youtube.com/@ByteBot-b1v",
     "detailsPath": "/projectDisplay/5"
@@ -102,9 +121,181 @@
     ],
     "imageUrl": "/src/assets/Gemini_Generated_Image_xyq3b9xyq3b9xyq3.png",
     "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
-    "technologies": ["SiReact", "SiNodedotjs", "SiFirebase"],
+    "technologies": [
+      "SiReact",
+      "SiNodedotjs",
+      "SiFirebase"
+    ],
     "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/rfid-firebase.ino",
     "liveLink": "https://www.youtube.com/@ByteBot-b1v",
     "detailsPath": "/projectDisplay/6"
+  },
+  {
+    "id": 7,
+    "title": "ESP32/ESP8266 Blink with Blynk",
+    "tagline": "Connect an ESP module to the Blynk cloud for remote LED control and monitoring.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-7",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/Blynk/ESP_Blink_Blynk.ino",
+    "steps": [
+      "Step 1: Create a new project in the Blynk app to generate an Auth Token.",
+      "Step 2: Install the Blynk library in the Arduino IDE.",
+      "Step 3: Update the sketch with your Auth Token, WiFi SSID, and Password.",
+      "Step 4: Upload the code to your ESP board and test remote control."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_23eu4a23eu4a23eu.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": [
+      "SiBlynk",
+      "SiArduino"
+    ],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/blynk-code.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/7"
+  },
+  {
+    "id": 8,
+    "title": "ESP32 Home Assistant with Gemini",
+    "tagline": "Integrate an ESP32 as a smart device proxy for Home Assistant, enabling advanced automation and voice control.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-8",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/ESPHome/HomeAssistant_Voice.yaml",
+    "steps": [
+      "Step 1: Install the ESPHome add-on in your Home Assistant server.",
+      "Step 2: Create an ESPHome configuration file (YAML) for your device in Home Assistant.",
+      "Step 3: Flash the ESP32 with the generated ESPHome firmware over Wi-Fi (OTA).",
+      "Step 4: Configure voice commands and automation routines in Home Assistant to interact with the device."
+    ],
+    "imageUrl": "src/assets/smart home features.jpeg",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": [
+      "BsHouse",
+      "GiGemini",
+      "SiArduino"
+    ],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/home-assistant-code.yaml",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/8"
+  },
+  {
+    "id": 9,
+    "title": "ESC DC Motor Control with Arduino",
+    "tagline": "Control a DC motor using an Electronic Speed Controller (ESC) and Arduino.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-9",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/ESC_DC_Motor_Control/ESC_DC_Motor_Control.ino",
+    "steps": [
+      "Step 1: Connect the ESC to the DC motor and Arduino.",
+      "Step 2: Upload the code to control motor speed.",
+      "Step 3: Test and calibrate the ESC for optimal performance."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_23eu4a23eu4a23eu.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": [
+      "SiArduino"
+    ],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/esc-code.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/9"
+  },
+  {
+    "id": 10,
+    "title": "Ultrasonic Distance Measurement with Arduino",
+    "tagline": "Measure distances using an ultrasonic sensor and Arduino.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-10",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/Ultrasonic_Distance_Measurement/Ultrasonic_Distance_Measurement.ino",
+    "steps": [
+      "Step 1: Connect the ultrasonic sensor to the Arduino.",
+      "Step 2: Upload the code to read distance measurements.",
+      "Step 3: Display the measured distances on a serial monitor or LCD."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_23eu4a23eu4a23eu.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": [
+      "SiArduino"
+    ],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/ultrasonic-code.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/10"
+  },
+  {
+    "id": 11,
+    "title": "WiFi Signal Strength Monitor with ESP8266",
+    "tagline": "Monitor WiFi signal strength using an ESP8266 and display it on a web interface.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-11",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/WiFi_Signal_Strength_Monitor/WiFi_Signal_Strength_Monitor.ino",
+    "steps": [
+      "Step 1: Set up an ESP8266 board and connect it to your WiFi network.",
+      "Step 2: Upload the code to monitor signal strength.",
+      "Step 3: Access the web interface to view real-time signal strength data."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_23eu4a23eu4a23eu.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": [
+      "SiArduino",
+      "SiNodedotjs"
+    ],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/wifi-signal-code.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/11"
+  },
+  {
+    "id": 12,
+    "title": "Soil Moisture Sensor with ESP32",
+    "tagline": "Monitor soil moisture levels using an ESP32 and display data on a web dashboard.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-12",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/Soil_Moisture_Sensor/Soil_Moisture_Sensor.ino",
+    "steps": [
+      "Step 1: Connect a soil moisture sensor to the ESP32.",
+      "Step 2: Upload the code to read moisture levels.",
+      "Step 3: Create a web dashboard to visualize the data."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_23eu4a23eu4a23eu.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": [
+      "SiArduino",
+      "SiNodedotjs"
+    ],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/soil-moisture-code.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/12"
+  },
+  {
+    "id": 13,
+    "title": "LED Matrix Display with Arduino",
+    "tagline": "Create dynamic visual displays using an LED matrix controlled by an Arduino.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-13",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/LED_Matrix_Display/LED_Matrix_Display.ino",
+    "steps": [
+      "Step 1: Connect the LED matrix to the Arduino.",
+      "Step 2: Upload the code to control the display patterns.",
+      "Step 3: Customize the display with different animations and messages."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_23eu4a23eu4a23eu.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": [
+      "SiArduino"
+    ],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/led-matrix-code.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/13"
+  },
+  {
+    "id": 14,
+    "title": "Bluetooth Controlled Robot with Arduino",
+    "tagline": "Build a robot that can be controlled via Bluetooth using an Arduino.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-14",
+    "code": "https://raw.githubusercontent.com/Mbiarrambang-Mbi-Junior/Arduino-projects/master/Bluetooth_Controlled_Robot/Bluetooth_Controlled_Robot.ino",
+    "steps": [
+      "Step 1: Assemble the robot chassis and connect motors to the Arduino.",
+      "Step 2: Set up a Bluetooth module for communication.",
+      "Step 3: Upload the code to control the robot via a smartphone app."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_23eu4a23eu4a23eu.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": [
+      "SiArduino",
+      "SiBluetooth"
+    ],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/radar-code.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/14"
   }
 ]

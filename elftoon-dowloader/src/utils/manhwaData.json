@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "title": "The Heavenly Path Is Not Stupid",
+        "synopsis": "A generic overpowered protagonist rises through the ranks after receiving a mysterious gaming system. High action, low stress.",
+        "status": "Ongoing",
+        "chapters": 50,
+        "genre": "Action/Fantasy",
+        "cover": "https://placehold.co/200x300/374151/ffffff?text=SYSTEM+ASCENT"
+    },
+    {
+        "id": 2,
+        "title": "Reincarnated as a Shadow Monarch",
+        "synopsis": "A weak hunter gets a second chance to become the king of shadows. The art style is top-tier and the world-building is expansive.",
+        "status": "Completed",
+        "chapters": 120,
+        "genre": "Fantasy/Adventure",
+        "cover": "https://placehold.co/200x300/4c0519/ffffff?text=SHADOW+MONARCH"
+    },
+    {
+        "id": 3,
+        "title": "The Demon Lord's Nanny",
+        "synopsis": "A slice-of-life comedy about a young woman accidentally becoming the caretaker of a tiny, but immensely powerful, Demon Lord.",
+        "status": "Ongoing",
+        "chapters": 35,
+        "genre": "Comedy/Slice-of-Life",
+        "cover": "https://placehold.co/200x300/065f46/ffffff?text=DEMON+NANNY"
+    },
+    {
+        "id": 4,
+        "title": "I Became the Villainess's Best Friend",
+        "synopsis": "A reader is transmigrated into a novel and decides to save the tragic villainess from her fate, forming an unexpected bond.",
+        "status": "Ongoing",
+        "chapters": 88,
+        "genre": "Romance/Isekai",
+        "cover": "https://placehold.co/200x300/6d28d9/ffffff?text=VILLAINESS+FRIEND"
+    },
+    {
+        "id": 5,
+        "title": "The Legendary Moonlight Sculptor",
+        "synopsis": "A man enters a virtual reality game to escape his hardships, becoming a legendary sculptor in the process.",
+        "status": "Ongoing",
+        "chapters": 42,
+        "genre": "Adventure/Fantasy",
+        "cover": "https://placehold.co/200x300/1e40af/ffffff?text=MOONLIGHT+SCULPTOR"
+    },
+    {
+        "id": 6,
+        "title": "The Villainess Reverses the Hourglass",
+        "synopsis": "A noblewoman uses a magical hourglass to go back in time and change her fate, seeking revenge against those who wronged her.",
+        "status": "Completed",
+        "chapters": 75,
+        "genre": "Drama/Romance",
+        "cover": "https://placehold.co/200x300/b45309/ffffff?text=HOURGLASS+VILLAINESS"
+    }
+]

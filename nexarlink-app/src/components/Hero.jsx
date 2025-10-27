@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import Typed from 'typed.js'; // You need to install the Typed.js library
 import '../models/Hero.css';
+import { BsInstagram, BsLinkedin, BsDribbble, BsGithub, BsDownload} from 'react-icons/bs';
 import heropic from '../assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png';
+import profileImge from '../assets/IMG-20251019-WA0006.jpg';
 
 export default function Hero() {
   useEffect(() => {
@@ -44,28 +46,28 @@ export default function Hero() {
               Hire Me
             </a>
             <a href="Curriculum Vitae.docx" download className="btn secondary-btn">
-              Download CV <i className="uil uil-file-alt"></i>
+              Download CV <BsDownload />
             </a>
           </div>
           <div className="social-links">
-            <a href="#" className="social-icon p-4" aria-label="Instagram">
-              <i className="uil uil-instagram"></i>
+            <a href="#" className="shadow-xl p-4 rounded-full text-red-500" aria-label="Instagram">
+              <BsInstagram />
             </a>
-            <a href="#" className="social-icon p-4" aria-label="LinkedIn">
-              <i className="uil uil-linkedin-alt"></i>
+            <a href="#" className="shadow-xl p-4 rounded-full text-blue-400" aria-label="LinkedIn">
+              <BsLinkedin />
             </a>
-            <a href="#" className="social-icon p-4" aria-label="Dribbble">
-              <i className="uil uil-dribbble"></i>
+            <a href="#" className="shadow-xl p-4 rounded-full text-[#EA4C89]" aria-label="Dribbble">
+              <BsDribbble />
             </a>
-            <a href="#" className="social-icon p-4" aria-label="GitHub">
-              <i className="uil uil-github-alt"></i>
+            <a href="#" className="shadow-xl p-4 rounded-full" aria-label="GitHub">
+              <BsGithub />
             </a>
           </div>
         </div>
         <div className="hero-image-container">
           <div className="hero-image">
             <img
-              src={heropic}
+              src={profileImge}
               alt="Mbiarrambang Mbi Junior"
               className="profile-image"
             />

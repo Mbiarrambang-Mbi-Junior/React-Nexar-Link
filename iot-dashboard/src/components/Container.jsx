@@ -77,7 +77,7 @@ function Container() {
                             {/* Authenticated Dashboard Routes */}
                             <Route path="/home" element={<Home isDarkMode={isDarkMode} userData={userData} />} />
                             <Route path="/" element={<Navigate to="/home" replace />} />
-                            <Route path="/device-management" element={<DeviceManagement isDarkMode={isDarkMode} />} />
+                            <Route path="/device-management" element={<DeviceManagement isDarkMode={isDarkMode} isAuth={isAuth} userData={userData}/>} />
                             <Route path="/device/:id" element={<DeviceDetails isDarkMode={isDarkMode} />} />
                             <Route path="/data-analytics" element={<DataAnalytics isDarkMode={isDarkMode} />} />
                             <Route path="/power" element={<Power isDarkMode={isDarkMode} />} />

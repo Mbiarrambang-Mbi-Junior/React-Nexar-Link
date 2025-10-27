@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { RiSearchLine, RiMenuLine, RiSunLine, RiMoonLine } from 'react-icons/ri'; // Import icons here
 import '../models/header.css';
 
@@ -42,30 +43,30 @@ function Header() {
   return (
     <header className="site-header">
       <nav className="navbar">
-        <a href="index.html" className="logo">
+        <Link to="/" className="logo">
           Nexar|Link<span>.</span>
-        </a>
+        </Link>
         <div className={`nav-links ${isMenuOpen ? 'active' : ''}`} id="navMenu">
           <ul className="nav-list">
             <li>
-              <a href="#home" className="nav-link active-link" onClick={closeMenu}>
+              <Link to="/" className="nav-link active-link" onClick={closeMenu}>
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#about" className="nav-link" onClick={closeMenu}>
+              <Link to="#about" className="nav-link" onClick={closeMenu}>
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#projects" className="nav-link" onClick={closeMenu}>
+              <Link to="#projects" className="nav-link" onClick={closeMenu}>
                 Projects
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#contact" className="nav-link" onClick={closeMenu}>
+              <Link to="#contact" className="nav-link" onClick={closeMenu}>
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -48,13 +48,13 @@ const featuresData = [
 
 function Features() {
     return (
-        <section id='features' className='flex flex-col w-full items-center justify-center py-16 px-4 bg-gray-50 dark:bg-gray-800 transition-colors duration-300'>
+        <section id='features' className='flex flex-col w-full items-center justify-center py-16 px-4 bg-[#18243d] transition-colors duration-300'>
 
             <h2 className="
                 text-4xl font-extrabold mb-12 text-gray-800 dark:text-white
                 relative after:content-[''] after:absolute 
                 after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 
-                after:w-20 after:h-1 after:bg-teal-600 after:dark:bg-teal-400
+                after:w-20 after:h-1 after:bg-[#f58424]
             ">
                 Core Features
             </h2>
@@ -76,7 +76,7 @@ function Features() {
                     >
                         {/* Icon */}
                         <div className="icon p-4 mb-4 rounded-full bg-teal-50 dark:bg-teal-900">
-                            <feature.icon className='text-teal-600 dark:text-teal-400' size={36} />
+                            <feature.icon className='text-teal-600 dark:text-[#f58424]' size={36} />
                         </div>
 
                         {/* Title */}

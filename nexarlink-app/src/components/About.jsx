@@ -1,6 +1,8 @@
 import React from 'react'
 import '../models/about.css'
 
+import { BsDownload } from 'react-icons/bs';
+
 export default function About() {
     return (
         <>
@@ -24,7 +26,7 @@ export default function About() {
                         <div className="about-actions">
                             <a href="Curriculum Vitae.docx" download
                                 className="btn download-btn">
-                                Download CV <i className="uil uil-import"></i>
+                                Download CV <BsDownload />
                             </a>
                         </div>
                     </article>
