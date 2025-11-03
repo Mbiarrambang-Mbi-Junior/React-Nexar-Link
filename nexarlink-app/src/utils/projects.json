@@ -297,5 +297,26 @@
     "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/radar-code.ino",
     "liveLink": "https://www.youtube.com/@ByteBot-b1v",
     "detailsPath": "/projectDisplay/14"
+  },
+  {
+    "id": 15,
+    "title": "Bluetooth Control with Arduino",
+    "tagline": "Control devices wirelessly using Bluetooth and Arduino.",
+    "video": "https://www.youtube.com/watch?v=your-video-id-15",
+    "code": "https://github.com/Mbiarrambang-Mbi-Junior/Arduino-projects/blob/master/bluetooth_smarthome/bluetooth_smarthome.ino",
+    "steps": [
+      "Step 1: Connect a Bluetooth module to the Arduino.",
+      "Step 2: Upload the code to enable Bluetooth communication.",
+      "Step 3: Use a smartphone app to send commands to the Arduino."
+    ],
+    "imageUrl": "/src/assets/Gemini_Generated_Image_23eu4a23eu4a23eu.png",
+    "schematic": "/src/assets/Gemini_Generated_Image_i0qs31i0qs31i0qs-removebg-preview.png",
+    "technologies": [
+      "SiArduino",
+      "SiBluetooth"
+    ],
+    "githubLink": "https://github.com/Mbiarrambang-Mbi-Junior/your-repo/main/path/to/bluetooth-code.ino",
+    "liveLink": "https://www.youtube.com/@ByteBot-b1v",
+    "detailsPath": "/projectDisplay/15"
   }
 ]
