@@ -15,7 +15,7 @@ const firebaseConfig = {
   measurementId: "G-K5CG4FXKZ9"
 };
 
-// Initialize Firebase
+// Initialize Firebase https://script.google.com/macros/s/AKfycbzdiAmrY9aUOp6cjS-GwLqyZIkY2mT9zZ-K_bj-pclDJMCUCQkNvQlyd3ppOZFTM2bJ/exec
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
