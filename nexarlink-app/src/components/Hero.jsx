@@ -7,7 +7,7 @@ export default function Hero({ isDarkMode } ) {
   useEffect(() => {
     // This code will run after the component has mounted to the DOM
     const options = {
-      strings: ["an Embedded Engineer", "an IOT Engineer", "an Automation Engineer"],
+      strings: ["an BEMS Engineer", "an IOT Engineer", "an Automation & Controle Engineer"],
       loop: true,
       typeSpeed: 100,
       backSpeed: 80,

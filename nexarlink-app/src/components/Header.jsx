@@ -21,15 +21,6 @@ function Header({ isDarkMode, handleThemeToggle }) { // Added handleThemeToggle 
     setIsMenuOpen(false);
   };
     
-  // Tailwind utility for the active link dot (replaces ::after)
-  const ActiveDot = () => (
-    <span 
-      className="absolute left-1/2 bottom-10px transform -translate-x-1/2 
-                 w-1.5 h-1.5 bg-accent rounded-full"
-      aria-hidden="true"
-    ></span>
-  );
-
   return (
     // .site-header: fixed, top-0, left-0, w-full, z-50, bg-box-bg, shadow-md (0 2px 10px rgba)
     <header className="fixed top-0 left-0 w-full z-50 bg-transperent backdrop-blur-xl shadow-md">
@@ -58,24 +49,24 @@ function Header({ isDarkMode, handleThemeToggle }) { // Added handleThemeToggle 
               {/* .nav-link: text-primary, font-medium, relative, transition, hover:text-accent */}
               {/* active-link: text-accent, relative (for the dot) */}
               <Link to="/" onClick={closeMenu}
-                className="text-teal font-medium relative transition duration-300 hover:text-accent"
+                className="text-orange-400 font-medium relative transition duration-300 hover:text-accent"
               >
                 Home
               </Link>
             </li>
             <li>
               <Link to="#about" onClick={closeMenu} 
-              className="text-teal font-medium relative transition duration-300 hover:text-accent">
+              className="text-orange-400 font-medium relative transition duration-300 hover:text-accent">
                 About
               </Link>
             </li>
             <li>
-              <Link to="#projects" onClick={closeMenu} className="text-teal font-medium relative transition duration-300 hover:text-accent">
+              <Link to="#projects" onClick={closeMenu} className="text-orange-400 font-medium relative transition duration-300 hover:text-accent">
                 Projects
               </Link>
             </li>
             <li>
-              <Link to="#contact" onClick={closeMenu} className="text-teal font-medium relative transition duration-300 hover:text-accent">
+              <Link to="#contact" onClick={closeMenu} className="text-orange-400 font-medium relative transition duration-300 hover:text-accent">
                 Contact
               </Link>
             </li>
@@ -86,28 +77,29 @@ function Header({ isDarkMode, handleThemeToggle }) { // Added handleThemeToggle 
         {isMenuOpen && (
              <div 
                 // Mobile only, stacked menu: flex-col, absolute, top-full, left-0, w-full, bg-body-bg, shadow-md, p-4
-                className="lg:hidden absolute top-full left-0 w-full bg-body-bg shadow-md py-4 text-center"
+                className={`${isDarkMode ? 'bg-[#0d1320] backdrop-blur-xl' : 'bg-white'}
+                lg:hidden absolute top-full left-0 w-full 
+                shadow-md py-4 text-center`}
               >
               {/* .nav-list (Mobile): flex-col, gap-4 (1rem) */}
               <ul className="flex flex-col gap-4 list-none p-0">
                   <li>
-                    <Link to="/" onClick={closeMenu} className="text-primary font-medium relative transition duration-300 hover:text-accent">
+                    <Link to="/" onClick={closeMenu} className="text-orange-400 font-medium relative transition duration-300 hover:text-accent">
                       Home
-                      <ActiveDot />
                     </Link>
                   </li>
                   <li>
-                    <Link to="#about" onClick={closeMenu} className="text-primary font-medium relative transition duration-300 hover:text-accent">
+                    <Link to="#about" onClick={closeMenu} className="text-orange-400 font-medium relative transition duration-300 hover:text-accent">
                       About
                     </Link>
                   </li>
                   <li>
-                    <Link to="#projects" onClick={closeMenu} className="text-primary font-medium relative transition duration-300 hover:text-accent">
+                    <Link to="#projects" onClick={closeMenu} className="text-orange-400 font-medium relative transition duration-300 hover:text-accent">
                       Projects
                     </Link>
                   </li>
                   <li>
-                    <Link to="#contact" onClick={closeMenu} className="text-primary font-medium relative transition duration-300 hover:text-accent">
+                    <Link to="#contact" onClick={closeMenu} className="text-orange-400 font-medium relative transition duration-300 hover:text-accent">
                       Contact
                     </Link>
                   </li>
@@ -135,7 +127,7 @@ function Header({ isDarkMode, handleThemeToggle }) { // Added handleThemeToggle 
             <button className="bg-transparent border-none text-primary text-2xl cursor-pointer transition duration-300 hover:text-accent p-2" 
                     aria-label="Toggle search bar" 
                     onClick={handleSearchToggle}>
-              <RiSearchLine /> 
+              <RiSearchLine className={` ${isDarkMode ? 'text-accent hover:text-orange-400' : 'text-primary'}`}/> 
             </button>
           </div>
           
@@ -147,7 +139,7 @@ function Header({ isDarkMode, handleThemeToggle }) { // Added handleThemeToggle 
             aria-label="Toggle dark/light mode" 
             onClick={handleThemeToggle} // Using prop function
           >
-            {isDarkMode ? <RiSunLine /> : <RiMoonLine />} 
+            {isDarkMode ? <RiSunLine className={` ${isDarkMode ? 'text-accent hover:text-orange-400' : 'text-primary'}`} /> : <RiMoonLine />} 
           </button>
           
           {/* Reusable Button (Assuming login/signup) */}
@@ -164,7 +156,7 @@ function Header({ isDarkMode, handleThemeToggle }) { // Added handleThemeToggle 
             className="lg:hidden bg-none border-none text-primary text-2xl cursor-pointer transition duration-300 hover:text-accent" 
             aria-label="Toggle navigation menu" 
             onClick={handleMenuToggle}>
-            <RiMenuLine />
+            <RiMenuLine className={` ${isDarkMode ? 'text-accent hover:text-orange-400' : 'text-primary'}`}/>
           </button>
         </div>
       </nav>
