@@ -40,8 +40,8 @@ function App() {
       <Routes>
         {/* FIX: Pass isDarkMode to HomePage */}
         <Route path="/" element={<HomePage isDarkMode={isDarkMode} />} />
-        <Route path="/projectDisplay/:id" element={<ProjectDisplay />} />
-        <Route path="/projectlist" element={<ProjectList />} />
+        <Route path="/projectDisplay/:id" element={<ProjectDisplay isDarkMode={isDarkMode}/>} />
+        <Route path="/projectlist" element={<ProjectList isDarkMode={isDarkMode}/>} />
       </Routes>
     </BrowserRouter>
   )

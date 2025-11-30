@@ -16,9 +16,9 @@ const technologyIcons = {
   SiProcessingfoundation: <SiProcessingfoundation />,
 };
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, isDarkMode }) => {
   return (
-    <div className="max-w-sm mx-auto overflow-hidden bg-white dark:bg-zinc-800 rounded-xl shadow-2xl transition-transform duration-300 hover:scale-[1.02]">
+    <div className={` ${isDarkMode ? "" : ""}max-w-sm mx-auto overflow-hidden bg-white dark:bg-zinc-800 rounded-xl shadow-2xl transition-transform duration-300 hover:scale-[1.02]`}>
       
       {/* 🖼️ Image/Preview */}
       <div className="relative h-48">

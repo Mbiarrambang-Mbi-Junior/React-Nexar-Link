@@ -7,7 +7,7 @@ import projectsData from '../utils/projects.json'
 function ProjectList({ isDarkMode }) {
   // You can now use the isDarkMode prop here
   return (
-    <section id="projects" className={`py-20 ${isDarkMode ? 'bg-white-50' : 'bg-[#191854]'}`}>
+    <section id="projects" className={`py-20 ${isDarkMode ? 'bg-white' : 'bg-[#0d1320]'}`}>
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-extrabold text-center mb-10 text-gray-900 dark:text-white">
           My Projects
