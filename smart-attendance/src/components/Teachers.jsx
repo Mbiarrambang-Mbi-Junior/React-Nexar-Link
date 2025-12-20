@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../utils/firebase.config'; 
 import { collection, getDocs } from "firebase/firestore";
+import { BsEye, BsPencilSquare, BsTrash } from 'react-icons/bs';
 
 const Teachers = () => {
     // FIXED: Changed state names to 'teachers' to match your fetch logic
@@ -43,10 +44,14 @@ const Teachers = () => {
                             <div>
                                 <p className="font-bold text-gray-800">{t.name || "Unnamed Teacher"}</p>
                                 <p className="text-xs text-gray-500">{t.email || "No Email Provided"}</p>
-                                <p className="text-xs text-blue-600 font-semibold mt-1">{t.department || "General"}</p>
                             </div>
                             <div className={`text-xs px-2 py-1 rounded ${t.status ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}`}>
                                 {t.status ? 'On Duty' : 'Off Duty'}
+                            </div>
+                            <div className="actions flex gap-2">
+                                <span><BsEye className='text-blue-600'/></span>
+                                <span><BsPencilSquare className='text-green-600'/></span>
+                                <span><BsTrash className='text-red-600'/></span>
                             </div>
                         </div>
                     ))

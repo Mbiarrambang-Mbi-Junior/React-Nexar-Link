@@ -7,10 +7,12 @@ import {
   BsSunFill,
   BsMoonFill,
 } from "react-icons/bs";
+import { useLanguage } from "./LanguageContext";
 import profileImg from "../assets/IMG-20251126-WA0005.jpg";
 
 function Header({ isDarkMode, handleThemeToggle }) {
-  const [currentLanguage, setCurrentLanguage] = useState("English");
+  const { language, setLanguage, t } = useLanguage();
+  const [currentLanguage, setCurrentLanguage] = useState(language);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
 
   const languages = ["English", "French", "Spanish", "German"];
@@ -24,14 +26,14 @@ function Header({ isDarkMode, handleThemeToggle }) {
     // Fixed: 'border-b-2' instead of 'border-bottom-2'
     <header className="flex justify-between items-center bg-gray-100 gap-4 p-3 border-b-2 border-gray-300 shadow-md sticky top-0">
       <h1 className="text-xl font-bold flex gap-2">
-        Welcome to <span className="text-blue-600">Nexar|Link</span>
+        {t('Welcome to')} <span className="text-blue-600">Nexar|Link</span>
       </h1>
 
       {/* Fixed: 'border' instead of 'border-1'. Added 'bg-white' and 'px-3' */}
       <div className="flex items-center gap-2 border border-gray-400 rounded-xl px-3 py-1 bg-white">
         <input
           type="text"
-          placeholder="Search..."
+          placeholder={t("Search...") }
           className="outline-none bg-transparent text-sm w-40 md:w-64"
         />
         <BsSearch className="text-gray-500" />
@@ -42,7 +44,7 @@ function Header({ isDarkMode, handleThemeToggle }) {
           className="flex items-center gap-1 cursor-pointer hover:text-blue-600 transition-colors"
           onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
         >
-          {currentLanguage}
+          {language}
           {isLangDropdownOpen ? <BsChevronDown /> : <BsChevronRight />}
         </div>
 
